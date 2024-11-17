@@ -1,0 +1,11 @@
+@import "../../../common-styles/common-styles.css";
+.main {
+  background-color: #ff4646;
+  border-radius: 14px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}/*# sourceMappingURL=style.css.map */
