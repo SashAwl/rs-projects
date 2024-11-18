@@ -70,7 +70,9 @@ html {
 }
 
 .tag {
-  margin: 16px 0 8px;
+  padding-top: 20px;
+  margin-bottom: 8px;
+  margin-top: -4px;
 }
 
 .text {
@@ -119,6 +121,9 @@ html {
 }
 .gift-item__text {
   padding-left: 20px;
+  height: 112px;
+  border-radius: 20px;
+  background-color: #fff;
 }
 
 .header {
@@ -170,10 +175,10 @@ html {
   text-decoration: none;
   color: #181c29;
   display: inline-block;
-  margin-top: 14px;
+  margin-top: 20px;
 }
 .footer__bottom {
-  margin-top: 71px;
+  margin-top: 67px;
   display: flex;
   flex-direction: column;
   align-items: center;

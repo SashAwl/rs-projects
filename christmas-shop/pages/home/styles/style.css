@@ -111,6 +111,9 @@
   width: 27%;
   text-align: center;
 }
+.cta .elegant-text {
+  margin-bottom: 8px;
+}
 .cta__box {
   display: flex;
   align-items: center;

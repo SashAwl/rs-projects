@@ -1,4 +1,5 @@
 @import "../common-styles/normolize.css";
+@import "../../../common-styles/normolize.css";
 html {
   scroll-behavior: smooth;
 }
@@ -17,7 +18,7 @@ html {
   text-transform: uppercase;
 }
 .heading-top {
-  width: 33.5%;
+  width: 33.7%;
   margin: 0;
   font-size: 32px;
   letter-spacing: 0.18em;
@@ -37,6 +38,7 @@ html {
   font-size: 16px;
   letter-spacing: 0.08em;
   margin-top: 0;
+  margin-bottom: 20px;
 }
 .heading-small {
   font-size: 12px;
@@ -64,14 +66,18 @@ html {
   font-weight: 400;
   font-size: 16px;
   line-height: 148%;
-  margin: 12px 0;
+  margin: 18px 0 11px;
+  text-transform: none;
 }
 
 .tag {
-  margin: 20px 0 8px;
+  padding-top: 20px;
+  margin-bottom: 8px;
+  margin-top: -4px;
 }
 
 .text {
+  margin: 20px 0;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -86,15 +92,15 @@ html {
   line-height: 100%;
   letter-spacing: 0.05em;
   color: #ff4646;
+  margin: 0 0 12px;
 }
 .elegant-text--white {
   color: #fff;
-  margin: 12px 0;
 }
 
 .button {
   background-color: #181c29;
-  padding: 10px 15px;
+  padding: 18px 30px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 12px;
@@ -103,10 +109,10 @@ html {
   text-transform: uppercase;
   text-align: center;
   color: #fff;
-  border-radius: 15px;
+  border-radius: 22px;
 }
 .button--indent-cta {
-  margin: 20px 0 8px;
+  margin: 20px 0 19px;
 }
 
 .gift-item {
@@ -116,19 +122,23 @@ html {
 }
 .gift-item__text {
   padding-left: 20px;
+  height: 112px;
+  border-radius: 20px;
+  background-color: #fff;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 7px 21px;
 }
 .header .logo {
   display: flex;
   align-items: center;
 }
 .header .logo__img {
-  margin-right: 4px;
+  margin-right: 9px;
 }
 .header .logo__link {
   text-decoration: none;
@@ -144,6 +154,10 @@ html {
   padding-top: 60px;
   padding-bottom: 60px;
 }
+.footer .heading-gift-item {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
 .footer__contacts {
   display: flex;
   justify-content: center;
@@ -155,17 +169,17 @@ html {
   align-items: center;
   background-color: #ecf3f8;
   border-radius: 20px;
-  padding: 20px;
-  width: 24%;
+  padding: 15px 19px;
+  width: 26.3%;
 }
 .footer .card-item__link {
   text-decoration: none;
   color: #181c29;
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 20px;
 }
 .footer__bottom {
-  margin-top: 60px;
+  margin-top: 67px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,7 +188,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 34px;
 }
 .footer .elegant-text {
   margin: 0;
@@ -209,7 +223,7 @@ html {
   margin: 20px auto;
 }
 .gift .tag-selection {
-  padding: 12px 20px;
+  padding: 12px 18.4px;
   background: none;
   border: none;
 }
