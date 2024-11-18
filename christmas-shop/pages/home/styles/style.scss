@@ -5,7 +5,7 @@
     background-color: $primary;
     background-image: url(../../../assets/images/bg-snow.png);
     background-size: contain;
-    border-radius: 14px;
+    border-radius: 22px;
 }
 
 .hero {
@@ -14,7 +14,12 @@
     align-items: center;
     background-image: url(../../../assets/images/bg-ball.png);
     background-size: contain;
-    padding: 120px 0;
+    background-repeat: no-repeat;
+    padding: 120px 0 168px;
+
+    & .elegant-text {
+        margin: 0 0 13px;
+    }
 
     & .button {
         margin: 12px auto;
@@ -28,12 +33,16 @@
     padding-left: 60px;
 
     &__content {
-        padding-top: 100px;
+        padding-top: 161px;
         padding-right: 152px;
     }
 
     &__img {
         border-radius: 20px;
+    }
+
+    .elegant-text {
+        margin-bottom: 19px;
     }
 }
 
@@ -49,7 +58,7 @@
         overflow: hidden;
         display: flex;
         align-items: center;
-        margin: 20px 0;
+        margin: 18px 0;
     }
 
     &__text {
@@ -62,12 +71,30 @@
         color: $static-white;
 
         &:first-child {
-            padding-left: 82px;
+            padding-left: 63px;
         }
     }
 
     &__img {
         border-radius: 20px;
+    }
+
+    &__nav {
+        align-self: flex-end;
+        padding-right: 82px;
+
+        .arrow {
+            width: 15px;
+            height: 15px;
+            padding: 20px;
+            border: 1px solid $static-white;
+            border-radius: 20px;
+
+            &:first-child {
+                border-color: $static-white-40;
+                margin-right: 15px;
+            }
+        }
     }
 }
 
@@ -78,7 +105,7 @@
     justify-content: center;
 
     &__box {
-        margin: 20px auto;
+        margin: 17px auto;
         display: flex;
         justify-content: center;
         gap: 12px;
@@ -91,7 +118,7 @@
     background-image: url(../../../assets/images/bg-forest.png);
     background-size: contain;
     align-items: center;
-    padding-top: 189px;
+    padding-top: 177px;
     margin-top: 47px;
     padding-bottom: 180px;
 

@@ -3,7 +3,7 @@
   background-color: #ff4646;
   background-image: url(../../../assets/images/bg-snow.png);
   background-size: contain;
-  border-radius: 14px;
+  border-radius: 22px;
 }
 
 .hero {
@@ -12,7 +12,11 @@
   align-items: center;
   background-image: url(../../../assets/images/bg-ball.png);
   background-size: contain;
-  padding: 120px 0;
+  background-repeat: no-repeat;
+  padding: 120px 0 168px;
+}
+.hero .elegant-text {
+  margin: 0 0 13px;
 }
 .hero .button {
   margin: 12px auto;
@@ -25,11 +29,14 @@
   padding-left: 60px;
 }
 .about__content {
-  padding-top: 100px;
+  padding-top: 161px;
   padding-right: 152px;
 }
 .about__img {
   border-radius: 20px;
+}
+.about .elegant-text {
+  margin-bottom: 19px;
 }
 
 .slider {
@@ -44,7 +51,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin: 18px 0;
 }
 .slider__text {
   margin: 0 20px;
@@ -56,10 +63,25 @@
   color: #fff;
 }
 .slider__text:first-child {
-  padding-left: 82px;
+  padding-left: 63px;
 }
 .slider__img {
   border-radius: 20px;
+}
+.slider__nav {
+  align-self: flex-end;
+  padding-right: 82px;
+}
+.slider__nav .arrow {
+  width: 15px;
+  height: 15px;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 20px;
+}
+.slider__nav .arrow:first-child {
+  border-color: rgba(255, 255, 255, 0.4);
+  margin-right: 15px;
 }
 
 .best-gifts {
@@ -69,7 +91,7 @@
   justify-content: center;
 }
 .best-gifts__box {
-  margin: 20px auto;
+  margin: 17px auto;
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -81,7 +103,7 @@
   background-image: url(../../../assets/images/bg-forest.png);
   background-size: contain;
   align-items: center;
-  padding-top: 189px;
+  padding-top: 177px;
   margin-top: 47px;
   padding-bottom: 180px;
 }

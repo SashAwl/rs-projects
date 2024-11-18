@@ -19,7 +19,7 @@ html {
     text-transform: uppercase;
 
     &-top {
-        width: 33.5%;
+        width: 33.7%;
         margin: 0;
         font-size: 32px;
         letter-spacing: 0.18em;
@@ -42,6 +42,7 @@ html {
         font-size: 16px;
         letter-spacing: 0.08em;
         margin-top: 0;
+        margin-bottom: 20px;
     }
 
     &-small {
@@ -76,15 +77,17 @@ html {
         font-weight: 400;
         font-size: 16px;
         line-height: 148%;
-        margin: 12px 0;
+        margin: 18px 0 11px;
+        text-transform: none;
     }
 }
 
 .tag {
-    margin: 20px 0 8px;
+    margin: 16px 0 8px;
 }
 
 .text {
+    margin: 20px 0;
     font-family: $font-family;
     font-weight: 400;
     font-size: 16px;
@@ -99,16 +102,16 @@ html {
     line-height: 100%;
     letter-spacing: 0.05em;
     color: $primary;
+    margin: 0 0 12px;
 
     &--white {
         color: $static-white;
-        margin: 12px 0;
     }
 }
 
 .button {
     background-color: $dark;
-    padding: 10px 15px;
+    padding: 18px 30px;
     font-family: $font-family;
     font-weight: 600;
     font-size: 12px;
@@ -117,10 +120,10 @@ html {
     text-transform: uppercase;
     text-align: center;
     color: $static-white;
-    border-radius: 15px;
+    border-radius: 22px;
 
     &--indent-cta {
-        margin: 20px 0 8px;
+        margin: 20px 0 19px;
     }
 }
 
@@ -138,13 +141,14 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 7px 21px;
 
     .logo {
         display: flex;
         align-items: center;
 
         &__img {
-            margin-right: 4px;
+            margin-right: 9px;
         }
 
         &__link {
@@ -164,6 +168,11 @@ html {
     padding-top: 60px;
     padding-bottom: 60px;
 
+    .heading-gift-item {
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
     &__contacts {
         display: flex;
         justify-content: center;
@@ -176,19 +185,19 @@ html {
         align-items: center;
         background-color: $content-background;
         border-radius: 20px;
-        padding: 20px;
-        width: 24%;
+        padding: 15px 19px;
+        width: 26.3%;
 
         &__link {
             text-decoration: none;
             color: $dark;
             display: inline-block;
-            margin-top: 12px;
+            margin-top: 14px;
         }
     }
 
     &__bottom {
-        margin-top: 60px;
+        margin-top: 71px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -198,7 +207,7 @@ html {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 12px;
+        gap: 34px;
     }
 
     .elegant-text {
