@@ -7,6 +7,7 @@ html {
 
 .container {
     max-width: 1440px;
+    margin: 0 auto;
     padding-left: 82px;
     padding-right: 82px;
     overflow: hidden;
@@ -174,6 +175,10 @@ html {
 
         &-checked {
             background-color: $primary-10;
+            color: $primary;
+        }
+
+        .checked-red {
             color: $primary;
         }
     }

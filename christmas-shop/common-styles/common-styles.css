@@ -5,6 +5,7 @@ html {
 
 .container {
   max-width: 1440px;
+  margin: 0 auto;
   padding-left: 82px;
   padding-right: 82px;
   overflow: hidden;
@@ -154,6 +155,9 @@ html {
 }
 .header .menu-item-checked {
   background-color: rgba(255, 70, 70, 0.1);
+  color: #ff4646;
+}
+.header .menu-item .checked-red {
   color: #ff4646;
 }
 
