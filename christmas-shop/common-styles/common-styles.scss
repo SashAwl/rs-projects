@@ -146,7 +146,6 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 7px 21px;
 
     .logo {
         display: flex;
@@ -164,9 +163,21 @@ html {
     .menu ul {
         display: flex;
         align-items: center;
-        gap: 48px;
+        margin: 0;
         list-style-type: none;
+        padding: 11px 0 12px;
     }
+
+    .menu-item {
+        padding: 12px 23.5px;
+        border-radius: 12px;
+
+        &-checked {
+            background-color: $primary-10;
+            color: $primary;
+        }
+    }
+
 }
 
 .footer {
