@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/home/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <title>Home</title>
 </head>
 
@@ -13,14 +18,16 @@
         <header class="header">
             <div class="logo">
                 <img src="./assets/icons/snowflake.svg" class="logo__img" alt="logo"></img>
-                <h1 class="logo__text">the gifts</h1>
+                <a class="logo__link" href="#">
+                    <h1 class="heading heading-small">the gifts</h1>
+                </a>
             </div>
             <nav class="menu">
                 <ul>
-                    <li><a href="./pages/gifts/index.html" class="heading-small menu__gifts">gifts</a></li>
-                    <li><a href="#about" class="heading-small menu__about">about</a></li>
-                    <li><a href="#best" class="heading-small menu__best">best</a></li>
-                    <li><a href="#contacts" class="heading-small menu_contacts">contacts</a></li>
+                    <li><a href="./pages/gifts/index.html" class="heading heading-small menu__gifts">gifts</a></li>
+                    <li><a href="#about" class="heading heading-small menu__about">about</a></li>
+                    <li><a href="#best" class="heading heading-small menu__best">best</a></li>
+                    <li><a href="#contacts" class="heading heading-small menu_contacts">contacts</a></li>
                 </ul>
             </nav>
         </header>
@@ -28,83 +35,92 @@
     <main class="main">
         <div class="container">
             <div class="hero">
-                <h4 class="elegant-text">Merry Christmas</h4>
-                <h2 class="heading-top">Gift yourself the magic of new possibilities</h2>
-                <button class="button heading-small">Explore Magical Gifts</button>
-                <h4 class="elegant-text">and Happy New Year</h4>
+                <h4 class="elegant-text--white elegant-text ">Merry Christmas</h4>
+                <h2 class="heading heading-top">Gift yourself the magic of new possibilities</h2>
+                <button class="button heading heading-small">Explore Magical Gifts</button>
+                <h4 class="elegant-text elegant-text--white">and Happy New Year</h4>
             </div>
             <div class="about" id="about">
                 <div class="about__content">
                     <h4 class="elegant-text">About</h4>
-                    <h2 class="heading">Unleash your inner superhero!</h2>
+                    <h2 class="heading heading-mini">Unleash your inner superhero!</h2>
                     <p class="text">
                         This New Year marks the beginning of your journey to inner harmony and new strengths. We offer
                         unique gifts that will help you improve your life.
                     </p>
                 </div>
-                <img src="./assets/images/hero-santa.svg" alt="santa-photo">
+                <img class="about__img" src="./assets/images/hero-santa.svg" alt="santa-photo">
             </div>
         </div>
         <div class="slider">
-            <h4 class="elegant-text">Become Happier!</h4>
-            <h2 class="heading">in the new 2025</h2>
+            <h4 class="elegant-text elegant-text--white">Become Happier!</h4>
+            <h2 class="heading heading-mini heading-mini--white">In the new 2025</h2>
             <div class="slider__box">
                 <h2 class="slider__text">Live</h2>
-                <img src="./assets/images/snowman.jpg" alt="snowman">
+                <img class="slider__img" src="./assets/images/snowman.jpg" alt="snowman">
                 <h2 class="slider__text">Create</h2>
-                <img src="./assets/images/christmas-trees.jpg" alt="christmas-trees">
+                <img class="slider__img" src="./assets/images/christmas-trees.jpg" alt="christmas-trees">
                 <h2 class="slider__text">Love</h2>
-                <img src="./assets/images/christmas-tree-ball.jpg" alt="christmas-tree-ball">
+                <img class="slider__img" src="./assets/images/christmas-tree-ball.jpg" alt="christmas-tree-ball">
                 <h2 class="slider__text">Dream</h2>
-                <img src="./assets/images/fairytale-house.jpg" alt="fairytale-house">
+                <img class="slider__img" src="./assets/images/fairytale-house.jpg" alt="fairytale-house">
             </div>
         </div>
-        <div class="best-gifts" id="best">
-            <h4 class="elegant-text">Best Gifts</h4>
-            <h2 class="heading">especially for you</h2>
+        <div class="best-gifts container" id="best">
+            <h4 class="elegant-text elegant-text--white">Best Gifts</h4>
+            <h2 class="heading heading-mini heading-mini--white">especially for you</h2>
             <div class="best-gifts__box">
                 <div class="gift-item">
-                    <img src="./assets/images/image1.png" alt="gift-photo" class="card-item__img">
-                    <h6 class="tag heading-small">For work</h6>
-                    <h4 class="heading--mini">Console.log Guru</h4>
+                    <img src="./assets/images/image1.png" alt="gift-photo" class="gift-item__img">
+                    <div class="gift-item__text">
+                        <h6 class="tag heading heading-work heading-small">For work</h6>
+                        <h4 class="heading heading-gift-item">Console.log Guru</h4>
+                    </div>
                 </div>
                 <div class="gift-item">
-                    <img src="./assets/images/image2.png" alt="gift-photo" class="card-item__img">
-                    <h6 class="tag heading-small">For health</h6>
-                    <h4 class="heading--mini">Hydration Bot</h4>
+                    <img src="./assets/images/image2.png" alt="gift-photo" class="gift-item__img">
+                    <div class="gift-item__text">
+                        <h6 class="tag heading heading-small heading-health">For health</h6>
+                        <h4 class="heading heading-gift-item">Hydration Bot</h4>
+                    </div>
                 </div>
                 <div class="gift-item">
-                    <img src="./assets/images/image1.png" alt="gift-photo" class="card-item__img">
-                    <h6 class="tag heading-small">For work</h6>
-                    <h4 class="heading--mini">Merge Master</h4>
+                    <img src="./assets/images/image1.png" alt="gift-photo" class="gift-item__img">
+                    <div class="gift-item__text">
+                        <h6 class="tag heading heading-small heading-work">For work</h6>
+                        <h4 class="heading heading-gift-item">Merge Master</h4>
+                    </div>
                 </div>
                 <div class="gift-item">
-                    <img src="./assets/images/image4.png" alt="gift-photo" class="card-item__img">
-                    <h6 class="tag heading-small">For harmony</h6>
-                    <h4 class="heading--mini">Spontaneous Coding Philosopher</h4>
+                    <img src="./assets/images/image4.png" alt="gift-photo" class="gift-item__img">
+                    <div class="gift-item__text">
+                        <h6 class="tag heading heading-small heading-harmony">For harmony</h6>
+                        <h4 class="heading heading-gift-item">Spontaneous Coding Philosopher</h4>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="cta">
-            <h2 class="heading">Ready to start your journey to a better version of yourself?</h2>
-            <button class="button heading-small">Explore Magical Gifts</button>
-            <h4 class="elegant-text">The New Year is Coming Soon...</h4>
+            <h2 class="heading heading-mini heading-mini--white">Ready to start your journey to a better version of
+                yourself?</h2>
+            <button class="button button--indent-cta heading heading-small">Explore Magical Gifts</button>
+            <h4 class="elegant-text elegant-text--white">The New Year is Coming Soon...</h4>
             <div class="cta__box">
                 <div class="cta__item">
-                    <h3 class="cta__number">47</h3>
-                    <p class="cta__text heading-small">days</p>
+                    <h3 class="heading heading-mini heading-mini--white">47</h3>
+                    <p class="heading heading-small heading-small--white heading-small--indent-cta">days</p>
                 </div>
                 <div class="cta__item">
-                    <h3 class="cta__number">5</h3>
-                    <p class="cta__text heading-small">hours</p>
+                    <h3 class="heading heading-mini heading-mini--white">5</h3>
+                    <p class="heading heading-small heading-small--white heading-small--indent-cta">hours</p>
                 </div>
                 <div class="cta__item">
-                    <h3 class="cta__number">34</h3>
-                    <p class="cta__text heading-small">minutes</p>
+                    <h3 class="heading heading-mini heading-mini--white">34</h3>
+                    <p class="heading heading-small heading-small--white heading-small--indent-cta">minutes</p>
                 </div>
                 <div class="cta__item">
-                    <h3 class="cta__number">12</h3>
-                    <p class="cta__text heading-small">seconds</p>
+                    <h3 class="heading heading-mini heading-mini--white">12</h3>
+                    <p class="heading heading-small heading-small--white heading-small--indent-cta">seconds</p>
                 </div>
             </div>
         </div>
@@ -113,21 +129,24 @@
         <div class="footer__contacts" id="contacts">
             <div class="card-item">
                 <img src="./assets/images/santa.png" alt="santa" class="card-item__img">
-                <h4 class="heading"><a class="card-item__link" href="tel:+136741111111">+375 (29) 111-22-33</a></h4>
-                <h3 class="heading--mini">call us</h3>
+                <h4 class="heading heading-mini"><a class="card-item__link" href="tel:+136741111111">+375 (29)
+                        111-22-33</a></h4>
+                <h3 class="heading heading-small">call us</h3>
             </div>
             <div class="card-item">
                 <img src="./assets/images/tree.png" alt="tree" class="card-item__img">
-                <h4 class="heading"><a class="card-item__link" class="list-item__link list-item--address"
+                <h4 class="heading heading-mini"><a class="card-item__link" class="list-item__link list-item--address"
                         target="_blank"
                         href="https://www.google.ru/maps/d/u/0/viewer?mid=1MYMUtFSQWXoEI8IkBFUypCjsWME&hl=ru&ll=19.000113603109977%2C72.98965144512044&z=11">Magic
                         forest</a></h4>
-                <h3 class="heading--mini">meet us</h3>
+                <h3 class="heading heading-small">meet us</h3>
             </div>
             <div class="card-item">
                 <img src="./assets/images/snake.svg" alt="snake" class="card-item__img">
-                <h4 class="heading"><a class="card-item__link" href="mailto:mail@shelter.ru">gifts@magic.com</a></h4>
-                <h3 class="heading--mini">write us</h3>
+                <h4 class="heading heading-mini"><a class="card-item__link"
+                        href="mailto:mail@shelter.ru">gifts@magic.com</a>
+                </h4>
+                <h3 class="heading heading-small">write us</h3>
             </div>
         </div>
         <div class="footer__bottom">
@@ -137,8 +156,9 @@
                 <a href="https://instagram.com"><img src="./assets/icons/instagram.svg" alt="instagram"></a>
                 <a href="https://x.com"><img src="./assets/icons/X.svg" alt="x"></a>
             </div>
-            <h3 class="heading--mini">© Copyright 2025, All Rights Reserved</h3>
-            <h4 class="elegant-text"><a href="https://rs.school/" target="_blank">Made in Rolling Scopes School</a></h4>
+            <h3 class="heading heading-bottom">© Copyright 2025, All Rights Reserved</h3>
+            <h4 class="elegant-text"><a class="rs-link" href="https://rs.school/" target="_blank">Made in Rolling Scopes
+                    School</a></h4>
         </div>
     </footer>
 </body>

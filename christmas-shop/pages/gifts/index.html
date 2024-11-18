@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../gifts/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <title>Gift</title>
 </head>
 
@@ -13,119 +18,151 @@
         <header class="header">
             <div class="logo">
                 <img src="../../assets/icons/snowflake.svg" class="logo__img" alt="logo"></img>
-                <h1 class="logo__text"><a href="../../index.html" class="logo__link">the gifts</a></h1>
+                <a class="logo__link" href="../../index.html">
+                    <h1 class="heading heading-small">the gifts</h1>
+                </a>
             </div>
             <nav class="menu">
                 <ul>
-                    <li><a href="#" class="menu__gifts">gifts</a></li>
-                    <li><a href="../../index.html#about" class="menu__about heading-small">about</a></li>
-                    <li><a href="../../index.html#best" class="menu__best heading-small">best</a></li>
-                    <li><a href="../../index.html#contacts" class="menu_contacts heading-small">contacts</a></li>
+                    <li><a href="#" class="heading heading-small menu__gifts">gifts</a></li>
+                    <li><a href="./index.html#about" class="heading heading-small menu__about">about</a></li>
+                    <li><a href="./index.html#best" class="heading heading-small menu__best">best</a></li>
+                    <li><a href="./index.html#contacts" class="heading heading-small menu_contacts">contacts</a></li>
                 </ul>
             </nav>
         </header>
     </div>
-    <div class="gift">
-        <h2 class="heading-top">Achieve health, harmony, and inner strength</h2>
+    <main class="gift">
+        <div class="gift__top">
+            <h2 class="heading heading-top">Achieve health, harmony, and inner strength</h2>
+        </div>
         <div class="gift__tags">
-            <button class="tag-selection heading-small">all</button>
-            <button class="tag-selection heading-small">for work</button>
-            <button class="tag-selection heading-small">for health</button>
-            <button class="tag-selection heading-small">for harmony</button>
+            <button class="tag-selection heading heading-small heading-small--white">all</button>
+            <button class="tag-selection heading heading-small heading-small--white">for work</button>
+            <button class="tag-selection heading heading-small heading-small--white">for health</button>
+            <button class="tag-selection heading heading-small heading-small--white">for harmony</button>
         </div>
         <div class="gift__box">
             <div class="gift-item">
-                <img src="../../assets/images/image1.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For work</h6>
-                <h4 class="heading--mini">Console.log Guru</h4>
+                <img src="../../assets/images/image1.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-work">For work</h6>
+                    <h4 class="heading heading-gift-item">Console.log Guru</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image2.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For health</h6>
-                <h4 class="heading--mini">Hydration Bot</h4>
+                <img src="../../assets/images/image2.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-health">For health</h6>
+                    <h4 class="heading heading-gift-item">Hydration Bot</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image1.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For work</h6>
-                <h4 class="heading--mini">Merge Master</h4>
+                <img src="../../assets/images/image1.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-work">For work</h6>
+                    <h4 class="heading heading-gift-item">Merge Master</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image1.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For work</h6>
-                <h4 class="heading--mini">Console.log Guru</h4>
+                <img src="../../assets/images/image1.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-work">For work</h6>
+                    <h4 class="heading heading-gift-item">Console.log Guru</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image2.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For health</h6>
-                <h4 class="heading--mini">Hydration Bot</h4>
+                <img src="../../assets/images/image2.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-health">For health</h6>
+                    <h4 class="heading heading-gift-item">Hydration Bot</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image4.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For harmony</h6>
-                <h4 class="heading--mini">Spontaneous Coding Philosopher</h4>
+                <img src="../../assets/images/image4.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading-small heading-harmony">For harmony</h6>
+                    <h4 class="heading-gift-item">Spontaneous Coding Philosopher</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image2.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For health</h6>
-                <h4 class="heading--mini">Hydration Bot</h4>
+                <img src="../../assets/images/image2.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading-small heading-health">For health</h6>
+                    <h4 class="heading-gift-item">Hydration Bot</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image4.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For harmony</h6>
-                <h4 class="heading--mini">Spontaneous Coding Philosopher</h4>
+                <img src="../../assets/images/image4.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-harmony">For harmony</h6>
+                    <h4 class="heading heading-gift-item">Spontaneous Coding Philosopher</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image2.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For health</h6>
-                <h4 class="heading--mini">Hydration Bot</h4>
+                <img src="../../assets/images/image2.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-health">For health</h6>
+                    <h4 class="heading heading-gift-item">Hydration Bot</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image1.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For work</h6>
-                <h4 class="heading--mini">Merge Master</h4>
+                <img src="../../assets/images/image1.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-work">For work</h6>
+                    <h4 class="heading heading-gift-item">Merge Master</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image4.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For harmony</h6>
-                <h4 class="heading--mini">Spontaneous Coding Philosopher</h4>
+                <img src="../../assets/images/image4.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-harmony">For harmony</h6>
+                    <h4 class="heading heading-gift-item">Spontaneous Coding Philosopher</h4>
+                </div>
             </div>
             <div class="gift-item">
-                <img src="../../assets/images/image4.png" alt="gift-photo" class="card-item__img">
-                <h6 class="tag heading-small">For harmony</h6>
-                <h4 class="heading--mini">Spontaneous Coding Philosopher</h4>
+                <img src="../../assets/images/image4.png" alt="gift-photo" class="gift-item__img">
+                <div class="gift-item__text">
+                    <h6 class="tag heading heading-small heading-harmony">For harmony</h6>
+                    <h4 class="heading heading-gift-item">Spontaneous Coding Philosopher</h4>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     <footer class="footer">
         <div class="footer__contacts" id="contacts">
             <div class="card-item">
-                <img src="./assets/images/santa.png" alt="santa" class="card-item__img">
-                <h4 class="heading"><a class="card-item__link" href="tel:+136741111111">+375 (29) 111-22-33</a></h4>
-                <h3 class="heading--mini">call us</h3>
+                <img src="../../assets/images/santa.png" alt="santa" class="card-item__img">
+                <h4 class="heading heading-mini"><a class="card-item__link" href="tel:+136741111111">+375 (29)
+                        111-22-33</a></h4>
+                <h3 class="heading heading-small">call us</h3>
             </div>
             <div class="card-item">
-                <img src="./assets/images/tree.png" alt="tree" class="card-item__img">
-                <h4 class="heading"><a class="card-item__link" class="list-item__link list-item--address"
+                <img src="../../assets/images/tree.png" alt="tree" class="card-item__img">
+                <h4 class="heading heading-mini"><a class="card-item__link" class="list-item__link list-item--address"
                         target="_blank"
                         href="https://www.google.ru/maps/d/u/0/viewer?mid=1MYMUtFSQWXoEI8IkBFUypCjsWME&hl=ru&ll=19.000113603109977%2C72.98965144512044&z=11">Magic
                         forest</a></h4>
-                <h3 class="heading--mini">meet us</h3>
+                <h3 class="heading heading-small">meet us</h3>
             </div>
             <div class="card-item">
-                <img src="./assets/images/snake.svg" alt="snake" class="card-item__img">
-                <h4 class="heading"><a class="card-item__link" href="mailto:mail@shelter.ru">gifts@magic.com</a></h4>
-                <h3 class="heading--mini">write us</h3>
+                <img src="../../assets/images/snake.svg" alt="snake" class="card-item__img">
+                <h4 class="heading heading-mini"><a class="card-item__link"
+                        href="mailto:mail@shelter.ru">gifts@magic.com</a>
+                </h4>
+                <h3 class="heading heading-small">write us</h3>
             </div>
         </div>
         <div class="footer__bottom">
             <div class="social-networks">
-                <a href="https://t.me/"><img src="./assets/icons/telegram.svg" alt="telegram"></a>
-                <a href="http://facebook.com"><img src="./assets/icons/facebook.svg" alt="facebook"></a>
-                <a href="https://instagram.com"><img src="./assets/icons/instagram.svg" alt="instagram"></a>
-                <a href="https://x.com"><img src="./assets/icons/X.svg" alt="x"></a>
+                <a href="https://t.me/"><img src="../../assets/icons/telegram.svg" alt="telegram"></a>
+                <a href="http://facebook.com"><img src="../../assets/icons/facebook.svg" alt="facebook"></a>
+                <a href="https://instagram.com"><img src="../../assets/icons/instagram.svg" alt="instagram"></a>
+                <a href="https://x.com"><img src="../../assets/icons/X.svg" alt="x"></a>
             </div>
-            <h3 class="heading--mini">© Copyright 2025, All Rights Reserved</h3>
-            <h4 class="elegant-text"><a href="https://rs.school/" target="_blank">Made in Rolling Scopes School</a></h4>
+            <h3 class="heading heading-bottom">© Copyright 2025, All Rights Reserved</h3>
+            <h4 class="elegant-text"><a class="rs-link" href="https://rs.school/" target="_blank">Made in Rolling Scopes
+                    School</a></h4>
         </div>
     </footer>
 </body>

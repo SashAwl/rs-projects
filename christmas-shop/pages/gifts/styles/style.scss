@@ -1,2 +1,47 @@
 @import "../../../assets/variables.scss";
 @import "../../../common-styles/common-styles.scss";
+
+.gift {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $primary;
+    padding-bottom: 60px;
+    border-radius: 14px;
+
+    &__top {
+        width: 100%;
+        padding-top: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url(../../../assets/images/bg-garland.png);
+        background-size: contain;
+    }
+
+    &__tags {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin: 20px auto;
+    }
+
+    .tag-selection {
+        padding: 12px 20px;
+        background: none;
+        border: none;
+
+        &:first-child {
+            padding: 12px 20px;
+            border-radius: 12px;
+            background-color: $static-white-20;
+        }
+    }
+
+    &__box {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+}
