@@ -6,8 +6,6 @@ html {
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  padding-left: 82px;
-  padding-right: 82px;
   overflow: hidden;
 }
 
@@ -16,9 +14,10 @@ html {
   font-weight: 600;
   line-height: 150%;
   text-transform: uppercase;
+  text-decoration: none;
 }
 .heading-top {
-  width: 33.7%;
+  width: 30%;
   margin: 0;
   font-size: 32px;
   letter-spacing: 0.18em;
@@ -108,17 +107,23 @@ html {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-align: center;
-  color: #fff;
   border-radius: 22px;
+  transition: 0.6s ease;
 }
 .button--indent-cta {
-  margin: 20px 0 19px;
+  margin: 18px 0 19px;
+}
+.button:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #181c29;
 }
 
 .gift-item {
   width: 310px;
   background-color: #ecf3f8;
   border-radius: 20px;
+  transition: 0.6s ease;
 }
 .gift-item__text {
   padding-left: 20px;
@@ -126,11 +131,16 @@ html {
   border-radius: 20px;
   background-color: #fff;
 }
+.gift-item:hover {
+  color: #ff4646;
+}
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 103px;
+  padding-right: 82px;
 }
 .header .logo {
   display: flex;
@@ -147,18 +157,27 @@ html {
   align-items: center;
   margin: 0;
   list-style-type: none;
-  padding: 11px 0 12px;
+  padding: 11px 0 11px;
 }
 .header .menu-item {
   padding: 12px 23.5px;
   border-radius: 12px;
+  transition: 0.6s ease;
 }
 .header .menu-item-checked {
   background-color: rgba(255, 70, 70, 0.1);
   color: #ff4646;
+  pointer-events: none;
+  cursor: default;
 }
 .header .menu-item .checked-red {
   color: #ff4646;
+  transition: 0.6s ease;
+}
+.header .menu-item:hover {
+  background-color: rgba(255, 70, 70, 0.1);
+  color: #ff4646;
+  cursor: pointer;
 }
 
 .footer {
@@ -182,12 +201,19 @@ html {
   border-radius: 20px;
   padding: 15px 19px;
   width: 26.3%;
+  transition: 0.6s ease;
 }
 .footer .card-item__link {
   text-decoration: none;
   color: #181c29;
   display: inline-block;
   margin-top: 20px;
+}
+.footer .card-item:hover {
+  color: #ff4646;
+}
+.footer .card-item:hover a {
+  color: #ff4646;
 }
 .footer__bottom {
   margin-top: 67px;
@@ -200,6 +226,10 @@ html {
   justify-content: center;
   align-items: center;
   gap: 34px;
+  translate: transform 1s ease;
+}
+.footer .social-networks img:hover {
+  transform: scale(1.2);
 }
 .footer .elegant-text {
   margin: 0;

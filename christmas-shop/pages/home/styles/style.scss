@@ -12,10 +12,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
     background-image: url(../../../assets/images/bg-ball.png);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    padding: 120px 0 168px;
+    padding: 116px 0 168px;
 
     & .elegant-text {
         margin: 0 0 13px;
@@ -31,6 +32,8 @@
     background-color: $static-white;
     border-radius: 20px;
     padding-left: 60px;
+    margin-left: 82px;
+    margin-right: 82px;
 
     &__content {
         padding-top: 161px;
@@ -50,7 +53,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 120px auto;
+    margin: 120px auto 118px;
     color: white;
 
     &__box {
@@ -58,11 +61,11 @@
         overflow: hidden;
         display: flex;
         align-items: center;
-        margin: 18px 0;
+        margin: 20px 0;
     }
 
     &__text {
-        margin: 0 20px;
+        margin: 0 20.4px;
         font-family: $font-family;
         font-weight: 600;
         font-size: 80px;
@@ -84,15 +87,30 @@
         padding-right: 82px;
 
         .arrow {
-            width: 15px;
-            height: 15px;
-            padding: 20px;
+            padding: 15px;
             border: 1px solid $static-white;
             border-radius: 20px;
 
-            &:first-child {
+            path {
+                fill: $static-white;
+            }
+
+            &-disabled {
                 border-color: $static-white-40;
                 margin-right: 15px;
+                cursor: default;
+            }
+
+            &-active:hover {
+                cursor: pointer;
+                background-color: $static-white;
+                color: $primary;
+                transition: 0.6s ease;
+
+                path {
+                    stroke: $primary;
+                }
+
             }
         }
     }

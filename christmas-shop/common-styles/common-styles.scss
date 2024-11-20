@@ -8,8 +8,6 @@ html {
 .container {
     max-width: 1440px;
     margin: 0 auto;
-    padding-left: 82px;
-    padding-right: 82px;
     overflow: hidden;
 }
 
@@ -18,9 +16,10 @@ html {
     font-weight: 600;
     line-height: 150%;
     text-transform: uppercase;
+    text-decoration: none;
 
     &-top {
-        width: 33.7%;
+        width: 30%;
         margin: 0;
         font-size: 32px;
         letter-spacing: 0.18em;
@@ -122,11 +121,17 @@ html {
     letter-spacing: 0.05em;
     text-transform: uppercase;
     text-align: center;
-    color: $static-white;
     border-radius: 22px;
+    transition: 0.6s ease;
 
     &--indent-cta {
-        margin: 20px 0 19px;
+        margin: 18px 0 19px;
+    }
+
+    &:hover {
+        background-color: $static-white;
+        border-color: $static-white;
+        color: $dark;
     }
 }
 
@@ -134,6 +139,7 @@ html {
     width: 310px;
     background-color: $content-background;
     border-radius: 20px;
+    transition: 0.6s ease;
 
     &__text {
         padding-left: 20px;
@@ -141,12 +147,18 @@ html {
         border-radius: 20px;
         background-color: $static-white;
     }
+
+    &:hover {
+        color: $primary;
+    }
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 103px;
+    padding-right: 82px;
 
     .logo {
         display: flex;
@@ -166,23 +178,32 @@ html {
         align-items: center;
         margin: 0;
         list-style-type: none;
-        padding: 11px 0 12px;
+        padding: 11px 0 11px;
     }
 
     .menu-item {
         padding: 12px 23.5px;
         border-radius: 12px;
+        transition: 0.6s ease;
 
         &-checked {
             background-color: $primary-10;
             color: $primary;
+            pointer-events: none;
+            cursor: default;
         }
 
         .checked-red {
             color: $primary;
+            transition: 0.6s ease;
+        }
+
+        &:hover {
+            background-color: $primary-10;
+            color: $primary;
+            cursor: pointer;
         }
     }
-
 }
 
 .footer {
@@ -208,12 +229,21 @@ html {
         border-radius: 20px;
         padding: 15px 19px;
         width: 26.3%;
+        transition: 0.6s ease;
 
         &__link {
             text-decoration: none;
             color: $dark;
             display: inline-block;
             margin-top: 20px;
+        }
+
+        &:hover {
+            color: $primary;
+
+            a {
+                color: $primary;
+            }
         }
     }
 
@@ -229,6 +259,11 @@ html {
         justify-content: center;
         align-items: center;
         gap: 34px;
+        translate: transform 1s ease;
+
+        img:hover {
+            transform: scale(1.2);
+        }
     }
 
     .elegant-text {

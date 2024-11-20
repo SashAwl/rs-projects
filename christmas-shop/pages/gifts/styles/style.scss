@@ -32,17 +32,28 @@
         padding: 12px 18.4px;
         background: none;
         border: none;
+        transition: 0.6s ease;
 
-        &:first-child {
-            padding: 12px 20px;
+        &:hover {
             border-radius: 12px;
             background-color: $static-white-20;
+            cursor: pointer;
         }
+    }
+
+    .selected-tag {
+        padding: 12px 20px;
+        border-radius: 12px;
+        background-color: $static-white-20;
+        pointer-events: none;
+        cursor: default;
     }
 
     &__box {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 12px;
+        padding-left: 82px;
+        padding-right: 82px;
     }
 }

@@ -10,10 +10,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
   background-image: url(../../../assets/images/bg-ball.png);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  padding: 120px 0 168px;
+  padding: 116px 0 168px;
 }
 .hero .elegant-text {
   margin: 0 0 13px;
@@ -27,6 +28,8 @@
   background-color: #fff;
   border-radius: 20px;
   padding-left: 60px;
+  margin-left: 82px;
+  margin-right: 82px;
 }
 .about__content {
   padding-top: 161px;
@@ -43,7 +46,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 120px auto;
+  margin: 120px auto 118px;
   color: white;
 }
 .slider__box {
@@ -51,10 +54,10 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  margin: 18px 0;
+  margin: 20px 0;
 }
 .slider__text {
-  margin: 0 20px;
+  margin: 0 20.4px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 80px;
@@ -73,15 +76,26 @@
   padding-right: 82px;
 }
 .slider__nav .arrow {
-  width: 15px;
-  height: 15px;
-  padding: 20px;
+  padding: 15px;
   border: 1px solid #fff;
   border-radius: 20px;
 }
-.slider__nav .arrow:first-child {
+.slider__nav .arrow path {
+  fill: #fff;
+}
+.slider__nav .arrow-disabled {
   border-color: rgba(255, 255, 255, 0.4);
   margin-right: 15px;
+  cursor: default;
+}
+.slider__nav .arrow-active:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #ff4646;
+  transition: 0.6s ease;
+}
+.slider__nav .arrow-active:hover path {
+  stroke: #ff4646;
 }
 
 .best-gifts {
