@@ -14,13 +14,14 @@
   background-image: url(../../../assets/images/bg-ball.png);
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 116px 0 168px;
+  background-position: center;
+  padding: 119px 0 108px;
 }
 .hero .elegant-text {
   margin: 0 0 13px;
 }
 .hero .button {
-  margin: 12px auto;
+  margin: 12px 0;
 }
 
 .about {
@@ -28,8 +29,7 @@
   background-color: #fff;
   border-radius: 20px;
   padding-left: 60px;
-  margin-left: 82px;
-  margin-right: 82px;
+  margin: 59px 82px 0 82px;
 }
 .about__content {
   padding-top: 161px;
@@ -103,9 +103,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 42px;
 }
 .best-gifts__box {
-  margin: 17px auto;
+  margin: 17.5px auto;
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -115,11 +116,10 @@
   display: flex;
   flex-direction: column;
   background-image: url(../../../assets/images/bg-forest.png);
-  background-size: contain;
+  background-size: cover;
   align-items: center;
-  padding-top: 177px;
-  margin-top: 47px;
-  padding-bottom: 180px;
+  padding-top: 182px;
+  padding-bottom: 182px;
 }
 .cta h2 {
   width: 27%;

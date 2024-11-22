@@ -100,7 +100,7 @@ html {
 
 .button {
   background-color: #181c29;
-  padding: 18px 30px;
+  padding: 20px 32px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 12px;
@@ -117,8 +117,6 @@ html {
 .button:hover {
   background-color: #fff;
   border-color: #fff;
-}
-.button:hover a {
   color: #181c29;
 }
 
@@ -202,7 +200,7 @@ html {
   align-items: center;
   background-color: #ecf3f8;
   border-radius: 20px;
-  padding: 15px 19px;
+  padding: 16px 19px;
   width: 26.3%;
   transition: 0.6s ease;
 }
@@ -247,7 +245,7 @@ html {
   flex-direction: column;
   align-items: center;
   background-color: #ff4646;
-  padding-bottom: 60px;
+  padding-bottom: 59px;
   border-radius: 19px;
 }
 .gift__top {
