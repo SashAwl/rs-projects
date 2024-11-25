@@ -257,7 +257,7 @@ html {
     }
 
     @media screen and (max-width:1439px) {
-        .menu {
+        .menu:hover {
             cursor: pointer;
 
             .menu__list {
