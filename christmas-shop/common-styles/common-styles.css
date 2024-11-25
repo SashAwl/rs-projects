@@ -8,11 +8,6 @@ html {
   margin: 0 auto;
   overflow: hidden;
 }
-@media screen and (max-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
 
 .heading {
   font-family: "Montserrat", sans-serif;
@@ -29,12 +24,12 @@ html {
   text-align: center;
   color: #fff;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1439px) {
   .heading-top {
     width: 56%;
   }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 767px) {
   .heading-top {
     width: 98%;
   }
@@ -140,7 +135,7 @@ html {
   border-radius: 20px;
   background-color: #fff;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1439px) {
   .gift-item__text {
     height: 111.7px;
   }
@@ -162,7 +157,7 @@ html {
   padding-left: 103px;
   padding-right: 82px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1439px) {
   .header {
     padding-left: 29px;
     padding-right: 18px;
@@ -186,7 +181,7 @@ html {
   justify-content: center;
   padding: 27px 0;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1439px) {
   .header .burger {
     display: flex;
   }
@@ -203,7 +198,7 @@ html {
   list-style-type: none;
   padding: 11px 0 11px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1439px) {
   .header .menu ul {
     display: none;
   }
@@ -253,7 +248,7 @@ html {
   width: 26.3%;
   transition: 0.6s ease;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1439px) {
   .footer .card-item {
     width: 93%;
   }
