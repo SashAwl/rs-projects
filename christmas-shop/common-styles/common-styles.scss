@@ -9,14 +9,6 @@ html {
     max-width: 1440px;
     margin: 0 auto;
     overflow: hidden;
-
-    // @media screen and (max-width:1439px) {
-    //     max-width: 780px;
-    // }
-
-    // @media screen and (max-width:767px) {
-    //     max-width: 380px;
-    // }
 }
 
 .heading {
@@ -188,6 +180,8 @@ html {
     .logo {
         display: flex;
         align-items: center;
+        position: relative;
+        z-index: 4;
 
         &__img {
             margin-right: 9px;
@@ -217,7 +211,16 @@ html {
         }
     }
 
-    .menu ul {
+    .burger__close {
+        display: none;
+        position: absolute;
+        right: 9px;
+        top: 12px;
+        z-index: 4;
+
+    }
+
+    .menu__list {
         display: flex;
         align-items: center;
         margin: 0;
@@ -250,6 +253,41 @@ html {
             background-color: $primary-10;
             color: $primary;
             cursor: pointer;
+        }
+    }
+
+    @media screen and (max-width:1439px) {
+        .menu {
+            cursor: pointer;
+
+            .menu__list {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 3;
+                padding-top: 53.8%;
+                background-color: $static-white;
+
+                @media screen and (max-width:380px) {
+                    padding-top: 80.8%;
+                }
+            }
+
+            .menu-item {
+                padding: 15px 23.5px;
+            }
+
+            .heading-small {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 152%;
+                letter-spacing: 0.16em;
+                color: $dark;
+            }
         }
     }
 }

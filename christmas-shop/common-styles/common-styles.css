@@ -166,6 +166,8 @@ html {
 .header .logo {
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 4;
 }
 .header .logo__img {
   margin-right: 9px;
@@ -191,7 +193,14 @@ html {
   width: 20px;
   background-color: #181c29;
 }
-.header .menu ul {
+.header .burger__close {
+  display: none;
+  position: absolute;
+  right: 9px;
+  top: 12px;
+  z-index: 4;
+}
+.header .menu__list {
   display: flex;
   align-items: center;
   margin: 0;
@@ -199,7 +208,7 @@ html {
   padding: 11px 0 11px;
 }
 @media screen and (max-width: 1439px) {
-  .header .menu ul {
+  .header .menu__list {
     display: none;
   }
 }
@@ -222,6 +231,40 @@ html {
   background-color: rgba(255, 70, 70, 0.1);
   color: #ff4646;
   cursor: pointer;
+}
+@media screen and (max-width: 1439px) {
+  .header .menu {
+    cursor: pointer;
+  }
+  .header .menu .menu__list {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    padding-top: 53.8%;
+    background-color: #fff;
+  }
+}
+@media screen and (max-width: 1439px) and (max-width: 380px) {
+  .header .menu .menu__list {
+    padding-top: 80.8%;
+  }
+}
+@media screen and (max-width: 1439px) {
+  .header .menu .menu-item {
+    padding: 15px 23.5px;
+  }
+  .header .menu .heading-small {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 152%;
+    letter-spacing: 0.16em;
+    color: #181c29;
+  }
 }
 
 .footer {
