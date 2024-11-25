@@ -234,10 +234,10 @@ html {
   cursor: pointer;
 }
 @media screen and (max-width: 1439px) {
-  .header .menu {
+  .header .menu:hover {
     cursor: pointer;
   }
-  .header .menu .menu__list {
+  .header .menu:hover .menu__list {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -251,15 +251,15 @@ html {
   }
 }
 @media screen and (max-width: 1439px) and (max-width: 380px) {
-  .header .menu .menu__list {
+  .header .menu:hover .menu__list {
     padding-top: 80.8%;
   }
 }
 @media screen and (max-width: 1439px) {
-  .header .menu .menu-item {
+  .header .menu:hover .menu-item {
     padding: 15px 23.5px;
   }
-  .header .menu .heading-small {
+  .header .menu:hover .heading-small {
     font-weight: 600;
     font-size: 24px;
     line-height: 152%;
