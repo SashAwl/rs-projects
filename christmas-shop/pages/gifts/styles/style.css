@@ -315,7 +315,7 @@ html {
   gap: 8px;
   margin: 20px auto;
 }
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: 767px) {
   .gift__tags {
     gap: 0;
   }
