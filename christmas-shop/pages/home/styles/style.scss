@@ -17,7 +17,15 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 119px 0 108px;
+    padding: 8.3% 0 7.49%;
+
+    @media screen and (max-width:768px) {
+        padding: 15.6% 0 14%;
+    }
+
+    @media screen and (max-width:380px) {
+        padding: 31.6% 0 28.2%;
+    }
 
     & .elegant-text {
         margin: 0 0 13px;
@@ -32,20 +40,55 @@
     display: flex;
     background-color: $static-white;
     border-radius: 20px;
-    padding-left: 60px;
-    margin: 59px 82px 0 82px;
+    margin: 4.1% 5.7% 0 5.7%;
+
+    @media screen and (max-width:768px) {
+        margin: 59px 8px 0;
+    }
+
+    @media screen and (max-width:380px) {
+        flex-direction: column;
+    }
 
     &__content {
-        padding-top: 161px;
-        padding-right: 152px;
+        width: 35%;
+        padding: 12.6% 12.3% 11% 4.7%;
+
+        @media screen and (max-width:768px) {
+            width: 38%;
+            padding: 14.1% 7.4% 11.6% 8%;
+        }
+
+        @media screen and (max-width:380px) {
+            width: 100%;
+            padding: 16.5% 2px 11.1% 5.5%;
+            box-sizing: border-box;
+        }
     }
 
     &__img {
         border-radius: 20px;
+        background-image: url(../../../assets/images/hero-santa.svg);
+        background-position-x: center;
+        background-size: cover;
+        width: 53%;
+
+        @media screen and (max-width:768px) {
+            width: 55%;
+        }
+
+        @media screen and (max-width:380px) {
+            width: 100%;
+            height: 528px;
+        }
     }
 
     .elegant-text {
         margin-bottom: 19px;
+
+        @media screen and (max-width:768px) {
+            margin-bottom: 21px;
+        }
     }
 }
 
@@ -53,15 +96,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 120px auto 118px;
+    margin: 8.34% auto 8.2%;
     color: white;
 
+    @media screen and (max-width:768px) {
+        margin: 15.6% auto 15.1%;
+    }
+
+    @media screen and (max-width:380px) {
+        margin: 31.5% auto 30.5%;
+    }
+
     &__box {
-        width: 1440px;
         overflow: hidden;
         display: flex;
         align-items: center;
-        margin: 20px 0;
+        margin: 20px auto;
     }
 
     &__text {
@@ -75,6 +125,11 @@
 
         &:first-child {
             padding-left: 63px;
+
+            @media screen and (max-width:768px) {
+                padding-left: 0;
+                margin-left: 8px;
+            }
         }
     }
 
@@ -84,7 +139,11 @@
 
     &__nav {
         align-self: flex-end;
-        padding-right: 82px;
+        padding-right: 5.7%;
+
+        @media screen and (max-width:768px) {
+            padding-right: 8px;
+        }
 
         .arrow {
             padding: 15px;
@@ -124,10 +183,15 @@
     margin-bottom: 42px;
 
     &__box {
-        margin: 17.5px auto;
+        margin: 18px auto;
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 12px;
+
+        @media screen and (max-width:768px) {
+            margin: 20px auto;
+        }
     }
 }
 
@@ -136,13 +200,30 @@
     flex-direction: column;
     background-image: url(../../../assets/images/bg-forest.png);
     background-size: cover;
+    background-position-x: center;
     align-items: center;
-    padding-top: 182px;
-    padding-bottom: 182px;
+    padding: 12.6% 0 12.7%;
+
+    @media screen and (max-width:768px) {
+        padding: 23.3% 0 23.8%;
+    }
+
+    @media screen and (max-width:380px) {
+        padding: 47.3% 0 48%;
+    }
 
     h2 {
         width: 27%;
         text-align: center;
+
+
+        @media screen and (max-width:768px) {
+            width: 65%;
+        }
+
+        @media screen and (max-width:380px) {
+            width: 100%;
+        }
     }
 
     .elegant-text {
