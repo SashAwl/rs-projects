@@ -14,47 +14,108 @@
   background-image: url(../../../assets/images/bg-ball.png);
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 116px 0 168px;
+  background-position: center;
+  padding: 8.3% 0 7.49%;
+}
+@media screen and (max-width: 1439px) {
+  .hero {
+    padding: 15.6% 0 14%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hero {
+    padding: 31.6% 0 28.2%;
+  }
 }
 .hero .elegant-text {
   margin: 0 0 13px;
 }
 .hero .button {
-  margin: 12px auto;
+  margin: 12px 0;
 }
 
 .about {
   display: flex;
   background-color: #fff;
   border-radius: 20px;
-  padding-left: 60px;
-  margin-left: 82px;
-  margin-right: 82px;
+  margin: 4.1% 5.7% 0 5.7%;
+}
+@media screen and (max-width: 1439px) {
+  .about {
+    margin: 59px 8px 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .about {
+    flex-direction: column;
+  }
 }
 .about__content {
-  padding-top: 161px;
-  padding-right: 152px;
+  width: 35%;
+  padding: 12.6% 12.3% 11% 4.7%;
+}
+@media screen and (max-width: 1439px) {
+  .about__content {
+    width: 38%;
+    padding: 14.1% 7.4% 11.6% 8%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .about__content {
+    width: 100%;
+    padding: 16.5% 2px 11.1% 5.5%;
+    box-sizing: border-box;
+  }
 }
 .about__img {
   border-radius: 20px;
+  background-image: url(../../../assets/images/hero-santa.svg);
+  background-position-x: center;
+  background-size: cover;
+  width: 53%;
+}
+@media screen and (max-width: 1439px) {
+  .about__img {
+    width: 55%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .about__img {
+    width: 100%;
+    height: 528px;
+  }
 }
 .about .elegant-text {
   margin-bottom: 19px;
+}
+@media screen and (max-width: 1439px) {
+  .about .elegant-text {
+    margin-bottom: 21px;
+  }
 }
 
 .slider {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 120px auto 118px;
+  margin: 8.34% auto 8.2%;
   color: white;
 }
+@media screen and (max-width: 1439px) {
+  .slider {
+    margin: 15.6% auto 15.1%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .slider {
+    margin: 31.5% auto 30.5%;
+  }
+}
 .slider__box {
-  width: 1440px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin: 20px auto;
 }
 .slider__text {
   margin: 0 20.4px;
@@ -68,12 +129,23 @@
 .slider__text:first-child {
   padding-left: 63px;
 }
+@media screen and (max-width: 1439px) {
+  .slider__text:first-child {
+    padding-left: 0;
+    margin-left: 8px;
+  }
+}
 .slider__img {
   border-radius: 20px;
 }
 .slider__nav {
   align-self: flex-end;
-  padding-right: 82px;
+  padding-right: 5.7%;
+}
+@media screen and (max-width: 1439px) {
+  .slider__nav {
+    padding-right: 8px;
+  }
 }
 .slider__nav .arrow {
   padding: 15px;
@@ -103,27 +175,53 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 42px;
 }
 .best-gifts__box {
-  margin: 17px auto;
+  margin: 18px auto;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 12px;
+}
+@media screen and (max-width: 1439px) {
+  .best-gifts__box {
+    margin: 20px auto;
+  }
 }
 
 .cta {
   display: flex;
   flex-direction: column;
   background-image: url(../../../assets/images/bg-forest.png);
-  background-size: contain;
+  background-size: cover;
+  background-position-x: center;
   align-items: center;
-  padding-top: 177px;
-  margin-top: 47px;
-  padding-bottom: 180px;
+  padding: 12.6% 0 12.7%;
+}
+@media screen and (max-width: 1439px) {
+  .cta {
+    padding: 23.3% 0 23.8%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .cta {
+    padding: 47.3% 0 48%;
+  }
 }
 .cta h2 {
   width: 27%;
   text-align: center;
+}
+@media screen and (max-width: 1439px) {
+  .cta h2 {
+    width: 65%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .cta h2 {
+    width: 100%;
+  }
 }
 .cta .elegant-text {
   margin-bottom: 8px;

@@ -1,5 +1,5 @@
-@import "../common-styles/normolize.css";
 @import "../../../common-styles/normolize.css";
+@import "../common-styles/normolize.css";
 html {
   scroll-behavior: smooth;
 }
@@ -24,6 +24,16 @@ html {
   letter-spacing: 0.18em;
   text-align: center;
   color: #fff;
+}
+@media screen and (max-width: 1439px) {
+  .heading-top {
+    width: 56%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .heading-top {
+    width: 98%;
+  }
 }
 .heading-mini {
   font-size: 24px;
@@ -70,12 +80,6 @@ html {
   text-transform: none;
 }
 
-.tag {
-  padding-top: 20px;
-  margin-bottom: 8px;
-  margin-top: -4px;
-}
-
 .text {
   margin: 20px 0;
   font-family: "Montserrat", sans-serif;
@@ -100,7 +104,7 @@ html {
 
 .button {
   background-color: #181c29;
-  padding: 18px 30px;
+  padding: 20px 32px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 12px;
@@ -117,8 +121,6 @@ html {
 .button:hover {
   background-color: #fff;
   border-color: #fff;
-}
-.button:hover a {
   color: #181c29;
 }
 
@@ -130,12 +132,23 @@ html {
 }
 .gift-item__text {
   padding-left: 20px;
-  height: 112px;
+  height: 111.5px;
   border-radius: 20px;
   background-color: #fff;
 }
+@media screen and (max-width: 1439px) {
+  .gift-item__text {
+    height: 111.7px;
+  }
+}
 .gift-item:hover {
   color: #ff4646;
+}
+
+.tag {
+  padding-top: 19px;
+  margin-bottom: 10px;
+  margin-top: -4px;
 }
 
 .header {
@@ -145,9 +158,17 @@ html {
   padding-left: 103px;
   padding-right: 82px;
 }
+@media screen and (max-width: 1439px) {
+  .header {
+    padding-left: 29px;
+    padding-right: 18px;
+  }
+}
 .header .logo {
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 4;
 }
 .header .logo__img {
   margin-right: 9px;
@@ -155,12 +176,42 @@ html {
 .header .logo__link {
   text-decoration: none;
 }
-.header .menu ul {
+.header .burger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  padding: 27px 0;
+}
+@media screen and (max-width: 1439px) {
+  .header .burger {
+    display: flex;
+  }
+}
+.header .burger__line {
+  height: 2px;
+  width: 20px;
+  background-color: #181c29;
+}
+.header .burger__close {
+  display: none;
+  position: absolute;
+  right: 9px;
+  top: 12px;
+  z-index: 4;
+}
+.header .menu__list {
   display: flex;
   align-items: center;
   margin: 0;
   list-style-type: none;
   padding: 11px 0 11px;
+}
+@media screen and (max-width: 1439px) {
+  .header .menu__list {
+    display: none;
+  }
 }
 .header .menu-item {
   padding: 12px 23.5px;
@@ -182,6 +233,40 @@ html {
   color: #ff4646;
   cursor: pointer;
 }
+@media screen and (max-width: 1439px) {
+  .header .menu:hover {
+    cursor: pointer;
+  }
+  .header .menu:hover .menu__list {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    padding-top: 53.8%;
+    background-color: #fff;
+  }
+}
+@media screen and (max-width: 1439px) and (max-width: 380px) {
+  .header .menu:hover .menu__list {
+    padding-top: 80.8%;
+  }
+}
+@media screen and (max-width: 1439px) {
+  .header .menu:hover .menu-item {
+    padding: 15px 23.5px;
+  }
+  .header .menu:hover .heading-small {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 152%;
+    letter-spacing: 0.16em;
+    color: #181c29;
+  }
+}
 
 .footer {
   padding-top: 60px;
@@ -194,6 +279,7 @@ html {
 .footer__contacts {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 12px;
 }
 .footer .card-item {
@@ -202,15 +288,20 @@ html {
   align-items: center;
   background-color: #ecf3f8;
   border-radius: 20px;
-  padding: 15px 19px;
+  padding: 19px;
   width: 26.3%;
   transition: 0.6s ease;
+}
+@media screen and (max-width: 1439px) {
+  .footer .card-item {
+    width: 93%;
+  }
 }
 .footer .card-item__link {
   text-decoration: none;
   color: #181c29;
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .footer .card-item:hover {
   color: #ff4646;
@@ -247,7 +338,7 @@ html {
   flex-direction: column;
   align-items: center;
   background-color: #ff4646;
-  padding-bottom: 60px;
+  padding-bottom: 59px;
   border-radius: 19px;
 }
 .gift__top {
@@ -259,18 +350,29 @@ html {
   align-items: center;
   background-image: url(../../../assets/images/bg-garland.png);
   background-size: contain;
+  background-repeat: no-repeat;
 }
 .gift__tags {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   margin: 20px auto;
 }
+@media screen and (max-width: 767px) {
+  .gift__tags {
+    gap: 0;
+  }
+}
 .gift .tag-selection {
-  padding: 12px 18.4px;
+  padding: 12px 20px;
   background: none;
   border: none;
   transition: 0.6s ease;
+}
+@media screen and (max-width: 767px) {
+  .gift .tag-selection {
+    padding: 12px 8px;
+  }
 }
 .gift .tag-selection:hover {
   border-radius: 12px;
@@ -278,7 +380,6 @@ html {
   cursor: pointer;
 }
 .gift .selected-tag {
-  padding: 12px 20px;
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.2);
   pointer-events: none;
@@ -290,4 +391,19 @@ html {
   gap: 12px;
   padding-left: 82px;
   padding-right: 82px;
+}
+@media screen and (max-width: 1439px) {
+  .gift__box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .gift__box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 767px) {
+  .gift__box {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }/*# sourceMappingURL=style.css.map */

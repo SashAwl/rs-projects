@@ -25,6 +25,14 @@ html {
         letter-spacing: 0.18em;
         text-align: center;
         color: $static-white;
+
+        @media screen and (max-width:1439px) {
+            width: 56%;
+        }
+
+        @media screen and (max-width:767px) {
+            width: 98%;
+        }
     }
 
     &-mini {
@@ -82,12 +90,6 @@ html {
     }
 }
 
-.tag {
-    padding-top: 20px;
-    margin-bottom: 8px;
-    margin-top: -4px;
-}
-
 .text {
     margin: 20px 0;
     font-family: $font-family;
@@ -113,7 +115,7 @@ html {
 
 .button {
     background-color: $dark;
-    padding: 20px 31px;
+    padding: 20px 32px;
     font-family: $font-family;
     font-weight: 600;
     font-size: 12px;
@@ -143,14 +145,24 @@ html {
 
     &__text {
         padding-left: 20px;
-        height: 112px;
+        height: 111.5px;
         border-radius: 20px;
         background-color: $static-white;
+
+        @media screen and (max-width:1439px) {
+            height: 111.7px;
+        }
     }
 
     &:hover {
         color: $primary;
     }
+}
+
+.tag {
+    padding-top: 19px;
+    margin-bottom: 10px;
+    margin-top: -4px;
 }
 
 .header {
@@ -160,9 +172,16 @@ html {
     padding-left: 103px;
     padding-right: 82px;
 
+    @media screen and (max-width:1439px) {
+        padding-left: 29px;
+        padding-right: 18px;
+    }
+
     .logo {
         display: flex;
         align-items: center;
+        position: relative;
+        z-index: 4;
 
         &__img {
             margin-right: 9px;
@@ -173,12 +192,44 @@ html {
         }
     }
 
-    .menu ul {
+    .burger {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        justify-content: center;
+        padding: 27px 0;
+
+        @media screen and (max-width:1439px) {
+            display: flex;
+        }
+
+        &__line {
+            height: 2px;
+            width: 20px;
+            background-color: $dark;
+        }
+    }
+
+    .burger__close {
+        display: none;
+        position: absolute;
+        right: 9px;
+        top: 12px;
+        z-index: 4;
+
+    }
+
+    .menu__list {
         display: flex;
         align-items: center;
         margin: 0;
         list-style-type: none;
         padding: 11px 0 11px;
+
+        @media screen and (max-width:1439px) {
+            display: none;
+        }
     }
 
     .menu-item {
@@ -204,6 +255,41 @@ html {
             cursor: pointer;
         }
     }
+
+    @media screen and (max-width:1439px) {
+        .menu:hover {
+            cursor: pointer;
+
+            .menu__list {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 3;
+                padding-top: 413px;
+                background-color: $static-white;
+
+                @media screen and (max-width:380px) {
+                    padding-top: 80.8%;
+                }
+            }
+
+            .menu-item {
+                padding: 15px 23.5px;
+            }
+
+            .heading-small {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 152%;
+                letter-spacing: 0.16em;
+                color: $dark;
+            }
+        }
+    }
 }
 
 .footer {
@@ -218,6 +304,7 @@ html {
     &__contacts {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 12px;
     }
 
@@ -227,15 +314,19 @@ html {
         align-items: center;
         background-color: $content-background;
         border-radius: 20px;
-        padding: 15px 19px;
+        padding: 19px;
         width: 26.3%;
         transition: 0.6s ease;
+
+        @media screen and (max-width:1439px) {
+            width: 93%;
+        }
 
         &__link {
             text-decoration: none;
             color: $dark;
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         &:hover {
@@ -248,7 +339,7 @@ html {
     }
 
     &__bottom {
-        margin-top: 74px;
+        margin-top: 67px;
         display: flex;
         flex-direction: column;
         align-items: center;
