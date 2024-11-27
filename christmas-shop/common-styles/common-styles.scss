@@ -200,7 +200,7 @@ html {
 
     @media screen and (max-width:1439px) {
         padding-left: 29px;
-        padding-right: 18px;
+        padding-right: 0;
     }
 
     .logo {
@@ -224,7 +224,7 @@ html {
         align-items: center;
         gap: 6px;
         justify-content: center;
-        padding: 27px 0;
+        padding: 27px 18px 27px 27px;
 
         @media screen and (max-width:1439px) {
             display: flex;
@@ -235,14 +235,19 @@ html {
             width: 20px;
             background-color: $dark;
         }
+
+        &-hidden {
+            display: none;
+        }
     }
 
     .burger__close {
-        display: none;
-        position: absolute;
-        right: 9px;
-        top: 12px;
-        z-index: 4;
+        display: block;
+        padding: 10px 9px 15px 27px;
+
+        &-hidden {
+            display: none;
+        }
 
     }
 
@@ -304,15 +309,21 @@ html {
                 flex-direction: column;
                 position: fixed;
                 left: 0;
-                top: 0;
+                top: 64px;
                 width: 100vw;
                 height: 100vh;
                 z-index: 3;
-                padding-top: 413px;
+                padding-top: 349px;
                 background-color: $static-white;
+                transition: transform 1s ease;
+                transform: translateX(100%);
+
+                &-open {
+                    transform: translateX(0);
+                }
 
                 @media screen and (max-width:380px) {
-                    padding-top: 80.8%;
+                    padding-top: 63.8%;
                 }
             }
 
