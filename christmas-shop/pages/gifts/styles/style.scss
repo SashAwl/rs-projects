@@ -43,10 +43,22 @@
             padding: 12px 8px;
         }
 
-        &:hover {
-            border-radius: 12px;
-            background-color: $static-white-20;
-            cursor: pointer;
+        @media (hover: hover) {
+            &:hover {
+                border-radius: 12px;
+                background-color: $static-white-20;
+                cursor: pointer;
+            }
+
+        }
+
+        @media (hover: none) {
+            &:active {
+                border-radius: 12px;
+                background-color: $static-white-20;
+                cursor: default;
+                transition: 0.2s ease;
+            }
         }
     }
 
