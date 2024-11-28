@@ -130,10 +130,22 @@ html {
         margin: 18px 0 19px;
     }
 
-    &:hover {
-        background-color: $static-white;
-        border-color: $static-white;
-        color: $dark;
+    @media (hover: hover) {
+        &:hover {
+            background-color: $static-white;
+            border-color: $static-white;
+            color: $dark;
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            background-color: $static-white;
+            border-color: $static-white;
+            color: $dark;
+            cursor: default;
+            transition: 0.2s ease;
+        }
     }
 }
 
@@ -154,9 +166,23 @@ html {
         }
     }
 
-    &:hover {
-        color: $primary;
+    @media (hover: hover) {
+        &:hover {
+            color: $primary;
+            cursor: pointer;
+
+        }
     }
+
+    @media (hover: none) {
+        &:active {
+            color: $primary;
+            transition: 0.2s ease;
+            cursor: default;
+        }
+    }
+
+
 }
 
 .tag {
@@ -249,15 +275,28 @@ html {
             transition: 0.6s ease;
         }
 
-        &:hover {
-            background-color: $primary-10;
-            color: $primary;
-            cursor: pointer;
+        @media (hover: hover) {
+            &:hover {
+                background-color: $primary-10;
+                color: $primary;
+                cursor: pointer;
+            }
         }
+
+        @media (hover: none) {
+            &:active {
+                background-color: $primary-10;
+                color: $primary;
+                cursor: default;
+                transition: 0.2s ease;
+            }
+        }
+
+
     }
 
-    @media screen and (max-width:1439px) {
-        .menu:hover {
+    @media only screen and (max-width:1439px) and (hover: none) {
+        .menu:active {
             cursor: pointer;
 
             .menu__list {
@@ -329,13 +368,30 @@ html {
             margin-top: 15px;
         }
 
-        &:hover {
-            color: $primary;
-
-            a {
+        @media (hover: hover) {
+            &:hover {
                 color: $primary;
+                cursor: pointer;
+
+                a {
+                    color: $primary;
+                }
             }
         }
+
+        @media (hover: none) {
+            &:active {
+                color: $primary;
+                transition: 0.2s ease;
+                cursor: default;
+
+                a {
+                    color: $primary;
+                }
+            }
+        }
+
+
     }
 
     &__bottom {
@@ -352,9 +408,19 @@ html {
         gap: 34px;
         translate: transform 1s ease;
 
-        img:hover {
-            transform: scale(1.2);
+        @media (hover: hover) {
+            img:hover {
+                transform: scale(1.2);
+            }
         }
+
+        @media (hover: none) {
+            img:active {
+                transform: scale(1.2);
+            }
+        }
+
+
     }
 
     .elegant-text {

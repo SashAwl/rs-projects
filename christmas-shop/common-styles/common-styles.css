@@ -117,10 +117,21 @@ html {
 .button--indent-cta {
   margin: 18px 0 19px;
 }
-.button:hover {
-  background-color: #fff;
-  border-color: #fff;
-  color: #181c29;
+@media (hover: hover) {
+  .button:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #181c29;
+  }
+}
+@media (hover: none) {
+  .button:active {
+    background-color: #fff;
+    border-color: #fff;
+    color: #181c29;
+    cursor: default;
+    transition: 0.2s ease;
+  }
 }
 
 .gift-item {
@@ -140,8 +151,18 @@ html {
     height: 111.7px;
   }
 }
-.gift-item:hover {
-  color: #ff4646;
+@media (hover: hover) {
+  .gift-item:hover {
+    color: #ff4646;
+    cursor: pointer;
+  }
+}
+@media (hover: none) {
+  .gift-item:active {
+    color: #ff4646;
+    transition: 0.2s ease;
+    cursor: default;
+  }
 }
 
 .tag {
@@ -227,16 +248,26 @@ html {
   color: #ff4646;
   transition: 0.6s ease;
 }
-.header .menu-item:hover {
-  background-color: rgba(255, 70, 70, 0.1);
-  color: #ff4646;
-  cursor: pointer;
-}
-@media screen and (max-width: 1439px) {
-  .header .menu:hover {
+@media (hover: hover) {
+  .header .menu-item:hover {
+    background-color: rgba(255, 70, 70, 0.1);
+    color: #ff4646;
     cursor: pointer;
   }
-  .header .menu:hover .menu__list {
+}
+@media (hover: none) {
+  .header .menu-item:active {
+    background-color: rgba(255, 70, 70, 0.1);
+    color: #ff4646;
+    cursor: default;
+    transition: 0.2s ease;
+  }
+}
+@media only screen and (max-width: 1439px) and (hover: none) {
+  .header .menu:active {
+    cursor: pointer;
+  }
+  .header .menu:active .menu__list {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -249,16 +280,16 @@ html {
     background-color: #fff;
   }
 }
-@media screen and (max-width: 1439px) and (max-width: 380px) {
-  .header .menu:hover .menu__list {
+@media only screen and (max-width: 1439px) and (hover: none) and (max-width: 380px) {
+  .header .menu:active .menu__list {
     padding-top: 80.8%;
   }
 }
-@media screen and (max-width: 1439px) {
-  .header .menu:hover .menu-item {
+@media only screen and (max-width: 1439px) and (hover: none) {
+  .header .menu:active .menu-item {
     padding: 15px 23.5px;
   }
-  .header .menu:hover .heading-small {
+  .header .menu:active .heading-small {
     font-weight: 600;
     font-size: 24px;
     line-height: 152%;
@@ -302,11 +333,24 @@ html {
   display: inline-block;
   margin-top: 15px;
 }
-.footer .card-item:hover {
-  color: #ff4646;
+@media (hover: hover) {
+  .footer .card-item:hover {
+    color: #ff4646;
+    cursor: pointer;
+  }
+  .footer .card-item:hover a {
+    color: #ff4646;
+  }
 }
-.footer .card-item:hover a {
-  color: #ff4646;
+@media (hover: none) {
+  .footer .card-item:active {
+    color: #ff4646;
+    transition: 0.2s ease;
+    cursor: default;
+  }
+  .footer .card-item:active a {
+    color: #ff4646;
+  }
 }
 .footer__bottom {
   margin-top: 67px;
@@ -321,8 +365,15 @@ html {
   gap: 34px;
   translate: transform 1s ease;
 }
-.footer .social-networks img:hover {
-  transform: scale(1.2);
+@media (hover: hover) {
+  .footer .social-networks img:hover {
+    transform: scale(1.2);
+  }
+}
+@media (hover: none) {
+  .footer .social-networks img:active {
+    transform: scale(1.2);
+  }
 }
 .footer .elegant-text {
   margin: 0;

@@ -160,17 +160,35 @@
                 cursor: default;
             }
 
-            &-active:hover {
-                cursor: pointer;
-                background-color: $static-white;
-                color: $primary;
-                transition: 0.6s ease;
+            @media (hover: hover) {
+                &-active:hover {
+                    cursor: pointer;
+                    background-color: $static-white;
+                    color: $primary;
+                    transition: 0.6s ease;
 
-                path {
-                    stroke: $primary;
+                    path {
+                        stroke: $primary;
+                    }
+
                 }
-
             }
+
+            @media (hover: none) {
+                &-active:active {
+                    cursor: default;
+                    background-color: $static-white;
+                    color: $primary;
+                    transition: 0.2s ease;
+
+                    path {
+                        stroke: $primary;
+                    }
+
+                }
+            }
+
+
         }
     }
 }

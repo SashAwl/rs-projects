@@ -160,14 +160,27 @@
   margin-right: 15px;
   cursor: default;
 }
-.slider__nav .arrow-active:hover {
-  cursor: pointer;
-  background-color: #fff;
-  color: #ff4646;
-  transition: 0.6s ease;
+@media (hover: hover) {
+  .slider__nav .arrow-active:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #ff4646;
+    transition: 0.6s ease;
+  }
+  .slider__nav .arrow-active:hover path {
+    stroke: #ff4646;
+  }
 }
-.slider__nav .arrow-active:hover path {
-  stroke: #ff4646;
+@media (hover: none) {
+  .slider__nav .arrow-active:active {
+    cursor: default;
+    background-color: #fff;
+    color: #ff4646;
+    transition: 0.2s ease;
+  }
+  .slider__nav .arrow-active:active path {
+    stroke: #ff4646;
+  }
 }
 
 .best-gifts {
