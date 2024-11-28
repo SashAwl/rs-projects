@@ -302,146 +302,144 @@ html {
 
     @media only screen and (max-width:1439px) and (hover: none) {
         .menu:active {
-            @media screen and (max-width:1439px) {
-                .menu {
-                    cursor: pointer;
+            cursor: pointer;
 
-                    .menu__list {
-                        display: flex;
-                        flex-direction: column;
-                        position: fixed;
-                        left: 0;
-                        top: 64px;
-                        width: 100vw;
-                        height: 100vh;
-                        z-index: 3;
-                        padding-top: 349px;
-                        background-color: $static-white;
-                        transition: transform 1s ease;
-                        transform: translateX(100%);
-
-                        &-open {
-                            transform: translateX(0);
-                        }
-
-                        @media screen and (max-width:380px) {
-                            padding-top: 63.8%;
-                        }
-                    }
-
-                    .menu-item {
-                        padding: 15px 23.5px;
-                    }
-
-                    .heading-small {
-                        font-weight: 600;
-                        font-size: 24px;
-                        line-height: 152%;
-                        letter-spacing: 0.16em;
-                        color: $dark;
-                    }
-                }
-            }
-        }
-
-        .footer {
-            padding-top: 60px;
-            padding-bottom: 60px;
-
-            .heading-gift-item {
-                margin-top: 12px;
-                margin-bottom: 0;
-            }
-
-            &__contacts {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 12px;
-            }
-
-            .card-item {
+            .menu__list {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                background-color: $content-background;
-                border-radius: 20px;
-                padding: 19px;
-                width: 26.3%;
-                transition: 0.6s ease;
+                position: fixed;
+                left: 0;
+                top: 64px;
+                width: 100vw;
+                height: 100vh;
+                z-index: 3;
+                padding-top: 349px;
+                background-color: $static-white;
+                transition: transform 1s ease;
+                transform: translateX(100%);
 
-                @media screen and (max-width:1439px) {
-                    width: 93%;
+                &-open {
+                    transform: translateX(0);
                 }
 
-                &__link {
-                    text-decoration: none;
-                    color: $dark;
-                    display: inline-block;
-                    margin-top: 15px;
+                @media screen and (max-width:380px) {
+                    padding-top: 63.8%;
                 }
-
-                @media (hover: hover) {
-                    &:hover {
-                        color: $primary;
-                        cursor: pointer;
-
-                        a {
-                            color: $primary;
-                        }
-                    }
-                }
-
-                @media (hover: none) {
-                    &:active {
-                        color: $primary;
-                        transition: 0.2s ease;
-                        cursor: default;
-
-                        a {
-                            color: $primary;
-                        }
-                    }
-                }
-
-
             }
 
-            &__bottom {
-                margin-top: 67px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+            .menu-item {
+                padding: 15px 23.5px;
             }
 
-            .social-networks {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 34px;
-                translate: transform 1s ease;
-
-                @media (hover: hover) {
-                    img:hover {
-                        transform: scale(1.2);
-                    }
-                }
-
-                @media (hover: none) {
-                    img:active {
-                        transform: scale(1.2);
-                    }
-                }
-
-
-            }
-
-            .elegant-text {
-                margin: 0;
-            }
-
-            .rs-link {
-                text-decoration: none;
+            .heading-small {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 152%;
+                letter-spacing: 0.16em;
                 color: $dark;
             }
         }
+    }
+}
+
+.footer {
+    padding-top: 60px;
+    padding-bottom: 60px;
+
+    .heading-gift-item {
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
+    &__contacts {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .card-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $content-background;
+        border-radius: 20px;
+        padding: 19px;
+        width: 26.3%;
+        transition: 0.6s ease;
+
+        @media screen and (max-width:1439px) {
+            width: 93%;
+        }
+
+        &__link {
+            text-decoration: none;
+            color: $dark;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                color: $primary;
+                cursor: pointer;
+
+                a {
+                    color: $primary;
+                }
+            }
+        }
+
+        @media (hover: none) {
+            &:active {
+                color: $primary;
+                transition: 0.2s ease;
+                cursor: default;
+
+                a {
+                    color: $primary;
+                }
+            }
+        }
+
+
+    }
+
+    &__bottom {
+        margin-top: 67px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-networks {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 34px;
+        translate: transform 1s ease;
+
+        @media (hover: hover) {
+            img:hover {
+                transform: scale(1.2);
+            }
+        }
+
+        @media (hover: none) {
+            img:active {
+                transform: scale(1.2);
+            }
+        }
+
+
+    }
+
+    .elegant-text {
+        margin: 0;
+    }
+
+    .rs-link {
+        text-decoration: none;
+        color: $dark;
+    }
+}
