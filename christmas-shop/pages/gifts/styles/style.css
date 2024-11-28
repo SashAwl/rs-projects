@@ -182,7 +182,7 @@ html {
 @media screen and (max-width: 1439px) {
   .header {
     padding-left: 29px;
-    padding-right: 18px;
+    padding-right: 0;
   }
 }
 .header .logo {
@@ -203,9 +203,9 @@ html {
   align-items: center;
   gap: 6px;
   justify-content: center;
-  padding: 27px 0;
+  padding: 27px 18px 27px 27px;
 }
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: 768px) {
   .header .burger {
     display: flex;
   }
@@ -215,12 +215,15 @@ html {
   width: 20px;
   background-color: #181c29;
 }
-.header .burger__close {
+.header .burger-hidden {
   display: none;
-  position: absolute;
-  right: 9px;
-  top: 12px;
-  z-index: 4;
+}
+.header .burger__close {
+  display: block;
+  padding: 10px 9px 15px 27px;
+}
+.header .burger__close-hidden {
+  display: none;
 }
 .header .menu__list {
   display: flex;
@@ -228,8 +231,9 @@ html {
   margin: 0;
   list-style-type: none;
   padding: 11px 0 11px;
+  transition: transform 1s ease;
 }
-@media screen and (max-width: 1439px) {
+@media only screen and (max-width: 768px) {
   .header .menu__list {
     display: none;
   }
@@ -264,33 +268,38 @@ html {
     transition: 0.2s ease;
   }
 }
-@media only screen and (max-width: 1439px) and (hover: none) {
-  .header .menu:active {
-    cursor: pointer;
+@media only screen and (max-width: 768px) and (hover: none) {
+  .header .menu {
+    cursor: default;
   }
-  .header .menu:active .menu__list {
+  .header .menu .menu__list {
     display: flex;
     flex-direction: column;
     position: fixed;
     left: 0;
-    top: 0;
+    top: 64px;
     width: 100vw;
     height: 100vh;
     z-index: 3;
-    padding-top: 413px;
+    padding-top: 349px;
     background-color: #fff;
+    transition: transform 1s ease;
+    transform: translateX(100%);
+  }
+  .header .menu .menu__list-open {
+    transform: translateX(0);
   }
 }
-@media only screen and (max-width: 1439px) and (hover: none) and (max-width: 380px) {
-  .header .menu:active .menu__list {
-    padding-top: 80.8%;
+@media only screen and (max-width: 768px) and (hover: none) and (max-width: 380px) {
+  .header .menu .menu__list {
+    padding-top: 63.8%;
   }
 }
-@media only screen and (max-width: 1439px) and (hover: none) {
-  .header .menu:active .menu-item {
+@media only screen and (max-width: 768px) and (hover: none) {
+  .header .menu .menu-item {
     padding: 15px 23.5px;
   }
-  .header .menu:active .heading-small {
+  .header .menu .heading-small {
     font-weight: 600;
     font-size: 24px;
     line-height: 152%;
