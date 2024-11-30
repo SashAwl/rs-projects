@@ -4,50 +4,60 @@ const sliderWrapper = document.querySelector('.slider__wrapper');
 const arrowLeft = document.querySelector(".arrow-left");
 const arrowRight = document.querySelector(".arrow-right");
 
-const sliderBoxWidth = sliderBox.scrollWidth;
-const sliderWrapperWidth = sliderWrapper.offsetWidth;
-const clickCount = (window.innerWidth >= 768) ? 3 : 6;
-console.log(sliderBoxWidth, sliderWrapperWidth, clickCount)
+function getClickCount() {
+    return (window.innerWidth > 768) ? 3 : 6;
+}
 
-const firstSliderElem = document.querySelector(".slider__text:first-child");
-const distanseFromEdge = +window.getComputedStyle(firstSliderElem).marginLeft.slice(0, -2);
-console.log(distanseFromEdge)
+function getOffsetWidth() {
+    const sliderBoxWidth = sliderBox.scrollWidth;
+    const sliderWrapperWidth = sliderWrapper.offsetWidth;
 
-const offsetLength = Math.ceil((sliderBoxWidth + distanseFromEdge - sliderWrapperWidth) / clickCount);
+    const firstSliderElem = document.querySelector(".slider__text:first-child");
+    const distanseFromEdge = +window.getComputedStyle(firstSliderElem).marginLeft.slice(0, -2);
+
+    return Math.ceil((sliderBoxWidth + distanseFromEdge - sliderWrapperWidth) / getClickCount());
+}
 
 let currentPosition = 0;
 let rightClickCount = 0;
 let leftClickCount = 0;
 
 arrowLeft.addEventListener("click", () => {
-    if (leftClickCount < clickCount) {
-        currentPosition -= offsetLength;
-        sliderBox.style.transform = `translate(${-Math.min(currentPosition, sliderWrapperWidth)}px)`;
+    if (leftClickCount < getClickCount()) {
+        currentPosition -= getOffsetWidth();
+        sliderBox.style.transform = `translate(${-currentPosition}px)`;
         leftClickCount++;
-        rightClickCount = clickCount - leftClickCount;
+        rightClickCount = getClickCount() - leftClickCount;
     }
-    if (leftClickCount === clickCount) {
+    if (leftClickCount === getClickCount()) {
         arrowLeft.classList.add("arrow-disabled");
     }
     if (leftClickCount > 0) {
         arrowRight.classList.remove("arrow-disabled");
     }
-    console.log(currentPosition)
 })
 
 arrowRight.addEventListener("click", () => {
-    if (rightClickCount < clickCount) {
-        currentPosition += offsetLength;
-        sliderBox.style.transform = `translate(${-Math.max(currentPosition, 0)}px)`;
+    if (rightClickCount < getClickCount()) {
+        currentPosition += getOffsetWidth();
+        sliderBox.style.transform = `translate(${-currentPosition}px)`;
         rightClickCount++;
-        leftClickCount = clickCount - rightClickCount;
+        leftClickCount = getClickCount() - rightClickCount;
     }
-    if (rightClickCount === clickCount) {
+    if (rightClickCount === getClickCount()) {
         arrowRight.classList.add("arrow-disabled");
     }
     if (rightClickCount > 0) {
         arrowLeft.classList.remove("arrow-disabled");
     }
-    console.log(currentPosition)
+})
+
+window.addEventListener("resize", () => {
+    sliderBox.style.transform = `translate(${0}px)`;
+    arrowRight.classList.remove("arrow-disabled");
+    arrowLeft.classList.add("arrow-disabled");
+    currentPosition = 0;
+    rightClickCount = 0;
+    leftClickCount = 0;
 })
 
