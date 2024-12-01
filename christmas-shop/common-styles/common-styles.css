@@ -137,6 +137,7 @@ html {
   width: 310px;
   background-color: #ecf3f8;
   border-radius: 20px;
+  opacity: 1;
   transition: 0.6s ease;
 }
 .gift-item__text {
@@ -149,6 +150,9 @@ html {
   .gift-item__text {
     height: 111.7px;
   }
+}
+.gift-item-hidden {
+  opacity: 0;
 }
 @media (hover: hover) {
   .gift-item:hover {

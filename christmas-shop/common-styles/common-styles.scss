@@ -152,6 +152,7 @@ html {
     width: 310px;
     background-color: $content-background;
     border-radius: 20px;
+    opacity: 1;
     transition: 0.6s ease;
 
     &__text {
@@ -163,6 +164,11 @@ html {
         @media screen and (max-width:1439px) {
             height: 111.7px;
         }
+    }
+
+    &-hidden {
+        // transition: opacity 1s ease-in-out;
+        opacity: 0;
     }
 
     @media (hover: hover) {
@@ -180,8 +186,6 @@ html {
             cursor: default;
         }
     }
-
-
 }
 
 .tag {

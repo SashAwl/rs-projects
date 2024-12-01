@@ -36,8 +36,11 @@ function createCard({ name, category, image }, relativeLocalImg) {
     return giftItem;
 }
 
-async function completeGiftBox(parantBox, countCard, pageLocation) {
-    const data = await getData(pageLocation);
+async function completeGiftBox(parantBox, countCard, pageLocation, filterCategory = "all") {
+    let data = await getData(pageLocation);
+    if (filterCategory.toLowerCase() != "all") {
+        data = data.filter(item => item.category.toLowerCase() === filterCategory.toLowerCase());
+    }
     for (let i = 0; i < countCard; i++) {
         const giftItemData = data[Math.floor(Math.random() * data.length)];
         const cardItem = createCard(giftItemData, pageLocation + 'images/');
