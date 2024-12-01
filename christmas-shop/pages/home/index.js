@@ -61,3 +61,8 @@ window.addEventListener("resize", () => {
     leftClickCount = 0;
 })
 
+/* Gift box*/
+
+const bestGiftBox = document.querySelector(".best-gifts__box");
+completeGiftBox(bestGiftBox, 4, "./assets/");
+
