@@ -158,7 +158,7 @@ body {
 .gift-item-hidden {
   opacity: 0;
 }
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 769px) {
   .gift-item:hover {
     color: #ff4646;
     cursor: pointer;
@@ -184,6 +184,7 @@ body {
   border-radius: 20px;
   z-index: 5;
   padding-bottom: 13px;
+  cursor: default;
 }
 .modal-block-hidden {
   display: none;
@@ -193,11 +194,21 @@ body {
     width: 95%;
   }
 }
+.modal-block .heading-gift-item {
+  margin-bottom: 9px;
+}
+.modal-block .heading-gift-item:hover {
+  color: #181c29;
+}
 .modal-block .gift-item {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  cursor: default;
+}
+.modal-block .gift-item:hover {
+  color: inherit;
 }
 .modal-block .gift-item__text {
   height: auto;
@@ -210,9 +221,6 @@ body {
 }
 .modal-block .gift-item .tag {
   padding-top: 24px;
-}
-.modal .heading-gift-item {
-  margin-bottom: 9px;
 }
 .modal__text {
   padding: 0 20px;

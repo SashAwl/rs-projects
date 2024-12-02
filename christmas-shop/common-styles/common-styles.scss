@@ -175,11 +175,10 @@ body {
         opacity: 0;
     }
 
-    @media (hover: hover) {
+    @media (hover: hover) and (min-width: 769px) {
         &:hover {
             color: $primary;
             cursor: pointer;
-
         }
     }
 
@@ -205,6 +204,7 @@ body {
         border-radius: 20px;
         z-index: 5;
         padding-bottom: 13px;
+        cursor: default;
 
         &-hidden {
             display: none;
@@ -214,11 +214,24 @@ body {
             width: 95%;
         }
 
+        .heading-gift-item {
+            margin-bottom: 9px;
+
+            &:hover {
+                color: $dark;
+            }
+        }
+
         .gift-item {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: stretch;
+            cursor: default;
+
+            &:hover {
+                color: inherit;
+            }
 
             &__text {
                 height: auto;
@@ -235,10 +248,6 @@ body {
                 padding-top: 24px;
             }
         }
-    }
-
-    .heading-gift-item {
-        margin-bottom: 9px;
     }
 
     &__text {
