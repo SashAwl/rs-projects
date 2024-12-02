@@ -20,4 +20,21 @@ giftsTags.addEventListener("click", (e) => {
             completeGiftBox(giftBox, 12, "../../assets/", currentTag);
         }, 600);
     }
-})
+});
+
+
+/* Scroll to top */
+const scrollTop = document.querySelector(".scroll-to-top");
+window.addEventListener("scroll", () => {
+    const windowWidth = document.body.offsetWidth;
+    scrollTop.style.display = (window.scrollY > 300 && windowWidth < 769) ? "block" : "none";
+});
+
+window.addEventListener("resize", () => {
+    const windowWidth = document.body.offsetWidth;
+    scrollTop.style.display = (windowWidth < 769) ? "block" : "none";
+});
+
+scrollTop.addEventListener("click", () => {
+    window.scrollTo(0, 0);
+});
