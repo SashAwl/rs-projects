@@ -172,6 +172,129 @@ body {
   }
 }
 
+.modal-block {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  border-radius: 20px;
+  z-index: 5;
+  padding-bottom: 13px;
+}
+.modal-block-hidden {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .modal-block {
+    width: 95%;
+  }
+}
+.modal-block .gift-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.modal-block .gift-item__text {
+  height: auto;
+  margin-top: -26px;
+  margin-bottom: -10px;
+}
+.modal-block .gift-item img {
+  width: 86%;
+  align-self: center;
+}
+.modal-block .gift-item .tag {
+  padding-top: 24px;
+}
+.modal .heading-gift-item {
+  margin-bottom: 9px;
+}
+.modal__text {
+  padding: 0 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  margin-top: 0;
+  background-color: #fff;
+  margin-bottom: 7px;
+}
+.modal__text .heading-small {
+  margin-bottom: 1px;
+}
+.modal__text .text {
+  margin: 0;
+}
+.modal__describe {
+  height: 46px;
+}
+.modal__background {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(24, 28, 41, 0.8);
+  z-index: 4;
+}
+
+.close-icon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+@media (hover: hover) {
+  .close-icon {
+    cursor: pointer;
+  }
+}
+
+.power {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+.power__details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.power__item {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  width: 100%;
+}
+.power__name {
+  width: 50%;
+  text-transform: capitalize;
+}
+.power__value {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+.power__value p {
+  margin: 3px 0;
+}
+.power .snowflake {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-left: 20px;
+}
+.power .snowflake__item {
+  width: 16px;
+  height: 16px;
+}
+
 .tag {
   padding-top: 19px;
   margin-bottom: 10px;
@@ -195,7 +318,6 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-  z-index: 4;
 }
 .header .logo__img {
   margin-right: 9px;
