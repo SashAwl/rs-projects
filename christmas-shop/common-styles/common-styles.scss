@@ -1,8 +1,11 @@
 @import "../assets/variables.scss";
-@import "../common-styles/normolize.css";
 
 html {
     scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
 }
 
 .container {
@@ -153,6 +156,7 @@ html {
     width: 310px;
     background-color: $content-background;
     border-radius: 20px;
+    opacity: 1;
     transition: 0.6s ease;
 
     &__text {
@@ -166,11 +170,15 @@ html {
         }
     }
 
-    @media (hover: hover) {
+    &-hidden {
+        // transition: opacity 1s ease-in-out;
+        opacity: 0;
+    }
+
+    @media (hover: hover) and (min-width: 769px) {
         &:hover {
             color: $primary;
             cursor: pointer;
-
         }
     }
 
@@ -181,8 +189,157 @@ html {
             cursor: default;
         }
     }
+}
 
+.modal {
+    &-block {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        background-color: $static-white;
+        border-radius: 20px;
+        z-index: 5;
+        padding-bottom: 13px;
+        cursor: default;
 
+        &-hidden {
+            display: none;
+        }
+
+        @media screen and (max-width:767px) {
+            width: 95%;
+        }
+
+        .heading-gift-item {
+            margin-bottom: 9px;
+
+            &:hover {
+                color: $dark;
+            }
+        }
+
+        .gift-item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            cursor: default;
+
+            &:hover {
+                color: inherit;
+            }
+
+            &__text {
+                height: auto;
+                margin-top: -26px;
+                margin-bottom: -10px;
+            }
+
+            img {
+                width: 86%;
+                align-self: center;
+            }
+
+            .tag {
+                padding-top: 24px;
+            }
+        }
+    }
+
+    &__text {
+        padding: 0 20px;
+        box-sizing: border-box;
+        border-radius: 20px;
+        margin-top: 0;
+        background-color: $static-white;
+        margin-bottom: 7px;
+
+        .heading-small {
+            margin-bottom: 1px;
+        }
+
+        .text {
+            margin: 0;
+        }
+    }
+
+    &__describe {
+        height: 46px;
+    }
+
+    &__background {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: $overlay;
+        z-index: 4;
+    }
+}
+
+.close-icon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+
+    @media (hover: hover) {
+        cursor: pointer;
+    }
+}
+
+.power {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: flex-start;
+        gap: 30px;
+        width: 100%;
+    }
+
+    &__name {
+        width: 50%;
+        text-transform: capitalize;
+    }
+
+    &__value {
+        display: flex;
+        align-items: center;
+        width: 50%;
+
+        p {
+            margin: 3px 0;
+        }
+    }
+
+    .snowflake {
+        display: flex;
+        justify-content: flex-start;
+        gap: 8px;
+        margin-left: 20px;
+
+        &__item {
+            width: 16px;
+            height: 16px;
+        }
+    }
 }
 
 .tag {
@@ -200,14 +357,13 @@ html {
 
     @media screen and (max-width:1439px) {
         padding-left: 29px;
-        padding-right: 18px;
+        padding-right: 0;
     }
 
     .logo {
         display: flex;
         align-items: center;
         position: relative;
-        z-index: 4;
 
         &__img {
             margin-right: 9px;
@@ -224,9 +380,9 @@ html {
         align-items: center;
         gap: 6px;
         justify-content: center;
-        padding: 27px 0;
+        padding: 27px 18px 27px 27px;
 
-        @media screen and (max-width:1439px) {
+        @media screen and (max-width:768px) {
             display: flex;
         }
 
@@ -235,14 +391,19 @@ html {
             width: 20px;
             background-color: $dark;
         }
+
+        &-hidden {
+            display: none;
+        }
     }
 
     .burger__close {
-        display: none;
-        position: absolute;
-        right: 9px;
-        top: 12px;
-        z-index: 4;
+        display: block;
+        padding: 10px 9px 15px 27px;
+
+        &-hidden {
+            display: none;
+        }
 
     }
 
@@ -252,8 +413,9 @@ html {
         margin: 0;
         list-style-type: none;
         padding: 11px 0 11px;
+        transition: transform 1s ease;
 
-        @media screen and (max-width:1439px) {
+        @media only screen and (max-width:768px) {
             display: none;
         }
     }
@@ -295,24 +457,30 @@ html {
 
     }
 
-    @media only screen and (max-width:1439px) and (hover: none) {
-        .menu:active {
-            cursor: pointer;
+    @media only screen and (max-width:768px) and (hover: none) {
+        .menu {
+            cursor: default;
 
             .menu__list {
                 display: flex;
                 flex-direction: column;
                 position: fixed;
                 left: 0;
-                top: 0;
+                top: 64px;
                 width: 100vw;
                 height: 100vh;
                 z-index: 3;
-                padding-top: 413px;
+                padding-top: 349px;
                 background-color: $static-white;
+                transition: transform 1s ease;
+                transform: translateX(100%);
+
+                &-open {
+                    transform: translateX(0);
+                }
 
                 @media screen and (max-width:380px) {
-                    padding-top: 80.8%;
+                    padding-top: 63.8%;
                 }
             }
 

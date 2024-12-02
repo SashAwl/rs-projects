@@ -96,22 +96,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 8.34% auto 8.2%;
+    margin: 8.34% 0 8.2%;
     color: white;
 
     @media screen and (max-width:1439px) {
-        margin: 15.6% auto 15.1%;
+        margin: 15.6% 0 15.1%;
     }
 
     @media screen and (max-width:767px) {
-        margin: 31.5% auto 30.5%;
+        margin: 31.5% 0 30.5%;
+    }
+
+    &__wrapper {
+        overflow: hidden;
+        align-self: flex-start;
+        max-width: 1440px;
+
+        @media screen and (max-width:1439px) {
+            width: 100vw;
+        }
+
+        @media screen and (max-width:767px) {
+            width: 100vw;
+        }
     }
 
     &__box {
-        overflow: hidden;
         display: flex;
         align-items: center;
-        margin: 20px auto;
+        margin: 20px 0;
+        transition: transform 0.8s ease;
     }
 
     &__text {
@@ -124,10 +138,9 @@
         color: $static-white;
 
         &:first-child {
-            padding-left: 63px;
+            margin-left: 63px;
 
             @media screen and (max-width:1439px) {
-                padding-left: 0;
                 margin-left: 8px;
             }
         }
@@ -135,6 +148,14 @@
 
     &__img {
         border-radius: 20px;
+
+        &:last-child {
+            margin-right: 63px;
+
+            @media screen and (max-width:1439px) {
+                margin-right: 8px;
+            }
+        }
     }
 
     &__nav {
@@ -154,14 +175,18 @@
                 fill: $static-white;
             }
 
+            &-left {
+                margin-right: 15px;
+            }
+
             &-disabled {
                 border-color: $static-white-40;
-                margin-right: 15px;
                 cursor: default;
+                pointer-events: none;
             }
 
             @media (hover: hover) {
-                &-active:hover {
+                &:hover {
                     cursor: pointer;
                     background-color: $static-white;
                     color: $primary;
@@ -175,7 +200,7 @@
             }
 
             @media (hover: none) {
-                &-active:active {
+                &:active {
                     cursor: default;
                     background-color: $static-white;
                     color: $primary;

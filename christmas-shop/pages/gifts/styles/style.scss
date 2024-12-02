@@ -1,5 +1,4 @@
 @import "../../../assets/variables.scss";
-@import "../../../common-styles/normolize.css";
 @import "../../../common-styles/common-styles.scss";
 
 .gift {
@@ -90,4 +89,17 @@
             grid-template-columns: repeat(1, 1fr);
         }
     }
+}
+
+.scroll-to-top {
+    display: none;
+    border: 1px solid $primary;
+    background-color: $static-white;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    z-index: 3;
 }
