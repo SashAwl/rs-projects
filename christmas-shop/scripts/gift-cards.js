@@ -73,7 +73,6 @@ function createDetailsItem(name, value, relativeLocalImg) {
 
 function closeModal(modalItem) {
     const modal = modalItem.closest(".modal-block");
-    console.log(modal)
     const backModal = document.querySelector(".modal__background");
     document.body.style.overflow = "auto";
     backModal.style.display = "none";
@@ -144,7 +143,6 @@ async function completeGiftBox(parentBox, countCard, pageLocation, filterCategor
 window.addEventListener("click", (e) => {
     if (e.target.matches(".modal__background")) {
         const modal = document.querySelector(".modal-block");
-        console.log(modal)
         closeModal(modal);
     }
 })
