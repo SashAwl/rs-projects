@@ -121,6 +121,9 @@ async function completeGiftBox(parentBox, countCard, pageLocation, filterCategor
     if (filterCategory.toLowerCase() != "all") {
         data = data.filter(item => item.category.toLowerCase() === filterCategory.toLowerCase());
     }
+    if (!countCard) {
+        countCard = data.length;
+    }
 
     const backgroundModal = document.createElement("div");
     backgroundModal.classList.add("modal__background");

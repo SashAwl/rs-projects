@@ -1,7 +1,7 @@
 /* Gift box */
 const giftBox = document.querySelector(".gift__box");
 const giftItemList = document.querySelectorAll(".gift-item");
-completeGiftBox(giftBox, 12, "../../assets/");
+completeGiftBox(giftBox, null, "../../assets/");
 
 /* Category switching */
 const giftsTags = document.querySelector(".gift__tags");
@@ -17,7 +17,7 @@ giftsTags.addEventListener("click", (e) => {
         setTimeout(() => {
             giftBox.innerHTML = "";
             const currentTag = e.target.textContent;
-            completeGiftBox(giftBox, 12, "../../assets/", currentTag);
+            completeGiftBox(giftBox, null, "../../assets/", currentTag);
         }, 600);
     }
 });
