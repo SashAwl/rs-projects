@@ -6,6 +6,11 @@ html {
 
 body {
     margin: 0;
+    overflow: auto;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
 
 .container {
@@ -156,8 +161,8 @@ body {
     width: 310px;
     background-color: $content-background;
     border-radius: 20px;
-    opacity: 1;
     transition: 0.6s ease;
+    opacity: 1;
     transition: opacity 1s ease-in-out;
 
     &__text {
@@ -391,21 +396,16 @@ body {
             height: 2px;
             width: 20px;
             background-color: $dark;
+            transition: transform 1s ease;
         }
 
-        &-hidden {
-            display: none;
-        }
-    }
-
-    .burger__close {
-        display: block;
-        padding: 10px 9px 15px 27px;
-
-        &-hidden {
-            display: none;
+        .line-top-close {
+            transform: translateY(4px) rotate(45deg);
         }
 
+        .line-bottom-close {
+            transform: translateY(-4px) rotate(-45deg);
+        }
     }
 
     .menu__list {

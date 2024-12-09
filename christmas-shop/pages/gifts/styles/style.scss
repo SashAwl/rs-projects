@@ -8,6 +8,14 @@
     background-color: $primary;
     padding-bottom: 59px;
     border-radius: 19px;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+    visibility: visible;
+
+
+    &-hidden {
+        visibility: hidden;
+    }
 
     &__top {
         width: 100%;

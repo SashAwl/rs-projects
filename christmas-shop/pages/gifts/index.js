@@ -13,12 +13,13 @@ giftsTags.addEventListener("click", (e) => {
         tagSelectionCollection.forEach((item) => item.classList.remove("selected-tag"));
         e.target.classList.add("selected-tag");
 
-        giftItemList.forEach(item => item.classList.add("gift-item-hidden"));
+        giftBox.classList.add("gift-hidden");
         setTimeout(() => {
             giftBox.innerHTML = "";
             const currentTag = e.target.textContent;
             completeGiftBox(giftBox, null, "../../assets/", currentTag);
-        }, 600);
+            giftBox.classList.remove("gift-hidden");
+        }, 50);
     }
 });
 
