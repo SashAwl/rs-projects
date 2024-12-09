@@ -372,11 +372,6 @@ body {
   padding: 11px 0 11px;
   transition: transform 1s ease;
 }
-@media only screen and (max-width: 768px) {
-  .header .menu__list {
-    display: none;
-  }
-}
 .header .menu-item {
   padding: 12px 23.5px;
   border-radius: 12px;
@@ -412,7 +407,8 @@ body {
     cursor: default;
   }
   .header .menu .menu__list {
-    display: flex;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+    transform: translateX(100%);
     flex-direction: column;
     position: fixed;
     left: 0;
@@ -421,12 +417,12 @@ body {
     height: 100vh;
     z-index: 3;
     padding-top: 349px;
+    opacity: 0;
     background-color: #fff;
-    transition: transform 1s ease;
-    transform: translateX(100%);
   }
   .header .menu .menu__list-open {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 @media only screen and (max-width: 768px) and (max-width: 380px) {

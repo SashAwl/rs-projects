@@ -19,10 +19,3 @@ menuList.addEventListener("click", (e) => {
         controlMenu();
     }
 });
-
-window.addEventListener("resize", () => {
-    const width = window.innerWidth;
-    if (width > 768) {
-        controlMenu();
-    }
-})
