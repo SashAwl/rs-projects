@@ -143,4 +143,15 @@ body {
   border: none;
   background-color: #becac2;
   color: #211c1c;
+}
+.button-key--highlight {
+  color: #7f3a10;
+  font-weight: 700;
+  border-radius: 4px;
+  border: 6px solid #fff;
+  padding: 4px 14px;
+  background-color: transparent;
+  border-color: #fff;
+  -o-border-image: linear-gradient(333deg, #9fcf42, #e67e22) 1;
+     border-image: linear-gradient(333deg, #9fcf42, #e67e22) 1;
 }/*# sourceMappingURL=style.css.map */

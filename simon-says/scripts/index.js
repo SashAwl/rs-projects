@@ -1,3 +1,6 @@
+let isPlayingMode = false;
+let round = 1;
+
 function createElement(options) {
   const { tag = "div", text = "", parent, classes = [] } = options;
 
@@ -15,13 +18,19 @@ function createElement(options) {
   return element;
 }
 
-const container = document.createElement("div");
-container.classList.add("container");
-document.body.append(container);
+const container = createElement({
+  tag: "div",
+  text: "",
+  parent: document.body,
+  classes: ["container"],
+});
 
-const startScreen = document.createElement("div");
-startScreen.classList.add("start-screen");
-container.appendChild(startScreen);
+const startScreen = createElement({
+  tag: "div",
+  text: "",
+  parent: container,
+  classes: ["start-screen"],
+});
 
 const gameName = createElement({
   tag: "h1",
@@ -49,8 +58,9 @@ levelList.forEach((level) => {
 
 levelSwitch.addEventListener("change", () => {
   currentLevel = levelSwitch.value;
+  currentAlphabet = getAlphabet(currentLevel);
   keyboard.innerHTML = "";
-  createKeyBoard(getAlphabet(currentLevel));
+  createKeyBoard(currentAlphabet);
 });
 startScreen.appendChild(levelSwitch);
 
@@ -62,14 +72,22 @@ const startButton = createElement({
 });
 
 startButton.addEventListener("click", () => {
-  backgroundStart.classList.add("back--none");
+  isPlayingMode = true;
+  turnGameMode();
+  startNewGame();
+});
+
+function turnGameMode() {
   levelSwitch.disabled = true;
   levelSwitch.classList.add("level-switch--disabled");
+
   buttonBox.classList.remove("button-box--none");
   gameText.classList.remove("elem-hidden");
-  startButton.classList.add("button--none");
   answerField.classList.remove("elem-hidden");
-});
+
+  startButton.classList.add("button--none");
+  backgroundStart.classList.add("back--none");
+}
 
 const buttonBox = createElement({
   tag: "div",
@@ -78,14 +96,14 @@ const buttonBox = createElement({
   classes: ["button-box", "button-box--none"],
 });
 
-const newGame = createElement({
+const newGameButton = createElement({
   tag: "button",
   text: "New game",
   parent: buttonBox,
   classes: ["button"],
 });
 
-const repeatSequence = createElement({
+const repeatSequenceButton = createElement({
   tag: "button",
   text: "Repeat the sequence",
   parent: buttonBox,
@@ -99,11 +117,9 @@ const currentGameInfo = createElement({
   classes: ["game__info"],
 });
 
-const roundCounter = 1;
-
 const gameText = createElement({
   tag: "p",
-  text: `Round: ${roundCounter}`,
+  text: `Round: ${round}`,
   parent: currentGameInfo,
   classes: ["game__text", "elem-hidden"],
 });
@@ -132,7 +148,9 @@ const keyboard = createElement({
 const keyNumberList = "0123456789".split("");
 const keyAlphabetList = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
 let currentLevel = "Easy";
-createKeyBoard(getAlphabet(currentLevel));
+let currentAlphabet = getAlphabet(currentLevel);
+
+createKeyBoard(currentAlphabet);
 
 function createKeyBoard(keyList) {
   keyList.forEach((key) => {
@@ -142,6 +160,7 @@ function createKeyBoard(keyList) {
       parent: keyboard,
       classes: ["button-key"],
     });
+    keyItem.setAttribute("data-key", `key${key}`);
   });
 }
 
@@ -158,3 +177,54 @@ function getAlphabet(level) {
 
   return keyDisplayList;
 }
+
+function startNewGame() {
+  const sequenceLen = getSequenceLen(round);
+  const randomSequence = generateRandomSequence(currentAlphabet, sequenceLen);
+  const currentSequenceElenments = getSquenceDOMElement(randomSequence);
+  console.log("Current sequence ", randomSequence);
+
+  setTimeout(() => {
+    displaySequence(currentSequenceElenments);
+  }, 1000);
+}
+
+function generateRandomSequence(symbolList, len) {
+  let sequence = [];
+
+  for (let i = 0; i < len; i++) {
+    const keyNum = Math.floor(Math.random() * symbolList.length);
+    sequence.push(symbolList[keyNum]);
+  }
+  return sequence;
+}
+
+function getSequenceLen(round) {
+  return round * 2;
+}
+
+function getSquenceDOMElement(elemValueList) {
+  return elemValueList.map((elem) => {
+    return document.querySelector(`.button-key[data-key='key${elem}']`);
+  });
+}
+
+function displaySequence(keyList) {
+  keyList.forEach((key, index) => {
+    setTimeout(() => {
+      highlightKey(key);
+    }, 700 * index);
+  });
+}
+
+function highlightKey(key) {
+  key.classList.add("button-key--highlight");
+  setTimeout(() => {
+    key.classList.remove("button-key--highlight");
+  }, 400);
+}
+
+// const keyButton = document.querySelector(".button-key[data-key='key6']");
+// highlightKey(keyButton);
+// console.log(keyButton);
+// keyButton.classList.add("button-key--highlight");
