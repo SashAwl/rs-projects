@@ -145,8 +145,7 @@ const keyboard = createElement({
   classes: ["keyboard"],
 });
 
-const keyNumberList = "0123456789".split("");
-const keyAlphabetList = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
+const keys = "0123456789QWERTYUIOPASDFGHJKLZXCVBNM".split("");
 let currentLevel = "Easy";
 let currentAlphabet = getAlphabet(currentLevel);
 
@@ -165,17 +164,13 @@ function createKeyBoard(keyList) {
 }
 
 function getAlphabet(level) {
-  let keyDisplayList = [];
-
   if (level === "Easy") {
-    keyDisplayList = [...keyNumberList];
-  } else if (level === "Medium") {
-    keyDisplayList = [...keyAlphabetList];
-  } else {
-    keyDisplayList = [...keyNumberList, ...keyAlphabetList];
+    return keys.slice(0, 10);
   }
-
-  return keyDisplayList;
+  if (level === "Medium") {
+    return keys.slice(10);
+  }
+  return [...keys];
 }
 
 function startNewGame() {
