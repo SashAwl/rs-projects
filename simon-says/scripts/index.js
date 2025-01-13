@@ -1,4 +1,5 @@
 let isPlayingMode = false;
+let isDisplaingSequence = false;
 let round = 1;
 
 function createElement(options) {
@@ -124,12 +125,27 @@ const gameText = createElement({
   classes: ["game__text", "elem-hidden"],
 });
 
-const answerField = createElement({
-  tag: "p",
-  text: "",
-  parent: currentGameInfo,
-  classes: ["game__answer-field", "elem-hidden"],
+const answerField = createElementInput({
+  optionBase: {
+    tag: "input",
+    text: "",
+    parent: currentGameInfo,
+    classes: ["game__answer-field", "elem-hidden"],
+  },
+  type: "text",
+  placeholder: "Your answer",
 });
+
+function createElementInput(option) {
+  const { optionBase, type, placeholder } = option;
+
+  const inputElem = createElement(optionBase);
+  inputElem.setAttribute("type", type);
+  inputElem.setAttribute("placeholder", placeholder);
+  inputElem.disabled = true;
+
+  return inputElem;
+}
 
 const backgroundStart = createElement({
   tag: "div",
@@ -182,6 +198,37 @@ function startNewGame() {
   setTimeout(() => {
     displaySequence(currentSequenceElenments);
   }, 1000);
+
+  answerField.addEventListener("input", () => {
+    if (!checkAnswer(randomSequence)) {
+      answerField.classList.add("game__answer-field--incorrect");
+      answerField.disabled = true;
+    }
+
+    const answer = answerField.value.toUpperCase();
+    if (answer === randomSequence.join("")) {
+      answerField.classList.add("game__answer-field--correct");
+      answerField.disabled = true;
+    }
+  });
+}
+
+function checkAnswer(sequence) {
+  const currentAnswer = answerField.value.toUpperCase();
+  const rightAnswer = sequence.join("");
+  const sequenceLen = rightAnswer.length;
+
+  if (
+    currentAnswer.length < sequenceLen &&
+    currentAnswer !== rightAnswer.slice(0, currentAnswer.length)
+  ) {
+    return false;
+  }
+
+  if (currentAnswer.length === sequenceLen && currentAnswer !== rightAnswer) {
+    return false;
+  }
+  return true;
 }
 
 function generateRandomSequence(symbolList, len) {
@@ -205,11 +252,18 @@ function getSquenceDOMElement(elemValueList) {
 }
 
 function displaySequence(keyList) {
+  isDisplaingSequence = true;
+
   keyList.forEach((key, index) => {
     setTimeout(() => {
       highlightKey(key);
     }, 700 * index);
   });
+
+  setTimeout(() => {
+    isDisplaingSequence = false;
+    provideAccessInput(answerField);
+  }, 700 * keyList.length);
 }
 
 function highlightKey(key) {
@@ -219,7 +273,14 @@ function highlightKey(key) {
   }, 400);
 }
 
+function provideAccessInput(elem) {
+  elem.removeAttribute("disabled");
+  elem.focus();
+}
+
 // const keyButton = document.querySelector(".button-key[data-key='key6']");
 // highlightKey(keyButton);
 // console.log(keyButton);
 // keyButton.classList.add("button-key--highlight");
+
+// по флагу, показывается ли последовательность, отследить, когда показ остановился и пора делать доступным инпут Можно попробовать через while следить за сстоянием флага

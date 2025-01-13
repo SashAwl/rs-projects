@@ -25,12 +25,14 @@ body {
     right: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 0;
     opacity: 100%;
     transition: opacity 0.3s ease-in;
   }
 
   .back--none {
     opacity: 0;
+    z-index: -1;
   }
 }
 
@@ -66,13 +68,23 @@ body {
   &__answer-field {
     width: 500px;
     margin: 0 auto;
-    font-size: 24px;
+    font-size: 15px;
+    font-style: italic;
+    padding-left: 10px;
     height: 35px;
     color: gray;
     background-color: aliceblue;
     border: 1px solid #877979;
     border-radius: 10px;
     text-transform: uppercase;
+
+    &--correct {
+      outline: 4px solid #ffeb3b;
+    }
+
+    &--incorrect {
+      outline: 4px solid #e9231c;
+    }
   }
 }
 
