@@ -178,4 +178,18 @@ body {
       border-image: linear-gradient(333deg, #9fcf42, #e67e22) 1;
     }
   }
+
+  &--hightlight {
+    background-image: linear-gradient(-180deg, #ef4508, #ad7c33);
+  }
+
+  &--disabled {
+    cursor: default;
+    pointer-events: none;
+    background-image: linear-gradient(
+      -180deg,
+      rgb(77 72 71 / 59%),
+      rgb(39 33 33 / 45%)
+    );
+  }
 }

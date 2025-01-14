@@ -1,6 +1,7 @@
 let isPlayingMode = false;
 let isDisplaingSequence = false;
 let round = 1;
+let isRepeatedSequence = false;
 
 function createElement(options) {
   const { tag = "div", text = "", parent, classes = [] } = options;
@@ -133,7 +134,11 @@ const answerField = createElementInput({
     classes: ["game__answer-field", "elem-hidden"],
   },
   type: "text",
-  placeholder: "Your answer",
+  placeholder: "Use english keyboard layout",
+});
+
+answerField.addEventListener("keydown", (event) => {
+  blockKeys(currentLevel, event);
 });
 
 function createElementInput(option) {
@@ -145,6 +150,23 @@ function createElementInput(option) {
   inputElem.disabled = true;
 
   return inputElem;
+}
+
+function blockKeys(level, event) {
+  const isDigit = event.code.startsWith("Digit");
+  const isKey = event.code.startsWith("Key");
+
+  if (level === "Easy" && !isDigit) {
+    event.preventDefault();
+  }
+
+  if (level === "Medium" && !isKey) {
+    event.preventDefault();
+  }
+
+  if (level === "Hard" && !(isDigit || isKey)) {
+    event.preventDefault();
+  }
 }
 
 const backgroundStart = createElement({
@@ -195,23 +217,39 @@ function startNewGame() {
   const currentSequenceElenments = getSquenceDOMElement(randomSequence);
   console.log("Current sequence ", randomSequence);
 
-  setTimeout(() => {
-    displaySequence(currentSequenceElenments);
-  }, 1000);
+  displaySequence(currentSequenceElenments);
 
   answerField.addEventListener("input", () => {
     if (!checkAnswer(randomSequence)) {
       answerField.classList.add("game__answer-field--incorrect");
       answerField.disabled = true;
+
+      if (!isRepeatedSequence) {
+        highlightRepeatButton();
+      }
+    }
+
+    if (isRepeatedSequence) {
+      disableRepeatButton();
     }
 
     const answer = answerField.value.toUpperCase();
     if (answer === randomSequence.join("")) {
       answerField.classList.add("game__answer-field--correct");
       answerField.disabled = true;
+      round += 1;
     }
   });
+
+  repeatSequenceButton.addEventListener("click", () => {
+    isRepeatedSequence = true;
+    repeatSequenceButton.classList.remove("button--hightlight");
+    repeatSequenceButton.classList.add("button--disabled");
+    displaySequence(currentSequenceElenments);
+  });
 }
+
+function repeatSequence() {}
 
 function checkAnswer(sequence) {
   const currentAnswer = answerField.value.toUpperCase();
@@ -253,17 +291,20 @@ function getSquenceDOMElement(elemValueList) {
 
 function displaySequence(keyList) {
   isDisplaingSequence = true;
-
-  keyList.forEach((key, index) => {
-    setTimeout(() => {
-      highlightKey(key);
-    }, 700 * index);
-  });
+  closeAccessInput(answerField);
 
   setTimeout(() => {
-    isDisplaingSequence = false;
-    provideAccessInput(answerField);
-  }, 700 * keyList.length);
+    keyList.forEach((key, index) => {
+      setTimeout(() => {
+        highlightKey(key);
+      }, 700 * index);
+    });
+
+    setTimeout(() => {
+      isDisplaingSequence = false;
+      provideAccessInput(answerField);
+    }, 700 * keyList.length);
+  }, 1000);
 }
 
 function highlightKey(key) {
@@ -278,9 +319,26 @@ function provideAccessInput(elem) {
   elem.focus();
 }
 
+function closeAccessInput(elem) {
+  elem.setAttribute("disabled", true);
+  elem.value = "";
+  elem.classList.remove("game__answer-field--incorrect");
+}
+
+function highlightRepeatButton() {
+  repeatSequenceButton.classList.add("button--hightlight");
+}
+
+function disableRepeatButton() {
+  repeatSequenceButton.disable = true;
+}
+
 // const keyButton = document.querySelector(".button-key[data-key='key6']");
 // highlightKey(keyButton);
 // console.log(keyButton);
 // keyButton.classList.add("button-key--highlight");
 
-// по флагу, показывается ли последовательность, отследить, когда показ остановился и пора делать доступным инпут Можно попробовать через while следить за сстоянием флага
+// Обработать русскую раскладку
+// Обработать виртуальную клавиатуру
+// адаптив
+// подсветка при нажатии
