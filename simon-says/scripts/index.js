@@ -74,6 +74,7 @@ const startButton = createElement({
 
 startButton.addEventListener("click", () => {
   turnGameMode();
+  provideAccessInput(answerField);
   startNewGame();
 });
 
@@ -138,6 +139,7 @@ nextRoundButton.addEventListener("click", () => {
   updateRound();
   switchNextRoundButton();
   activeRepeatButton();
+  provideAccessInput(answerField);
   startNewGame();
 });
 
@@ -175,6 +177,7 @@ const answerField = createElementInput({
 
 answerField.addEventListener("keydown", (event) => {
   blockKeys(currentLevel, event);
+  hightlightPressedKey(event);
 });
 
 function createElementInput(option) {
@@ -203,6 +206,12 @@ function blockKeys(level, event) {
   if (level === "Hard" && !(isDigit || isKey)) {
     event.preventDefault();
   }
+}
+
+function hightlightPressedKey(event) {
+  const key = event.key.toUpperCase();
+  const keyElem = document.querySelector(`.button-key[data-key='key${key}']`);
+  highlightKey(keyElem);
 }
 
 const backgroundStart = createElement({
@@ -282,6 +291,7 @@ function startNewGame() {
   repeatSequenceButton.addEventListener("click", () => {
     isRepeatedSequence = true;
     repeatSequenceButton.classList.remove("button--hightlight");
+    provideAccessInput(answerField);
     disableRepeatButton();
     displaySequence(currentSequenceElenments);
   });
@@ -352,6 +362,7 @@ function highlightKey(key) {
 
 function provideAccessInput(elem) {
   elem.removeAttribute("disabled");
+  elem.classList.remove("game__answer-field--correct");
   elem.focus();
 }
 
@@ -372,6 +383,7 @@ function disableRepeatButton() {
 }
 
 function activeRepeatButton() {
+  isRepeatedSequence = false;
   repeatSequenceButton.removeAttribute("disabled");
   repeatSequenceButton.classList.remove("button--disabled");
 }
@@ -386,3 +398,8 @@ function switchNextRoundButton() {
   nextRoundButton.classList.toggle("elem-hidden");
   nextRoundButton.classList.toggle("button--hightlight");
 }
+
+// Обработать русскую раскладку
+// Обработать виртуальную клавиатуру
+// адаптив
+// подсветка при нажатии
