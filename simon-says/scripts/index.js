@@ -1,4 +1,3 @@
-let isPlayingMode = false;
 let isDisplaingSequence = false;
 let round = 1;
 let isRepeatedSequence = false;
@@ -74,7 +73,6 @@ const startButton = createElement({
 });
 
 startButton.addEventListener("click", () => {
-  isPlayingMode = true;
   turnGameMode();
   startNewGame();
 });
@@ -103,6 +101,44 @@ const newGameButton = createElement({
   text: "New game",
   parent: buttonBox,
   classes: ["button"],
+});
+
+newGameButton.addEventListener("click", () => {
+  restartGame();
+  round = 1;
+  updateRound();
+  levelSwitch.value = currentLevel;
+  closeAccessInput(answerField);
+
+  isRepeatedSequence = false;
+  activeRepeatButton();
+});
+
+function restartGame() {
+  levelSwitch.removeAttribute("disabled");
+  levelSwitch.classList.remove("level-switch--disabled");
+
+  buttonBox.classList.add("button-box--none");
+  gameText.classList.add("elem-hidden");
+  answerField.classList.add("elem-hidden");
+
+  startButton.classList.remove("button--none");
+  backgroundStart.classList.remove("back--none");
+}
+
+const nextRoundButton = createElement({
+  tag: "button",
+  text: "Next",
+  parent: buttonBox,
+  classes: ["button", "elem-hidden"],
+});
+
+nextRoundButton.addEventListener("click", () => {
+  round += 1;
+  updateRound();
+  switchNextRoundButton();
+  activeRepeatButton();
+  startNewGame();
 });
 
 const repeatSequenceButton = createElement({
@@ -237,19 +273,19 @@ function startNewGame() {
     if (answer === randomSequence.join("")) {
       answerField.classList.add("game__answer-field--correct");
       answerField.disabled = true;
-      round += 1;
+
+      switchNextRoundButton();
+      disableRepeatButton();
     }
   });
 
   repeatSequenceButton.addEventListener("click", () => {
     isRepeatedSequence = true;
     repeatSequenceButton.classList.remove("button--hightlight");
-    repeatSequenceButton.classList.add("button--disabled");
+    disableRepeatButton();
     displaySequence(currentSequenceElenments);
   });
 }
-
-function repeatSequence() {}
 
 function checkAnswer(sequence) {
   const currentAnswer = answerField.value.toUpperCase();
@@ -331,14 +367,22 @@ function highlightRepeatButton() {
 
 function disableRepeatButton() {
   repeatSequenceButton.disable = true;
+  repeatSequenceButton.classList.add("button--disabled");
+  repeatSequenceButton.classList.remove("button--hightlight");
 }
 
-// const keyButton = document.querySelector(".button-key[data-key='key6']");
-// highlightKey(keyButton);
-// console.log(keyButton);
-// keyButton.classList.add("button-key--highlight");
+function activeRepeatButton() {
+  repeatSequenceButton.removeAttribute("disabled");
+  repeatSequenceButton.classList.remove("button--disabled");
+}
 
-// Обработать русскую раскладку
-// Обработать виртуальную клавиатуру
-// адаптив
-// подсветка при нажатии
+function updateRound() {
+  const roundText = document.querySelector(".game__text");
+  roundText.textContent = `Round: ${round}`;
+}
+
+function switchNextRoundButton() {
+  newGameButton.classList.toggle("elem-hidden");
+  nextRoundButton.classList.toggle("elem-hidden");
+  nextRoundButton.classList.toggle("button--hightlight");
+}
