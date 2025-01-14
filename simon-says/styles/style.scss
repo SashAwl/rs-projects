@@ -8,6 +8,8 @@ body {
 .container {
   max-width: 1440px;
   margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .start-screen {
@@ -49,6 +51,10 @@ body {
     border-radius: 20px;
     text-align: center;
     margin: 0 auto;
+
+    @media screen and (max-width: 767px) {
+      width: 90%;
+    }
   }
 
   &__info {
@@ -56,6 +62,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 100%;
   }
 
   &__text {
@@ -66,7 +73,7 @@ body {
   }
 
   &__answer-field {
-    width: 500px;
+    width: 43%;
     margin: 0 auto;
     font-size: 15px;
     font-style: italic;
@@ -84,6 +91,10 @@ body {
 
     &--incorrect {
       outline: 4px solid #e9231c;
+    }
+
+    @media screen and (max-width: 767px) {
+      width: 90%;
     }
   }
 }
@@ -117,6 +128,10 @@ body {
   margin: auto;
   padding: 20px 57px;
   border-radius: 20px;
+
+  @media screen and (max-width: 767px) {
+    width: 66%;
+  }
 }
 
 .button-box {
@@ -126,6 +141,10 @@ body {
 
   &--none {
     display: none;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
   }
 }
 
