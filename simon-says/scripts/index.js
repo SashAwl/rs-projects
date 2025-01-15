@@ -267,8 +267,10 @@ function createKeyBoard(keyList) {
 
     keyItem.addEventListener("click", (event) => {
       if (!isDisplayingSequence) {
-        const pressedKey = event.target.textContent;
-        answerField.value += pressedKey;
+        const pressedKey = event.target;
+        highlightKey(pressedKey, 200);
+
+        answerField.value += pressedKey.textContent;
         const simulationEvent = new Event("input", {
           bubbles: true,
           cancelable: true,
@@ -327,6 +329,37 @@ function getEvaluteAnswer(randomSequence) {
   answerField.addEventListener("input", currentHandlerInput);
 }
 
+function evaluteAnswer(sequence) {
+  if (!checkAnswer(sequence)) {
+    answerField.classList.add("game__answer-field--incorrect");
+    answerField.disabled = true;
+
+    if (!isRepeatedSequence) {
+      highlightRepeatButton();
+    }
+  }
+
+  if (isRepeatedSequence) {
+    disableRepeatButton();
+  }
+
+  const answer = answerField.value.toUpperCase();
+  if (answer === sequence.join("")) {
+    answerField.classList.add("game__answer-field--correct");
+    answerField.disabled = true;
+
+    disableRepeatButton();
+
+    if (round <= 5 && !(round === 5 && currentLevel === "Hard")) {
+      switchNextRoundButton();
+    }
+
+    if (round === 5 && currentLevel === "Hard") {
+      congratulate();
+    }
+  }
+}
+
 function checkAnswer(sequence) {
   const currentAnswer = answerField.value.toUpperCase();
   const rightAnswer = sequence.join("");
@@ -383,37 +416,6 @@ function displaySequence(keyList) {
       resetBlockInput();
     }, 700 * keyList.length);
   }, 1000);
-}
-
-function evaluteAnswer(sequence) {
-  if (!checkAnswer(sequence)) {
-    answerField.classList.add("game__answer-field--incorrect");
-    answerField.disabled = true;
-
-    if (!isRepeatedSequence) {
-      highlightRepeatButton();
-    }
-  }
-
-  if (isRepeatedSequence) {
-    disableRepeatButton();
-  }
-
-  const answer = answerField.value.toUpperCase();
-  if (answer === sequence.join("")) {
-    answerField.classList.add("game__answer-field--correct");
-    answerField.disabled = true;
-
-    disableRepeatButton();
-
-    if (round <= 5 && !(round === 5 && currentLevel === "Hard")) {
-      switchNextRoundButton();
-    }
-
-    if (round === 5 && currentLevel === "Hard") {
-      congratulate();
-    }
-  }
 }
 
 function highlightKey(key, time) {
