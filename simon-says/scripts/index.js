@@ -2,6 +2,7 @@ let round = 1;
 let isRepeatedSequence = false;
 let currentHandlerInput = null;
 let currentHandlerRepeatButton = null;
+let isDisplayingSequence = false;
 
 function createElement(options) {
   const { tag = "div", text = "", parent, classes = [] } = options;
@@ -335,6 +336,8 @@ function getSquenceDOMElement(elemValueList) {
 
 function displaySequence(keyList) {
   closeAccessInput(answerField);
+  isDisplayingSequence = true;
+  document.addEventListener("keydown", blockKeyBoard);
 
   setTimeout(() => {
     keyList.forEach((key, index) => {
@@ -345,6 +348,8 @@ function displaySequence(keyList) {
 
     setTimeout(() => {
       provideAccessInput(answerField);
+      isDisplayingSequence = false;
+      document.removeEventListener("keydown", blockKeyBoard);
     }, 700 * keyList.length);
   }, 1000);
 }
@@ -417,6 +422,12 @@ function switchNextRoundButton() {
   newGameButton.classList.toggle("elem-hidden");
   nextRoundButton.classList.toggle("elem-hidden");
   nextRoundButton.classList.toggle("button--hightlight");
+}
+
+function blockKeyBoard(event) {
+  if (isDisplayingSequence) {
+    event.preventDefault();
+  }
 }
 
 // Обработать русскую раскладку
