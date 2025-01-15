@@ -1,6 +1,7 @@
-let isDisplaingSequence = false;
 let round = 1;
 let isRepeatedSequence = false;
+let currentHandlerInput = null;
+let currentHandlerRepeatButton = null;
 
 function createElement(options) {
   const { tag = "div", text = "", parent, classes = [] } = options;
@@ -211,7 +212,7 @@ function blockKeys(level, event) {
 function hightlightPressedKey(event) {
   const key = event.key.toUpperCase();
   const keyElem = document.querySelector(`.button-key[data-key='key${key}']`);
-  highlightKey(keyElem);
+  highlightKey(keyElem, 200);
 }
 
 const backgroundStart = createElement({
@@ -263,44 +264,42 @@ function startNewGame() {
   console.log("Current sequence ", randomSequence);
 
   displaySequence(currentSequenceElenments);
+  getEvaluteAnswer(randomSequence);
+  repeatSequence(currentSequenceElenments);
+}
 
-  answerField.addEventListener("input", () => {
-    if (!checkAnswer(randomSequence)) {
-      answerField.classList.add("game__answer-field--incorrect");
-      answerField.disabled = true;
+function repeatSequence(currentSequenceElenments) {
+  if (currentHandlerRepeatButton) {
+    repeatSequenceButton.removeEventListener(
+      "click",
+      currentHandlerRepeatButton
+    );
+  }
 
-      if (!isRepeatedSequence) {
-        highlightRepeatButton();
-      }
-    }
-
-    if (isRepeatedSequence) {
-      disableRepeatButton();
-    }
-
-    const answer = answerField.value.toUpperCase();
-    if (answer === randomSequence.join("")) {
-      answerField.classList.add("game__answer-field--correct");
-      answerField.disabled = true;
-
-      switchNextRoundButton();
-      disableRepeatButton();
-    }
-  });
-
-  repeatSequenceButton.addEventListener("click", () => {
+  currentHandlerRepeatButton = () => {
     isRepeatedSequence = true;
     repeatSequenceButton.classList.remove("button--hightlight");
     provideAccessInput(answerField);
     disableRepeatButton();
     displaySequence(currentSequenceElenments);
-  });
+  };
+
+  repeatSequenceButton.addEventListener("click", currentHandlerRepeatButton);
+}
+
+function getEvaluteAnswer(randomSequence) {
+  if (currentHandlerInput) {
+    answerField.removeEventListener("input", currentHandlerInput);
+  }
+  currentHandlerInput = () => evaluteAnswer(randomSequence);
+  answerField.addEventListener("input", currentHandlerInput);
 }
 
 function checkAnswer(sequence) {
   const currentAnswer = answerField.value.toUpperCase();
   const rightAnswer = sequence.join("");
   const sequenceLen = rightAnswer.length;
+  console.log(currentAnswer, rightAnswer);
 
   if (
     currentAnswer.length < sequenceLen &&
@@ -336,28 +335,51 @@ function getSquenceDOMElement(elemValueList) {
 }
 
 function displaySequence(keyList) {
-  isDisplaingSequence = true;
+  console.log(keyList);
   closeAccessInput(answerField);
 
   setTimeout(() => {
     keyList.forEach((key, index) => {
       setTimeout(() => {
-        highlightKey(key);
+        highlightKey(key, 400);
       }, 700 * index);
     });
 
     setTimeout(() => {
-      isDisplaingSequence = false;
       provideAccessInput(answerField);
     }, 700 * keyList.length);
   }, 1000);
 }
 
-function highlightKey(key) {
+function evaluteAnswer(sequence) {
+  if (!checkAnswer(sequence)) {
+    answerField.classList.add("game__answer-field--incorrect");
+    answerField.disabled = true;
+
+    if (!isRepeatedSequence) {
+      highlightRepeatButton();
+    }
+  }
+
+  if (isRepeatedSequence) {
+    disableRepeatButton();
+  }
+
+  const answer = answerField.value.toUpperCase();
+  if (answer === sequence.join("")) {
+    answerField.classList.add("game__answer-field--correct");
+    answerField.disabled = true;
+
+    switchNextRoundButton();
+    disableRepeatButton();
+  }
+}
+
+function highlightKey(key, time) {
   key.classList.add("button-key--highlight");
   setTimeout(() => {
     key.classList.remove("button-key--highlight");
-  }, 400);
+  }, time);
 }
 
 function provideAccessInput(elem) {
@@ -401,5 +423,3 @@ function switchNextRoundButton() {
 
 // Обработать русскую раскладку
 // Обработать виртуальную клавиатуру
-// адаптив
-// подсветка при нажатии
