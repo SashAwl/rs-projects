@@ -1,4 +1,4 @@
-let round = 1;
+let round = 5;
 let isRepeatedSequence = false;
 let currentHandlerInput = null;
 let currentHandlerRepeatButton = null;
@@ -107,15 +107,25 @@ const newGameButton = createElement({
 });
 
 newGameButton.addEventListener("click", () => {
+  startGame(currentLevel);
+});
+
+function startGame(level) {
   restartGame();
+
+  levelSwitch.value = level;
+  isRepeatedSequence = false;
+
   round = 1;
   updateRound();
-  levelSwitch.value = currentLevel;
-  closeAccessInput(answerField);
 
-  isRepeatedSequence = false;
+  let currentAlphabet = getAlphabet(level);
+  keyboard.innerHTML = "";
+  createKeyBoard(currentAlphabet);
+
+  closeAccessInput(answerField);
   activeRepeatButton();
-});
+}
 
 function restartGame() {
   levelSwitch.removeAttribute("disabled");
@@ -488,13 +498,41 @@ function nextLevel() {
 }
 
 function congratulate() {
-  // const hoorayBlock = createElement({
-  //   tag: "div",
-  //   text: "",
-  //   parent: startScreen,
-  //   classes: ["button-box", "button-box--none"],
-  // });
-  console.log("поздравляю");
-}
+  setTimeout(() => {
+    const hoorayBlock = createElement({
+      tag: "div",
+      text: "",
+      parent: container,
+      classes: ["hooray"],
+    });
 
-// Обработать русскую раскладку
+    const hoorayText = createElement({
+      tag: "h1",
+      text: "Congratulation!",
+      parent: hoorayBlock,
+      classes: ["hooray-text"],
+    });
+
+    const hoorayWinText = createElement({
+      tag: "h1",
+      text: "You won!",
+      parent: hoorayBlock,
+      classes: ["hooray-text"],
+    });
+
+    const newGameButton = createElement({
+      tag: "button",
+      text: "Play again",
+      parent: hoorayBlock,
+      classes: ["button", "button--hightlight"],
+    });
+
+    newGameButton.addEventListener("click", () => {
+      currentLevel = "Easy";
+      startGame(currentLevel);
+      hoorayBlock.remove();
+    });
+
+    backgroundStart.classList.remove("back--none");
+  }, 700);
+}
