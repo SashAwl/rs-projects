@@ -1,4 +1,4 @@
-let round = 4;
+let round = 1;
 let isRepeatedSequence = false;
 let currentHandlerInput = null;
 let currentHandlerRepeatButton = null;
@@ -139,7 +139,6 @@ const nextRoundButton = createElement({
 nextRoundButton.addEventListener("click", () => {
   if (round < 5) {
     round += 1;
-    console.log(round);
     nextRound();
   } else if (round === 5 && currentLevel !== "Hard") {
     nextLevel();
@@ -241,7 +240,7 @@ const keyboard = createElement({
 });
 
 const keys = "0123456789QWERTYUIOPASDFGHJKLZXCVBNM".split("");
-let currentLevel = "Medium";
+let currentLevel = "Easy";
 let currentAlphabet = getAlphabet(currentLevel);
 
 createKeyBoard(currentAlphabet);
