@@ -299,7 +299,6 @@ function checkAnswer(sequence) {
   const currentAnswer = answerField.value.toUpperCase();
   const rightAnswer = sequence.join("");
   const sequenceLen = rightAnswer.length;
-  console.log(currentAnswer, rightAnswer);
 
   if (
     currentAnswer.length < sequenceLen &&
@@ -335,7 +334,6 @@ function getSquenceDOMElement(elemValueList) {
 }
 
 function displaySequence(keyList) {
-  console.log(keyList);
   closeAccessInput(answerField);
 
   setTimeout(() => {
