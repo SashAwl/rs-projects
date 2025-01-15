@@ -1,4 +1,4 @@
-let round = 1;
+let round = 4;
 let isRepeatedSequence = false;
 let currentHandlerInput = null;
 let currentHandlerRepeatButton = null;
@@ -137,13 +137,23 @@ const nextRoundButton = createElement({
 });
 
 nextRoundButton.addEventListener("click", () => {
-  round += 1;
+  if (round < 5) {
+    round += 1;
+    console.log(round);
+    nextRound();
+  } else if (round === 5 && currentLevel !== "Hard") {
+    nextLevel();
+    nextRound();
+  }
+});
+
+function nextRound() {
   updateRound();
   switchNextRoundButton();
   activeRepeatButton();
   provideAccessInput(answerField);
   startNewGame();
-});
+}
 
 const repeatSequenceButton = createElement({
   tag: "button",
@@ -231,7 +241,7 @@ const keyboard = createElement({
 });
 
 const keys = "0123456789QWERTYUIOPASDFGHJKLZXCVBNM".split("");
-let currentLevel = "Easy";
+let currentLevel = "Medium";
 let currentAlphabet = getAlphabet(currentLevel);
 
 createKeyBoard(currentAlphabet);
@@ -373,8 +383,15 @@ function evaluteAnswer(sequence) {
     answerField.classList.add("game__answer-field--correct");
     answerField.disabled = true;
 
-    switchNextRoundButton();
     disableRepeatButton();
+
+    if (round <= 5 && !(round === 5 && currentLevel === "Hard")) {
+      switchNextRoundButton();
+    }
+
+    if (round === 5 && currentLevel === "Hard") {
+      congratulate();
+    }
   }
 }
 
@@ -428,6 +445,30 @@ function blockKeyBoard(event) {
   if (isDisplayingSequence) {
     event.preventDefault();
   }
+}
+
+function nextLevel() {
+  if (currentLevel === "Easy") {
+    currentLevel = "Medium";
+  } else if (currentLevel === "Medium") {
+    currentLevel = "Hard";
+  }
+  round = 1;
+  levelSwitch.value = currentLevel;
+
+  currentAlphabet = getAlphabet(currentLevel);
+  keyboard.innerHTML = "";
+  createKeyBoard(currentAlphabet);
+}
+
+function congratulate() {
+  // const hoorayBlock = createElement({
+  //   tag: "div",
+  //   text: "",
+  //   parent: startScreen,
+  //   classes: ["button-box", "button-box--none"],
+  // });
+  console.log("поздравляю");
 }
 
 // Обработать русскую раскладку
