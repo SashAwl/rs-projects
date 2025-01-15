@@ -1,4 +1,4 @@
-let round = 5;
+let round = 1;
 let isRepeatedSequence = false;
 let currentHandlerInput = null;
 let currentHandlerRepeatButton = null;
@@ -457,7 +457,7 @@ function updateRound() {
 }
 
 function switchNextRoundButton() {
-  newGameButton.classList.toggle("elem-hidden");
+  repeatSequenceButton.classList.toggle("elem-hidden");
   nextRoundButton.classList.toggle("elem-hidden");
   nextRoundButton.classList.toggle("button--hightlight");
 }
