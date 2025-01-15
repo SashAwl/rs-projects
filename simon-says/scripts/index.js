@@ -256,13 +256,15 @@ function createKeyBoard(keyList) {
     keyItem.setAttribute("data-key", `key${key}`);
 
     keyItem.addEventListener("click", (event) => {
-      const pressedKey = event.target.textContent;
-      answerField.value += pressedKey;
-      const simulationEvent = new Event("input", {
-        bubbles: true,
-        cancelable: true,
-      });
-      inputElement.dispatchEvent(simulationEvent);
+      if (!isDisplayingSequence) {
+        const pressedKey = event.target.textContent;
+        answerField.value += pressedKey;
+        const simulationEvent = new Event("input", {
+          bubbles: true,
+          cancelable: true,
+        });
+        answerField.dispatchEvent(simulationEvent);
+      }
     });
   });
 }
@@ -356,7 +358,7 @@ function getSquenceDOMElement(elemValueList) {
 function displaySequence(keyList) {
   closeAccessInput(answerField);
   isDisplayingSequence = true;
-  document.addEventListener("keydown", blockKeyBoard);
+  setBlockInput();
 
   setTimeout(() => {
     keyList.forEach((key, index) => {
@@ -368,7 +370,7 @@ function displaySequence(keyList) {
     setTimeout(() => {
       provideAccessInput(answerField);
       isDisplayingSequence = false;
-      document.removeEventListener("keydown", blockKeyBoard);
+      resetBlockInput();
     }, 700 * keyList.length);
   }, 1000);
 }
@@ -450,10 +452,25 @@ function switchNextRoundButton() {
   nextRoundButton.classList.toggle("button--hightlight");
 }
 
-function blockKeyBoard(event) {
+function blockInput(event) {
   if (isDisplayingSequence) {
     event.preventDefault();
+    event.stopPropagation();
   }
+}
+
+function setBlockInput() {
+  repeatSequenceButton.disabled = true;
+  newGameButton.disabled = true;
+  document.addEventListener("keydown", blockInput);
+  document.addEventListener("click", blockInput);
+}
+
+function resetBlockInput() {
+  repeatSequenceButton.removeAttribute("disabled");
+  newGameButton.removeAttribute("disabled");
+  document.addEventListener("keydown", blockInput);
+  document.addEventListener("click", blockInput);
 }
 
 function nextLevel() {
@@ -481,4 +498,3 @@ function congratulate() {
 }
 
 // Обработать русскую раскладку
-// Обработать виртуальную клавиатуру
