@@ -254,6 +254,16 @@ function createKeyBoard(keyList) {
       classes: ["button-key"],
     });
     keyItem.setAttribute("data-key", `key${key}`);
+
+    keyItem.addEventListener("click", (event) => {
+      const pressedKey = event.target.textContent;
+      answerField.value += pressedKey;
+      const simulationEvent = new Event("input", {
+        bubbles: true,
+        cancelable: true,
+      });
+      inputElement.dispatchEvent(simulationEvent);
+    });
   });
 }
 
