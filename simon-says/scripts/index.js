@@ -205,7 +205,6 @@ function createElementInput(option) {
   inputElem.setAttribute("type", type);
   inputElem.setAttribute("placeholder", placeholder);
   inputElem.disabled = true;
-  inputElem.setAttribute("readonly", true);
 
   return inputElem;
 }
@@ -274,6 +273,7 @@ function createKeyBoard(keyList) {
           cancelable: true,
         });
         answerField.dispatchEvent(simulationEvent);
+        answerField.focus();
       }
     });
   });
