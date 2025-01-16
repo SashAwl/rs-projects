@@ -150,9 +150,6 @@ nextRoundButton.addEventListener("click", () => {
   if (round < 5) {
     round += 1;
     nextRound();
-  } else if (round === 5 && currentLevel !== "Hard") {
-    nextLevel();
-    nextRound();
   }
 });
 
@@ -208,6 +205,7 @@ function createElementInput(option) {
   inputElem.setAttribute("type", type);
   inputElem.setAttribute("placeholder", placeholder);
   inputElem.disabled = true;
+  inputElem.setAttribute("readonly", true);
 
   return inputElem;
 }
@@ -266,7 +264,7 @@ function createKeyBoard(keyList) {
     keyItem.setAttribute("data-key", `key${key}`);
 
     keyItem.addEventListener("click", (event) => {
-      if (!isDisplayingSequence) {
+      if (!isDisplayingSequence && !answerField.disabled) {
         const pressedKey = event.target;
         highlightKey(pressedKey, 200);
 
@@ -350,11 +348,11 @@ function evaluteAnswer(sequence) {
 
     disableRepeatButton();
 
-    if (round <= 5 && !(round === 5 && currentLevel === "Hard")) {
+    if (round < 5) {
       switchNextRoundButton();
     }
 
-    if (round === 5 && currentLevel === "Hard") {
+    if (round === 5) {
       congratulate();
     }
   }
@@ -483,20 +481,6 @@ function resetBlockInput() {
   newGameButton.removeAttribute("disabled");
   document.addEventListener("keydown", blockInput);
   document.addEventListener("click", blockInput);
-}
-
-function nextLevel() {
-  if (currentLevel === "Easy") {
-    currentLevel = "Medium";
-  } else if (currentLevel === "Medium") {
-    currentLevel = "Hard";
-  }
-  round = 1;
-  levelSwitch.value = currentLevel;
-
-  currentAlphabet = getAlphabet(currentLevel);
-  keyboard.innerHTML = "";
-  createKeyBoard(currentAlphabet);
 }
 
 function congratulate() {
