@@ -16,7 +16,6 @@ const nonogram = {
 const userSolution = Array.from({ length: 5 }).map((item) =>
   Array.from({ length: 5 }).fill(0)
 );
-console.log(userSolution);
 
 const container = createElement({
   tag: 'div',
@@ -118,7 +117,61 @@ function createImageField(matrix) {
         parent: schemeField,
         classes: ['pixel'],
       });
-      pixel.dataset.locate = '' + indexRow + indexElem;
+
+      pixel.append(setCross());
+
+      pixel.addEventListener('click', (event) => {
+        switchColorPixel(event);
+        userSolution[indexRow][indexElem] = +!userSolution[indexRow][indexElem];
+      });
+
+      pixel.addEventListener('contextmenu', (event) => {
+        if (event.target.closest('.pixel')) {
+          const cross = findCross(event);
+          cross.classList.toggle('cross--hidden');
+        }
+
+        event.preventDefault();
+      });
     });
   });
+}
+
+function switchColorPixel(event) {
+  const target = event.target.closest('.pixel');
+  if (target) {
+    target.classList.toggle('pixel--black');
+
+    const cross = findCross(event);
+    cross.classList.add('cross--hidden');
+  }
+}
+
+function findCross(event) {
+  return event.target.querySelector('.cross') || event.target.closest('.cross');
+}
+
+function setCross() {
+  const cross = createElement({
+    tag: 'div',
+    text: '',
+    parent: null,
+    classes: ['cross', 'cross--hidden'],
+  });
+
+  const line1 = createElement({
+    tag: 'div',
+    text: '',
+    parent: cross,
+    classes: ['cross__line', 'line1'],
+  });
+
+  const line2 = createElement({
+    tag: 'div',
+    text: '',
+    parent: cross,
+    classes: ['cross__line', 'line2'],
+  });
+
+  return cross;
 }

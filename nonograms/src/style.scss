@@ -56,4 +56,30 @@
       background-color: black;
     }
   }
+
+  .cross {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    &--hidden {
+      display: none;
+    }
+
+    &__line {
+      width: 3px;
+      height: 40px;
+      background-color: pink;
+    }
+
+    .line1 {
+      transform: translateX(20px) rotate(45deg);
+    }
+
+    .line2 {
+      transform: translateX(20px) rotate(-45deg);
+      position: absolute;
+      top: 0px;
+    }
+  }
 }
