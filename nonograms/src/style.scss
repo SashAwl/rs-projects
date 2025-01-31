@@ -1,6 +1,14 @@
 .container {
   max-width: 1440px;
   margin: 0 auto;
+  position: relative;
+}
+
+.button {
+  padding: 10px 15px;
+  background-color: #a0c5b9;
+  border: none;
+  border-radius: 20px;
 }
 
 .scheme {
@@ -82,4 +90,42 @@
       top: 0px;
     }
   }
+
+  &__controlls {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+  }
+}
+
+.hooray {
+  width: 50%;
+  height: 40%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 20px;
+}
+
+.back-hooray {
+  background-color: #6a6f6dc2;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.hide-message {
+  transition: opacity 1s ease;
+  opacity: 0;
 }

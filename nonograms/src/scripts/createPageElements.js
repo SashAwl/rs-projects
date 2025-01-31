@@ -5,14 +5,14 @@ import {
 } from './createElementFunctions.js';
 import { nonogram } from './dataImg.js';
 
-const container = createElement({
+export const container = createElement({
   tag: 'div',
   text: '',
   parent: document.body,
   classes: ['container'],
 });
 
-const scheme = createElement({
+export const scheme = createElement({
   tag: 'div',
   text: '',
   parent: container,
@@ -64,3 +64,24 @@ export const schemeField = createElement({
 createHint(nonogram.hintTop, schemeHinttop);
 createHint(nonogram.hintLeft, schemeHintleft);
 createImageField(nonogram.img, schemeField);
+
+const controlls = createElement({
+  tag: 'div',
+  text: '',
+  parent: scheme,
+  classes: ['scheme__controlls'],
+});
+
+export const controllsCheck = createElement({
+  tag: 'button',
+  text: 'Check',
+  parent: controlls,
+  classes: ['button', 'button__check'],
+});
+
+export const controllsReset = createElement({
+  tag: 'button',
+  text: 'Reset',
+  parent: controlls,
+  classes: ['button', 'button__reset'],
+});

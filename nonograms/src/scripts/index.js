@@ -4,9 +4,17 @@ import {
   getCoordinates,
   findCross,
 } from './eventHandlers.js';
-import { schemeField } from './createPageElements.js';
+import {
+  container,
+  scheme,
+  schemeField,
+  controllsCheck,
+  controllsReset,
+} from './createPageElements.js';
+import { nonogram } from './dataImg.js';
+import { checkSolution, congratulate, oops } from './logicalFunctions.js';
 
-const userSolution = Array.from({ length: 5 }).map((item) =>
+const userAnswer = Array.from({ length: 5 }).map((item) =>
   Array.from({ length: 5 }).fill(0)
 );
 
@@ -16,7 +24,7 @@ schemeField.addEventListener('click', (event) => {
   if (target) {
     switchColorPixel(target);
     const [row, col] = getCoordinates(target);
-    userSolution[row][col] = +!userSolution[row][col];
+    userAnswer[row][col] = +!userAnswer[row][col];
   }
 });
 
@@ -31,4 +39,13 @@ schemeField.addEventListener('contextmenu', (event) => {
   }
 
   event.preventDefault();
+});
+
+controllsCheck.addEventListener('click', () => {
+  const conclusion = checkSolution(userAnswer, nonogram.img);
+  if (conclusion) {
+    congratulate(container);
+  } else {
+    oops(scheme);
+  }
 });
