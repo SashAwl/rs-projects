@@ -178,5 +178,12 @@ export function createControlls(parentContrlls) {
     classes: ['button', 'button__save'],
   });
 
+  const controllRestore = createElement({
+    tag: 'button',
+    text: 'Restore game',
+    parent: controlls,
+    classes: ['button', 'button__restore'],
+  });
+
   return controlls;
 }

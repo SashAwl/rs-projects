@@ -5,8 +5,16 @@ import {
   clear,
   playSound,
   showConsolution,
+  setMessage,
+  showSolution,
 } from './eventHandlers.js';
-import { container, main, menu, header } from './createPageElements.js';
+import {
+  container,
+  main,
+  menu,
+  messageBox,
+  header,
+} from './createPageElements.js';
 import { setScheme } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
 import {
@@ -62,6 +70,8 @@ menu.addEventListener('click', (event) => {
 
 const controllsCheck = document.querySelector('.button__check');
 const controllsReset = document.querySelector('.button__reset');
+const controllsSave = document.querySelector('.button__save');
+const controllsRestoreGame = document.querySelector('.button__restore');
 
 controllsCheck.addEventListener('click', () => {
   showConsolution(
@@ -80,4 +90,20 @@ controllsReset.addEventListener('click', () => {
   clearField.play();
 });
 
-controllsSave.addEventListener('click', () => {});
+controllsSave.addEventListener('click', () => {
+  const gameData = JSON.stringify(userAnswer);
+  localStorage.setItem(currentSchemeData.name, gameData);
+
+  setMessage(messageBox, 'Saved successfully!');
+});
+
+controllsRestoreGame.addEventListener('click', () => {
+  const savedGame = localStorage.getItem(currentSchemeData.name);
+
+  if (savedGame) {
+    const game = JSON.parse(savedGame);
+    showSolution(game);
+  } else {
+    setMessage(messageBox, 'There are no saved games for this scheme');
+  }
+});

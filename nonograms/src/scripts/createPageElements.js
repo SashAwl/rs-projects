@@ -80,6 +80,13 @@ export const main = createElement({
 
 const controlls = createControlls(main);
 
+export const messageBox = createElement({
+  tag: 'div',
+  text: '',
+  parent: main,
+  classes: ['message-box'],
+});
+
 const footer = createElement({
   tag: 'footer',
   text: '',

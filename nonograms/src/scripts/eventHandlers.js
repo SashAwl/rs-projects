@@ -84,7 +84,7 @@ export function showConsolution(
     congratulate(parent1);
     playSound(wonSound);
   } else {
-    oops(parent2);
+    setMessage(parent2, 'Oops! You made a mistake. Try again!');
     playSound(failSound);
   }
 
@@ -142,17 +142,32 @@ function congratulate(parentElem) {
   });
 }
 
-function oops(parentElem) {
-  const oops = createElement({
+export function setMessage(parentElem, text) {
+  parentElem.innerHtml = ';';
+
+  const message = createElement({
     tag: 'p',
-    text: 'Oops! You made a mistake. Try again!',
+    text: text,
     parent: parentElem,
-    classes: ['oops'],
+    classes: ['message'],
   });
 
   setTimeout(() => {
-    oops.classList.add('hide-message');
+    message.classList.add('hide-message');
 
-    setTimeout(() => oops.remove(), 1000);
+    setTimeout(() => message.remove(), 1000);
   }, 2000);
+}
+
+export function showSolution(matrix) {
+  for (let i = 0; i < matrix.length; i += 1) {
+    for (let j = 0; j < matrix.length; j += 1) {
+      if (matrix[i][j]) {
+        const pixel = document.querySelector(
+          `.pixel-img[data-locate="${'' + i + j}"]`
+        );
+        pixel.classList.add('pixel--black');
+      }
+    }
+  }
 }
