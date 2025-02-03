@@ -64,9 +64,3 @@ export function oops(parentElem) {
     setTimeout(() => oops.remove(), 1000);
   }, 2000);
 }
-
-export function playSound(audio) {
-  audio.pause();
-  audio.currentTime = 0;
-  audio.play();
-}

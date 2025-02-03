@@ -29,6 +29,11 @@ body {
   background-color: #35312c;
   grid-area: nav;
 
+  // @media screen and (max-width: 767px) {
+  //   color: red;
+  //   // transform: translateX(-100%);
+  // }
+
   &__menu {
   }
 
@@ -44,6 +49,10 @@ body {
     list-style-type: none;
     color: white;
     padding-left: 20px;
+
+    @media screen and (max-width: 767px) {
+      padding-left: 10px;
+    }
   }
 
   &__item {
@@ -58,6 +67,8 @@ body {
 
 .main {
   grid-area: main;
+  position: relative;
+  padding-bottom: 45px;
 }
 
 .footer {
@@ -193,7 +204,8 @@ body {
 .oops {
   font-size: 10px;
   position: absolute;
-  bottom: 30px;
+  bottom: 15px;
+  left: 42%;
   z-index: 3;
 }
 

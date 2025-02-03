@@ -1,4 +1,4 @@
-import { createElement } from './createElementFunctions.js';
+import { createElement, createControlls } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
 
 const tytle = document.querySelector('title');
@@ -77,6 +77,8 @@ export const main = createElement({
   parent: gridArea,
   classes: ['main'],
 });
+
+const controlls = createControlls(main);
 
 const footer = createElement({
   tag: 'footer',

@@ -15,13 +15,19 @@ export function createElement(options) {
   return element;
 }
 
-export function createScheme({ name, scheme: schemeDetail }, parentScheme) {
-  const scheme = createElement({
-    tag: 'div',
-    text: '',
-    parent: parentScheme,
-    classes: ['scheme'],
-  });
+export function setScheme(data, parent) {
+  const oldScheme = document.querySelector('.scheme');
+  if (oldScheme) {
+    oldScheme.remove();
+  }
+
+  const currentScheme = createScheme(data);
+  parent.prepend(currentScheme);
+}
+
+function createScheme({ name, scheme: schemeDetail }) {
+  const scheme = createElement('div');
+  scheme.classList.add('scheme');
 
   const schemeHeading = createElement({
     tag: 'h1',
@@ -68,10 +74,11 @@ export function createScheme({ name, scheme: schemeDetail }, parentScheme) {
   createHint(schemeDetail.hintTop, schemeHinttop);
   createHint(schemeDetail.hintLeft, schemeHintleft);
   createImageField(schemeDetail.img, schemeField);
-  createControlls(scheme);
+
+  return scheme;
 }
 
-export function createHint(matrix, parent) {
+function createHint(matrix, parent) {
   const sparseMatrix = getSparseMatrix(matrix);
 
   sparseMatrix.forEach((row) => {
@@ -101,7 +108,7 @@ function getMaxLength(matrix) {
   return matrix.reduce((accom, row) => Math.max(accom, row.length), 0);
 }
 
-export function createImageField(matrix, parentElem) {
+function createImageField(matrix, parentElem) {
   matrix.forEach((row, indexRow) => {
     row.forEach((elem, indexElem) => {
       const pixel = createElement({
@@ -142,7 +149,7 @@ function setCross() {
   return cross;
 }
 
-function createControlls(parentContrlls) {
+export function createControlls(parentContrlls) {
   const controlls = createElement({
     tag: 'div',
     text: '',
@@ -163,4 +170,13 @@ function createControlls(parentContrlls) {
     parent: controlls,
     classes: ['button', 'button__reset'],
   });
+
+  const controllsSave = createElement({
+    tag: 'button',
+    text: 'Save game',
+    parent: controlls,
+    classes: ['button', 'button__save'],
+  });
+
+  return controlls;
 }
