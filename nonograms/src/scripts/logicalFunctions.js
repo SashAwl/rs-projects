@@ -30,14 +30,14 @@ export function congratulate(parentElem) {
 
   const hoorayHead = createElement({
     tag: 'h1',
-    text: 'Congratulations!',
+    text: 'Great!',
     parent: hooray,
     classes: ['hooray__heading'],
   });
 
   const hoorayText = createElement({
     tag: 'h3',
-    text: 'You solved the nonogram!',
+    text: 'You have solved the nonogram!',
     parent: hooray,
     classes: ['hooray__text'],
   });

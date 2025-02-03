@@ -1,9 +1,8 @@
-import {
-  createElement,
-  createHint,
-  createImageField,
-} from './createElementFunctions.js';
-import { nonogram } from './dataImg.js';
+import { createElement } from './createElementFunctions.js';
+import { nonograms } from './dataImg.js';
+
+const tytle = document.querySelector('title');
+tytle.textContent = 'Nonogram pazzle';
 
 export const container = createElement({
   tag: 'div',
@@ -12,76 +11,76 @@ export const container = createElement({
   classes: ['container'],
 });
 
-export const scheme = createElement({
+const gridArea = createElement({
   tag: 'div',
   text: '',
   parent: container,
-  classes: ['scheme'],
+  classes: ['grid-area'],
 });
 
-const schemeHeading = createElement({
-  tag: 'h1',
-  text: 'Umbrella scheme',
-  parent: scheme,
-  classes: ['scheme__heading'],
-});
-
-const schemeImg = createElement({
+const header = createElement({
   tag: 'div',
   text: '',
-  parent: scheme,
-  classes: ['scheme__img'],
+  parent: gridArea,
+  classes: ['header'],
 });
 
-const schemeHinttop = createElement({
-  tag: 'div',
+const nav = createElement({
+  tag: 'nav',
   text: '',
-  parent: schemeImg,
-  classes: ['scheme__hinttop'],
+  parent: gridArea,
+  classes: ['nav'],
 });
 
-const schemeImgWrapper = createElement({
-  tag: 'div',
+export const menu = createElement({
+  tag: 'details',
   text: '',
-  parent: schemeImg,
-  classes: ['scheme__wrapper'],
+  parent: nav,
+  classes: ['nav__box'],
+});
+menu.setAttribute('open', true);
+
+const summary = createElement({
+  tag: 'summary',
+  text: 'Level "Easy"',
+  parent: menu,
+  classes: ['nav__summary'],
 });
 
-const schemeHintleft = createElement({
-  tag: 'div',
+const easySchemeList = createElement({
+  tag: 'ul',
   text: '',
-  parent: schemeImgWrapper,
-  classes: ['scheme__hintleft'],
+  parent: menu,
+  classes: ['nav__list'],
 });
 
-export const schemeField = createElement({
-  tag: 'div',
+nonograms.forEach((item) => {
+  const easyItem = createElement({
+    tag: 'li',
+    text: '',
+    parent: easySchemeList,
+    classes: ['nav__item'],
+  });
+
+  const easyItemLink = createElement({
+    tag: 'a',
+    text: item.name,
+    parent: easyItem,
+    classes: ['nav__link'],
+  });
+  easyItemLink.setAttribute('href', '#');
+});
+
+export const main = createElement({
+  tag: 'main',
   text: '',
-  parent: schemeImgWrapper,
-  classes: ['scheme__field'],
+  parent: gridArea,
+  classes: ['main'],
 });
 
-createHint(nonogram.hintTop, schemeHinttop);
-createHint(nonogram.hintLeft, schemeHintleft);
-createImageField(nonogram.img, schemeField);
-
-const controlls = createElement({
-  tag: 'div',
+const footer = createElement({
+  tag: 'footer',
   text: '',
-  parent: scheme,
-  classes: ['scheme__controlls'],
-});
-
-export const controllsCheck = createElement({
-  tag: 'button',
-  text: 'Check',
-  parent: controlls,
-  classes: ['button', 'button__check'],
-});
-
-export const controllsReset = createElement({
-  tag: 'button',
-  text: 'Reset',
-  parent: controlls,
-  classes: ['button', 'button__reset'],
+  parent: gridArea,
+  classes: ['footer'],
 });

@@ -15,6 +15,62 @@ export function createElement(options) {
   return element;
 }
 
+export function createScheme({ name, scheme: schemeDetail }, parentScheme) {
+  const scheme = createElement({
+    tag: 'div',
+    text: '',
+    parent: parentScheme,
+    classes: ['scheme'],
+  });
+
+  const schemeHeading = createElement({
+    tag: 'h1',
+    text: name,
+    parent: scheme,
+    classes: ['scheme__heading'],
+  });
+
+  const schemeImg = createElement({
+    tag: 'div',
+    text: '',
+    parent: scheme,
+    classes: ['scheme__img'],
+  });
+
+  const schemeHinttop = createElement({
+    tag: 'div',
+    text: '',
+    parent: schemeImg,
+    classes: ['scheme__hinttop'],
+  });
+
+  const schemeImgWrapper = createElement({
+    tag: 'div',
+    text: '',
+    parent: schemeImg,
+    classes: ['scheme__wrapper'],
+  });
+
+  const schemeHintleft = createElement({
+    tag: 'div',
+    text: '',
+    parent: schemeImgWrapper,
+    classes: ['scheme__hintleft'],
+  });
+
+  const schemeField = createElement({
+    tag: 'div',
+    text: '',
+    parent: schemeImgWrapper,
+    classes: ['scheme__field'],
+  });
+
+  createHint(schemeDetail.hintTop, schemeHinttop);
+  createHint(schemeDetail.hintLeft, schemeHintleft);
+  createImageField(schemeDetail.img, schemeField);
+  createControlls(scheme);
+}
+
 export function createHint(matrix, parent) {
   const sparseMatrix = getSparseMatrix(matrix);
 
@@ -31,7 +87,7 @@ export function createHint(matrix, parent) {
 }
 
 function getSparseMatrix(matrix) {
-  const len = getMaxLength(matrix);
+  const len = 3; //getMaxLength(matrix);
 
   return matrix.map((row) => {
     while (row.length < len) {
@@ -52,7 +108,7 @@ export function createImageField(matrix, parentElem) {
         tag: 'div',
         text: '',
         parent: parentElem,
-        classes: ['pixel'],
+        classes: ['pixel', 'pixel-img'],
       });
 
       pixel.dataset.locate = '' + indexRow + indexElem;
@@ -84,4 +140,27 @@ function setCross() {
   });
 
   return cross;
+}
+
+function createControlls(parentContrlls) {
+  const controlls = createElement({
+    tag: 'div',
+    text: '',
+    parent: parentContrlls,
+    classes: ['scheme__controlls'],
+  });
+
+  const controllsCheck = createElement({
+    tag: 'button',
+    text: 'Check',
+    parent: controlls,
+    classes: ['button', 'button__check'],
+  });
+
+  const controllsReset = createElement({
+    tag: 'button',
+    text: 'Reset',
+    parent: controlls,
+    classes: ['button', 'button__reset'],
+  });
 }
