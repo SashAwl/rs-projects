@@ -18,7 +18,7 @@ const gridArea = createElement({
   classes: ['grid-area'],
 });
 
-const header = createElement({
+export const header = createElement({
   tag: 'div',
   text: '',
   parent: gridArea,

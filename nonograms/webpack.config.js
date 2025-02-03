@@ -1,5 +1,7 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/scripts/index.js',
@@ -11,21 +13,15 @@ module.exports = {
   mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
-      templateContent: `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>My Minimal Project</title>
-                </head>
-                <body>
-                    <script src="bundle.js"></script>
-                </body>
-                </html>
-            `,
+      template: './src/index.html',
       inject: false,
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: './src/assets/icons/puzzle_cube.svg', to: 'favicon.svg' },
+      ],
+    }),
+    new CleanWebpackPlugin(),
   ],
   devServer: {
     static: './dist',
@@ -43,6 +39,14 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(mp3|wav|ogg)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.svg$/i,
+        type: 'asset/resource',
+      },
     ],
   },
-}
+};

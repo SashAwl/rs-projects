@@ -1,3 +1,5 @@
+import { createElement } from './createElementFunctions';
+
 export function switchColorPixel(target) {
   target.classList.toggle('pixel--black');
 

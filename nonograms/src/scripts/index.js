@@ -5,10 +5,24 @@ import {
   findCross,
   clear,
 } from './eventHandlers.js';
-import { container, main, menu } from './createPageElements.js';
+import { container, main, menu, header } from './createPageElements.js';
 import { createScheme } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
-import { checkSolution, congratulate, oops } from './logicalFunctions.js';
+import {
+  checkSolution,
+  congratulate,
+  oops,
+  playSound,
+} from './logicalFunctions.js';
+import {
+  clearPixelSound,
+  wonSound,
+  failSound,
+  setBlackPixelSound,
+  setCrossSound,
+  setNewScheme,
+  clearField,
+} from './sounds.js';
 
 let currentScheme = nonograms[0];
 console.log('Для проверяющего: ', currentScheme.scheme.img);
@@ -19,12 +33,14 @@ let userAnswer = Array.from({ length: 5 }).map((item) =>
 
 menu.addEventListener('click', (event) => {
   const target = event.target;
+
   if (target.closest('.nav__link')) {
     const link = target.textContent;
 
     currentScheme = nonograms.filter((item) => item.name === link)[0];
     main.innerHTML = '';
     createScheme(currentScheme, main);
+    playSound(setNewScheme);
 
     const scheme = document.querySelector('.scheme');
     const schemeField = document.querySelector('.scheme__field');
@@ -35,6 +51,12 @@ menu.addEventListener('click', (event) => {
       const target = event.target.closest('.pixel');
 
       if (target) {
+        if (target.classList.contains('pixel--black')) {
+          playSound(clearPixelSound);
+        } else {
+          playSound(setBlackPixelSound);
+        }
+
         switchColorPixel(target);
         const [row, col] = getCoordinates(target);
         userAnswer[row][col] = +!userAnswer[row][col];
@@ -46,8 +68,14 @@ menu.addEventListener('click', (event) => {
 
       if (target) {
         const cross = findCross(target);
-        cross.classList.toggle('cross--hidden');
 
+        if (cross.classList.contains('cross--hidden')) {
+          playSound(setCrossSound);
+        } else {
+          playSound(clearPixelSound);
+        }
+
+        cross.classList.toggle('cross--hidden');
         target.classList.remove('pixel--black');
       }
 
@@ -58,8 +86,10 @@ menu.addEventListener('click', (event) => {
       const conclusion = checkSolution(userAnswer, currentScheme.scheme.img);
       if (conclusion) {
         congratulate(container);
+        playSound(wonSound);
       } else {
         oops(scheme);
+        playSound(failSound);
       }
 
       controllsCheck.disabled = true;
@@ -68,6 +98,7 @@ menu.addEventListener('click', (event) => {
 
     controllsReset.addEventListener('click', () => {
       userAnswer = [...clear()];
+      clearField.play();
     });
   }
 });
