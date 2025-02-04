@@ -185,6 +185,13 @@ export function createControlls(parentContrlls) {
     classes: ['button', 'button__restore'],
   });
 
+  const controllShowSolution = createElement({
+    tag: 'button',
+    text: 'Show solution',
+    parent: controlls,
+    classes: ['button', 'button__show-solution'],
+  });
+
   return controlls;
 }
 

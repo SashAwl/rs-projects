@@ -2,7 +2,7 @@ let timer;
 let isStartedTimer = false;
 export let secondsElapsed = 0;
 
-function formatTime(seconds) {
+export function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const secondsLeft = seconds % 60;
   return `time: ${String(minutes).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;

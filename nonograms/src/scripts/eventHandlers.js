@@ -1,5 +1,5 @@
 import { createElement } from './createElementFunctions';
-import { showHoorayMessage } from './timer.js';
+import { showHoorayMessage, formatTime } from './timer.js';
 
 export function pixelClickHandler(event, matrix, blackSounds, whiteSounds) {
   const target = event.target.closest('.pixel');
@@ -167,7 +167,12 @@ export function setMessage(parentElem, text) {
   }, 2000);
 }
 
-export function showSolution(matrix) {
+export function showSolution({ matrix, time }) {
+  markPixels(matrix);
+  setTime(time);
+}
+
+function markPixels(matrix) {
   for (let i = 0; i < matrix.length; i += 1) {
     for (let j = 0; j < matrix.length; j += 1) {
       if (matrix[i][j]) {
@@ -177,5 +182,12 @@ export function showSolution(matrix) {
         pixel.classList.add('pixel--black');
       }
     }
+  }
+}
+
+function setTime(seconds) {
+  if (seconds) {
+    const timer = document.querySelector('.timer');
+    timer.textContent = formatTime(seconds);
   }
 }

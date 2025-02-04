@@ -103,6 +103,7 @@ const controllsCheck = document.querySelector('.button__check');
 const controllsReset = document.querySelector('.button__reset');
 const controllsSave = document.querySelector('.button__save');
 const controllsRestoreGame = document.querySelector('.button__restore');
+const controllsShowSolution = document.querySelector('.button__show-solution');
 
 controllsCheck.addEventListener('click', () => {
   showConsolution(
@@ -125,7 +126,7 @@ controllsReset.addEventListener('click', () => {
 });
 
 controllsSave.addEventListener('click', () => {
-  const gameData = JSON.stringify({ img: userAnswer, time: secondsElapsed });
+  const gameData = JSON.stringify({ matrix: userAnswer, time: secondsElapsed });
   localStorage.setItem(currentSchemeData.name, gameData);
 
   setMessage(messageBox, 'Saved successfully!');
@@ -136,9 +137,17 @@ controllsRestoreGame.addEventListener('click', () => {
 
   if (savedGame) {
     const game = JSON.parse(savedGame);
-    userAnswer = [...game.img];
-    showSolution(game.img);
+    userAnswer = [...game.matrix];
+    showSolution(game);
   } else {
     setMessage(messageBox, 'There are no saved games for this scheme');
   }
+});
+
+controllsShowSolution.addEventListener('click', () => {
+  const solution = { matrix: currentSchemeData.scheme.img, time: null };
+  showSolution(solution);
+  setTimeout(() => {
+    clear();
+  }, 200);
 });
