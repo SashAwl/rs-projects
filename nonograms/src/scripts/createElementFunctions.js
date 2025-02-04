@@ -29,6 +29,13 @@ function createScheme({ name, scheme: schemeDetail }) {
   const scheme = createElement('div');
   scheme.classList.add('scheme');
 
+  const timer = createElement({
+    tag: 'p',
+    text: '',
+    parent: scheme,
+    classes: ['scheme__timer'],
+  });
+
   const schemeHeading = createElement({
     tag: 'h1',
     text: name,

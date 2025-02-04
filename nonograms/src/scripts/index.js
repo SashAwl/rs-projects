@@ -91,7 +91,8 @@ controllsCheck.addEventListener('click', () => {
     failSound,
     container,
     main,
-    controllsCheck
+    controllsCheck,
+    0
   );
 });
 

@@ -1,4 +1,5 @@
 import { createElement } from './createElementFunctions';
+import { showHoorayMessage } from './timer.js';
 
 export function pixelClickHandler(event, matrix, blackSounds, whiteSounds) {
   const target = event.target.closest('.pixel');
@@ -81,6 +82,7 @@ export function showConsolution(
   const conclusion = checkSolution(answer, solution);
 
   if (conclusion) {
+    const gameTime = showHoorayMessage();
     congratulate(parent1);
     playSound(wonSound);
   } else {
@@ -105,7 +107,7 @@ function checkSolution(userAnswerMatrix, solutionMatrix) {
   return answerStr === solutionStr;
 }
 
-function congratulate(parentElem) {
+function congratulate(parentElem, time) {
   const backHooray = createElement({
     tag: 'div',
     text: '',
@@ -129,7 +131,7 @@ function congratulate(parentElem) {
 
   const hoorayText = createElement({
     tag: 'h3',
-    text: 'You have solved the nonogram!',
+    text: `You have solved the nonogram!`, // in ${time} seconds!`,
     parent: hooray,
     classes: ['hooray__text'],
   });
@@ -139,6 +141,11 @@ function congratulate(parentElem) {
     text: 'Play again',
     parent: hooray,
     classes: ['button', 'hooray__again'],
+  });
+
+  playAgainButton.addEventListener('click', () => {
+    hooray.remove();
+    backHooray.remove();
   });
 }
 
