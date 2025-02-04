@@ -1,4 +1,8 @@
-import { createElement, createControlls } from './createElementFunctions.js';
+import {
+  createElement,
+  createControlls,
+  createBurger,
+} from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
 
 const tytle = document.querySelector('title');
@@ -11,24 +15,26 @@ export const container = createElement({
   classes: ['container'],
 });
 
-const gridArea = createElement({
-  tag: 'div',
-  text: '',
-  parent: container,
-  classes: ['grid-area'],
-});
-
 export const header = createElement({
   tag: 'div',
   text: '',
-  parent: gridArea,
+  parent: container,
   classes: ['header'],
 });
 
-const nav = createElement({
+export const burger = createBurger(header);
+
+const mainWrapper = createElement({
+  tag: 'div',
+  text: '',
+  parent: container,
+  classes: ['main-wrapper'],
+});
+
+export const nav = createElement({
   tag: 'nav',
   text: '',
-  parent: gridArea,
+  parent: mainWrapper,
   classes: ['nav'],
 });
 
@@ -74,7 +80,7 @@ nonograms.forEach((item) => {
 export const main = createElement({
   tag: 'main',
   text: '',
-  parent: gridArea,
+  parent: mainWrapper,
   classes: ['main'],
 });
 
@@ -90,6 +96,6 @@ export const messageBox = createElement({
 const footer = createElement({
   tag: 'footer',
   text: '',
-  parent: gridArea,
+  parent: container,
   classes: ['footer'],
 });

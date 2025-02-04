@@ -187,3 +187,23 @@ export function createControlls(parentContrlls) {
 
   return controlls;
 }
+
+export function createBurger(parentBurger) {
+  const box = createElement({
+    tag: 'div',
+    text: '',
+    parent: parentBurger,
+    classes: ['burger'],
+  });
+
+  for (let i = 0; i < 3; i += 1) {
+    const line = createElement({
+      tag: 'div',
+      text: '',
+      parent: box,
+      classes: ['burger__line'],
+    });
+  }
+
+  return box;
+}

@@ -13,7 +13,8 @@ import {
   main,
   menu,
   messageBox,
-  header,
+  nav,
+  burger,
 } from './createPageElements.js';
 import { setScheme } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
@@ -35,7 +36,6 @@ let userAnswer = Array.from({ length: 5 }).map((item) =>
 );
 
 setScheme(currentSchemeData, main);
-playSound(setNewScheme);
 
 const schemeField = document.querySelector('.scheme__field');
 schemeField.addEventListener('click', (event) => {
@@ -65,6 +65,16 @@ menu.addEventListener('click', (event) => {
     schemeField.addEventListener('contextmenu', (event) => {
       contextClickHandler(event, setCrossSound, clearPixelSound);
     });
+  }
+});
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('nav--open');
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 768) {
+    menu.classList.remove('nav--open');
   }
 });
 
