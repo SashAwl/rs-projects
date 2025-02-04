@@ -28,7 +28,7 @@ import {
   setNewScheme,
   clearField,
 } from './sounds.js';
-import { startTimer, stopTimer, resetTimer, isStartedTimer } from './timer.js';
+import { startTimer, stopTimer, resetTimer, secondsElapsed } from './timer.js';
 
 let currentSchemeData = nonograms[0];
 console.log('Для проверяющего: ', currentSchemeData.scheme.img);
@@ -136,6 +136,7 @@ controllsRestoreGame.addEventListener('click', () => {
 
   if (savedGame) {
     const game = JSON.parse(savedGame);
+    userAnswer = [...game.img];
     showSolution(game.img);
   } else {
     setMessage(messageBox, 'There are no saved games for this scheme');

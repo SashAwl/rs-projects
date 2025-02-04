@@ -1,6 +1,6 @@
 let timer;
-export let isStartedTimer = false;
-let secondsElapsed = 0;
+let isStartedTimer = false;
+export let secondsElapsed = 0;
 
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
