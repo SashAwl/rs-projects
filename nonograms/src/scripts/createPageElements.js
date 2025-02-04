@@ -84,6 +84,13 @@ export const main = createElement({
   classes: ['main'],
 });
 
+export const timerLine = createElement({
+  tag: 'p',
+  text: 'time: 00:00',
+  parent: main,
+  classes: ['timer'],
+});
+
 const controlls = createControlls(main);
 
 export const messageBox = createElement({

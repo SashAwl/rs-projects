@@ -83,7 +83,7 @@ export function showConsolution(
 
   if (conclusion) {
     const gameTime = showHoorayMessage();
-    congratulate(parent1);
+    congratulate(parent1, gameTime);
     playSound(wonSound);
   } else {
     setMessage(parent2, 'Oops! You made a mistake. Try again!');
@@ -131,7 +131,7 @@ function congratulate(parentElem, time) {
 
   const hoorayText = createElement({
     tag: 'h3',
-    text: `You have solved the nonogram!`, // in ${time} seconds!`,
+    text: `You have solved the nonogram in ${time} seconds!`,
     parent: hooray,
     classes: ['hooray__text'],
   });

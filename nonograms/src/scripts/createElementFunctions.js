@@ -15,26 +15,19 @@ export function createElement(options) {
   return element;
 }
 
-export function setScheme(data, parent) {
+export function setScheme(data, locate) {
   const oldScheme = document.querySelector('.scheme');
   if (oldScheme) {
     oldScheme.remove();
   }
 
   const currentScheme = createScheme(data);
-  parent.prepend(currentScheme);
+  locate.after(currentScheme);
 }
 
 function createScheme({ name, scheme: schemeDetail }) {
   const scheme = createElement('div');
   scheme.classList.add('scheme');
-
-  const timer = createElement({
-    tag: 'p',
-    text: '',
-    parent: scheme,
-    classes: ['scheme__timer'],
-  });
 
   const schemeHeading = createElement({
     tag: 'h1',

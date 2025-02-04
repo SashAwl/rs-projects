@@ -15,6 +15,7 @@ import {
   messageBox,
   nav,
   burger,
+  timerLine,
 } from './createPageElements.js';
 import { setScheme } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
@@ -27,6 +28,7 @@ import {
   setNewScheme,
   clearField,
 } from './sounds.js';
+import { startTimer, stopTimer, resetTimer, isStartedTimer } from './timer.js';
 
 let currentSchemeData = nonograms[0];
 console.log('Для проверяющего: ', currentSchemeData.scheme.img);
@@ -35,15 +37,17 @@ let userAnswer = Array.from({ length: 5 }).map((item) =>
   Array.from({ length: 5 }).fill(0)
 );
 
-setScheme(currentSchemeData, main);
+setScheme(currentSchemeData, timerLine);
 
 const schemeField = document.querySelector('.scheme__field');
 schemeField.addEventListener('click', (event) => {
   pixelClickHandler(event, userAnswer, setBlackPixelSound, clearPixelSound);
+  startTimer(timerLine);
 });
 
 schemeField.addEventListener('contextmenu', (event) => {
   contextClickHandler(event, setCrossSound, clearPixelSound);
+  startTimer(timerLine);
 });
 
 menu.addEventListener('click', (event) => {
@@ -53,17 +57,23 @@ menu.addEventListener('click', (event) => {
     const link = target.textContent;
 
     currentSchemeData = nonograms.filter((item) => item.name === link)[0];
-    setScheme(currentSchemeData, main);
+    console.log('Для проверяющего: ', currentSchemeData.scheme.img);
+
+    setScheme(currentSchemeData, timerLine);
+    userAnswer = [...clear()];
+    resetTimer(timerLine);
     playSound(setNewScheme);
 
     const schemeField = document.querySelector('.scheme__field');
 
     schemeField.addEventListener('click', (event) => {
       pixelClickHandler(event, userAnswer, setBlackPixelSound, clearPixelSound);
+      startTimer(timerLine);
     });
 
     schemeField.addEventListener('contextmenu', (event) => {
       contextClickHandler(event, setCrossSound, clearPixelSound);
+      startTimer(timerLine);
     });
   }
 });
@@ -91,18 +101,19 @@ controllsCheck.addEventListener('click', () => {
     failSound,
     container,
     main,
-    controllsCheck,
-    0
+    controllsCheck
   );
 });
 
 controllsReset.addEventListener('click', () => {
   userAnswer = [...clear()];
   clearField.play();
+  stopTimer();
+  resetTimer(timerLine);
 });
 
 controllsSave.addEventListener('click', () => {
-  const gameData = JSON.stringify(userAnswer);
+  const gameData = JSON.stringify({ img: userAnswer, time: secondsElapsed });
   localStorage.setItem(currentSchemeData.name, gameData);
 
   setMessage(messageBox, 'Saved successfully!');
@@ -113,7 +124,7 @@ controllsRestoreGame.addEventListener('click', () => {
 
   if (savedGame) {
     const game = JSON.parse(savedGame);
-    showSolution(game);
+    showSolution(game.img);
   } else {
     setMessage(messageBox, 'There are no saved games for this scheme');
   }

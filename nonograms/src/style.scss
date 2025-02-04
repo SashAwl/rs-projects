@@ -112,6 +112,7 @@ body {
 
   &__heading {
     font-size: 43px;
+    margin-top: 0;
   }
 
   &__hintleft {
@@ -253,4 +254,9 @@ body {
   @media screen and (max-width: 767px) {
     display: flex;
   }
+}
+
+.timer {
+  text-align: right;
+  margin-right: 70px;
 }
