@@ -77,7 +77,8 @@ export function showConsolution(
   failSound,
   parent1,
   parent2,
-  button
+  button,
+  isForsedCheck
 ) {
   const conclusion = checkSolution(answer, solution);
 
@@ -85,13 +86,13 @@ export function showConsolution(
     const gameTime = showHoorayMessage();
     congratulate(parent1, gameTime);
     playSound(wonSound);
-  } else {
+  } else if (isForsedCheck) {
     setMessage(parent2, 'Oops! You made a mistake. Try again!');
     playSound(failSound);
-  }
 
-  button.disabled = true;
-  setTimeout(() => (button.disabled = false), 2000);
+    button.disabled = true;
+    setTimeout(() => (button.disabled = false), 2000);
+  }
 }
 
 function checkSolution(userAnswerMatrix, solutionMatrix) {

@@ -43,6 +43,17 @@ const schemeField = document.querySelector('.scheme__field');
 schemeField.addEventListener('click', (event) => {
   pixelClickHandler(event, userAnswer, setBlackPixelSound, clearPixelSound);
   startTimer(timerLine);
+
+  showConsolution(
+    userAnswer,
+    currentSchemeData.scheme.img,
+    wonSound,
+    failSound,
+    container,
+    main,
+    controllsCheck,
+    false
+  );
 });
 
 schemeField.addEventListener('contextmenu', (event) => {
@@ -101,7 +112,8 @@ controllsCheck.addEventListener('click', () => {
     failSound,
     container,
     main,
-    controllsCheck
+    controllsCheck,
+    true
   );
 });
 
