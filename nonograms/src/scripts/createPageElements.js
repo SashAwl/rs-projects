@@ -25,7 +25,14 @@ export const topResults = createElement({
   tag: 'button',
   text: 'Best results',
   parent: header,
-  classes: ['button', 'button-best'],
+  classes: ['button', 'button-header', 'button-best'],
+});
+
+export const theme = createElement({
+  tag: 'button',
+  text: 'Theme',
+  parent: header,
+  classes: ['button', 'button-header', 'button-theme'],
 });
 
 export const burger = createBurger(header);

@@ -18,6 +18,7 @@ import {
   timerLine,
   topResults,
   header,
+  theme,
 } from './createPageElements.js';
 import { setScheme, createTable } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
@@ -189,4 +190,20 @@ container.addEventListener('click', (event) => {
     back.remove();
     table.remove();
   }
+});
+
+const heading = document.querySelector('.scheme__heading');
+theme.addEventListener('click', () => {
+  const pixels = document.querySelectorAll('.pixel');
+  pixels.forEach((item) => item.classList.toggle('pixel--dark-theme'));
+
+  const controlls = document.querySelectorAll('.scheme__controlls>button');
+  controlls.forEach((item) =>
+    item.classList.toggle('scheme__controlls--dark-theme')
+  );
+
+  container.classList.toggle('main-wrapper--dark-theme');
+  schemeField.classList.toggle('pixel--dark-theme');
+  heading.classList.toggle('scheme__heading--dark-theme');
+  timerLine.classList.toggle('timer--dark-theme');
 });
