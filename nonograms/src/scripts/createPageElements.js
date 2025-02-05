@@ -23,7 +23,7 @@ export const header = createElement({
 });
 export const topResults = createElement({
   tag: 'button',
-  text: 'Best results',
+  text: 'Last results',
   parent: header,
   classes: ['button', 'button-header', 'button-best'],
 });

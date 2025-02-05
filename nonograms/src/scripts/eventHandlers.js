@@ -204,10 +204,11 @@ function saveWonDetails(nameGame, levelGame, timeGame) {
   };
 
   dataList.push(gameItem);
-  const betterResults = sortData(dataList, 'time').slice(0, 5);
-  localStorage.setItem('resultTable', JSON.stringify(betterResults));
+
+  const lastResults = dataList.slice(-5);
+  localStorage.setItem('resultTable', JSON.stringify(lastResults));
 }
 
-function sortData(array, key) {
+export function sortData(array, key) {
   return array.sort((a, b) => (b[key] < a[key] ? 1 : -1));
 }

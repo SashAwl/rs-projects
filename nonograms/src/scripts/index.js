@@ -7,6 +7,7 @@ import {
   showConsolution,
   setMessage,
   showSolution,
+  sortData,
 } from './eventHandlers.js';
 import {
   container,
@@ -177,7 +178,8 @@ controllsShowSolution.addEventListener('click', () => {
 topResults.addEventListener('click', (event) => {
   const dataList = JSON.parse(localStorage.getItem('resultTable'));
   dataList.forEach((item) => (item.time = formatTime(item.time).slice(-5)));
-  createTable(header, dataList);
+  const sortedData = sortData(dataList, 'time');
+  createTable(header, sortedData);
   event.stopPropagation();
 });
 
