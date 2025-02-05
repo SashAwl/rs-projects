@@ -30,7 +30,13 @@ import {
   setNewScheme,
   clearField,
 } from './sounds.js';
-import { startTimer, stopTimer, resetTimer, secondsElapsed } from './timer.js';
+import {
+  startTimer,
+  stopTimer,
+  resetTimer,
+  secondsElapsed,
+  formatTime,
+} from './timer.js';
 
 localStorage.setItem('resultTable', '[]');
 
@@ -169,6 +175,7 @@ controllsShowSolution.addEventListener('click', () => {
 
 topResults.addEventListener('click', (event) => {
   const dataList = JSON.parse(localStorage.getItem('resultTable'));
+  dataList.forEach((item) => (item.time = formatTime(item.time).slice(-5)));
   createTable(header, dataList);
   event.stopPropagation();
 });
