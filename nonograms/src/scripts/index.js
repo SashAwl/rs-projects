@@ -69,7 +69,7 @@ schemeField.addEventListener('click', (event) => {
 });
 
 schemeField.addEventListener('contextmenu', (event) => {
-  contextClickHandler(event, setCrossSound, clearPixelSound);
+  contextClickHandler(event, userAnswer, setCrossSound, clearPixelSound);
   startTimer(timerLine);
 });
 
@@ -106,7 +106,7 @@ menu.addEventListener('click', (event) => {
     });
 
     schemeField.addEventListener('contextmenu', (event) => {
-      contextClickHandler(event, setCrossSound, clearPixelSound);
+      contextClickHandler(event, userAnswer, setCrossSound, clearPixelSound);
       startTimer(timerLine);
     });
   }

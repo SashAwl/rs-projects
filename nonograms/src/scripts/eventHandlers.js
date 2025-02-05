@@ -13,20 +13,28 @@ export function pixelClickHandler(event, matrix, blackSounds, whiteSounds) {
 
     switchColorPixel(target);
     const [row, col] = getCoordinates(target);
-    matrix[row][col] = +!matrix[row][col];
+    const currentPixel = matrix[row][col];
+    if (currentPixel === 'x') {
+      matrix[row][col] = 1;
+    } else {
+      matrix[row][col] = +!matrix[row][col];
+    }
   }
 }
 
-export function contextClickHandler(event, crossSound, whiteSound) {
+export function contextClickHandler(event, matrix, crossSound, whiteSound) {
   const target = event.target.closest('.pixel');
+  const [row, col] = getCoordinates(target);
 
   if (target) {
     const cross = findCross(target);
 
     if (cross.classList.contains('cross--hidden')) {
       playSound(crossSound);
+      matrix[row][col] = 'x';
     } else {
       playSound(whiteSound);
+      matrix[row][col] = 0;
     }
 
     cross.classList.toggle('cross--hidden');
@@ -98,10 +106,10 @@ export function showConsolution(
 }
 
 function checkSolution(userAnswerMatrix, solutionMatrix) {
-  const answerStr = userAnswerMatrix.reduce(
-    (accom, row) => accom + row.join(''),
-    ''
-  );
+  const answerStr = userAnswerMatrix.reduce((accom, row) => {
+    const cleanRow = row.map((item) => (item === 'x' ? 0 : item));
+    return accom + cleanRow.join('');
+  }, '');
 
   const solutionStr = solutionMatrix.reduce(
     (accom, row) => accom + row.join(''),
@@ -177,11 +185,18 @@ export function showSolution({ matrix, time }) {
 function markPixels(matrix) {
   for (let i = 0; i < matrix.length; i += 1) {
     for (let j = 0; j < matrix.length; j += 1) {
-      if (matrix[i][j]) {
-        const pixel = document.querySelector(
-          `.pixel-img[data-locate="${'' + i + j}"]`
-        );
-        pixel.classList.add('pixel--black');
+      const cell = matrix[i][j];
+
+      if (cell) {
+        const locatePixel = `.pixel-img[data-locate="${'' + i + j}"]`;
+        const pixel = document.querySelector(locatePixel);
+
+        if (cell === 1) {
+          pixel.classList.add('pixel--black');
+        } else {
+          const cross = findCross(pixel);
+          cross.classList.remove('cross--hidden');
+        }
       }
     }
   }
