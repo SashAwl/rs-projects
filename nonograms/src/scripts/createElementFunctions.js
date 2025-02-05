@@ -214,3 +214,92 @@ export function createBurger(parentBurger) {
 
   return box;
 }
+
+export function createTable(parentTable, dataList) {
+  const backTable = createElement({
+    tag: 'div',
+    text: '',
+    parent: parentTable,
+    classes: ['back-hooray'],
+  });
+
+  const box = createElement({
+    tag: 'div',
+    text: '',
+    parent: parentTable,
+    classes: ['table'],
+  });
+
+  const heading = createElement({
+    tag: 'h2',
+    text: 'Result table',
+    parent: box,
+    classes: ['table__box'],
+  });
+
+  const tableList = createElement({
+    tag: 'ul',
+    text: '',
+    parent: box,
+    classes: ['table__list'],
+  });
+
+  const listItem = createElement({
+    tag: 'li',
+    text: '',
+    parent: tableList,
+    classes: ['table__item'],
+  });
+
+  const tableRow = createElement({
+    tag: 'ul',
+    text: '',
+    parent: listItem,
+    classes: ['table__row'],
+  });
+
+  const rowName = createElement({
+    tag: 'li',
+    text: 'Name',
+    parent: tableRow,
+    classes: ['row-item'],
+  });
+  const rowLevel = createElement({
+    tag: 'li',
+    text: 'Level',
+    parent: tableRow,
+    classes: ['row-item'],
+  });
+  const rowTime = createElement({
+    tag: 'li',
+    text: 'Time',
+    parent: tableRow,
+    classes: ['row-item'],
+  });
+
+  dataList.forEach((item) => {
+    const listItem = createElement({
+      tag: 'li',
+      text: '',
+      parent: tableList,
+      classes: ['table__item'],
+    });
+
+    const tableRow = createElement({
+      tag: 'ul',
+      text: '',
+      parent: listItem,
+      classes: ['table__row'],
+    });
+
+    for (let i in item) {
+      const rowItem = createElement({
+        tag: 'li',
+        text: item[i],
+        parent: tableRow,
+        classes: ['row-item'],
+      });
+    }
+    return box;
+  });
+}

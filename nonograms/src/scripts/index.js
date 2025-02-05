@@ -16,8 +16,10 @@ import {
   nav,
   burger,
   timerLine,
+  topResults,
+  header,
 } from './createPageElements.js';
-import { setScheme } from './createElementFunctions.js';
+import { setScheme, createTable } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
 import {
   clearPixelSound,
@@ -29,6 +31,8 @@ import {
   clearField,
 } from './sounds.js';
 import { startTimer, stopTimer, resetTimer, secondsElapsed } from './timer.js';
+
+localStorage.setItem('resultTable', '[]');
 
 let currentSchemeData = nonograms[0];
 console.log('Для проверяющего: ', currentSchemeData.scheme.img);
@@ -46,7 +50,7 @@ schemeField.addEventListener('click', (event) => {
 
   showConsolution(
     userAnswer,
-    currentSchemeData.scheme.img,
+    currentSchemeData,
     wonSound,
     failSound,
     container,
@@ -80,6 +84,17 @@ menu.addEventListener('click', (event) => {
     schemeField.addEventListener('click', (event) => {
       pixelClickHandler(event, userAnswer, setBlackPixelSound, clearPixelSound);
       startTimer(timerLine);
+
+      showConsolution(
+        userAnswer,
+        currentSchemeData,
+        wonSound,
+        failSound,
+        container,
+        main,
+        controllsCheck,
+        false
+      );
     });
 
     schemeField.addEventListener('contextmenu', (event) => {
@@ -108,7 +123,7 @@ const controllsShowSolution = document.querySelector('.button__show-solution');
 controllsCheck.addEventListener('click', () => {
   showConsolution(
     userAnswer,
-    currentSchemeData.scheme.img,
+    currentSchemeData,
     wonSound,
     failSound,
     container,
@@ -150,4 +165,21 @@ controllsShowSolution.addEventListener('click', () => {
   setTimeout(() => {
     clear();
   }, 200);
+});
+
+topResults.addEventListener('click', (event) => {
+  const dataList = JSON.parse(localStorage.getItem('resultTable'));
+  createTable(header, dataList);
+  event.stopPropagation();
+});
+
+container.addEventListener('click', (event) => {
+  const table = document.querySelector('.table');
+
+  if (table && !event.target.closest('.table')) {
+    const back = document.querySelector('.back-hooray');
+
+    back.remove();
+    table.remove();
+  }
 });

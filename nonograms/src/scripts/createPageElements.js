@@ -21,6 +21,12 @@ export const header = createElement({
   parent: container,
   classes: ['header'],
 });
+export const topResults = createElement({
+  tag: 'button',
+  text: 'Best results',
+  parent: header,
+  classes: ['button', 'button-best'],
+});
 
 export const burger = createBurger(header);
 

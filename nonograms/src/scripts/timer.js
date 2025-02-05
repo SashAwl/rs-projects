@@ -30,5 +30,5 @@ export function resetTimer(timerElement) {
 
 export function showHoorayMessage() {
   stopTimer();
-  return formatTime(secondsElapsed);
+  return secondsElapsed;
 }

@@ -72,7 +72,7 @@ export function playSound(audio) {
 
 export function showConsolution(
   answer,
-  solution,
+  gameDetails,
   wonSound,
   failSound,
   parent1,
@@ -80,12 +80,14 @@ export function showConsolution(
   button,
   isForsedCheck
 ) {
-  const conclusion = checkSolution(answer, solution);
+  const { name, level, scheme: solution } = gameDetails;
+  const conclusion = checkSolution(answer, solution.img);
 
   if (conclusion) {
     const gameTime = showHoorayMessage();
-    congratulate(parent1, gameTime);
+    congratulate(parent1, formatTime(gameTime));
     playSound(wonSound);
+    saveWonDetails(name, level, gameTime);
   } else if (isForsedCheck) {
     setMessage(parent2, 'Oops! You made a mistake. Try again!');
     playSound(failSound);
@@ -190,4 +192,22 @@ function setTime(seconds) {
     const timer = document.querySelector('.timer');
     timer.textContent = formatTime(seconds);
   }
+}
+
+function saveWonDetails(nameGame, levelGame, timeGame) {
+  const dataTable = localStorage.getItem('resultTable');
+  const dataList = JSON.parse(dataTable);
+  const gameItem = {
+    name: nameGame,
+    level: levelGame,
+    time: timeGame,
+  };
+
+  dataList.push(gameItem);
+  const betterResults = sortData(dataList, 'time').slice(0, 5);
+  localStorage.setItem('resultTable', JSON.stringify(betterResults));
+}
+
+function sortData(array, key) {
+  return array.sort((a, b) => (b[key] < a[key] ? 1 : -1));
 }

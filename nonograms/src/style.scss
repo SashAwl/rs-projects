@@ -20,6 +20,9 @@ body {
 .header {
   height: 45px;
   background-color: #936f03;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
 }
 
 .nav {
@@ -91,6 +94,14 @@ body {
   border-radius: 20px;
   font-size: 17px;
   cursor: pointer;
+
+  &-best {
+    color: #ffffff;
+    font-size: 18px;
+    background: none;
+    border-radius: 5px;
+    background-color: #2d2417;
+  }
 }
 
 .scheme {
@@ -200,7 +211,7 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 3;
+  z-index: 20;
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 20px;
@@ -211,6 +222,7 @@ body {
   height: 100vh;
   width: 100vw;
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
 }
@@ -256,4 +268,42 @@ body {
 .timer {
   text-align: right;
   margin-right: 70px;
+}
+
+.table {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 40%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px;
+  border-radius: 11px;
+  z-index: 1000;
+
+  &__list,
+  &__row {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__item:first-child {
+    border-bottom: 2px solid grey;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+  }
+
+  .row-item {
+    display: flex;
+    justify-content: space-between;
+  }
 }
