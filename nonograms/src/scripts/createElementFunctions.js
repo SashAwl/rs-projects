@@ -71,18 +71,33 @@ function createScheme({ name, scheme: schemeDetail }) {
     classes: ['scheme__field'],
   });
 
-  createHint(schemeDetail.hintTop, schemeHinttop);
-  createHint(schemeDetail.hintLeft, schemeHintleft);
-  createImageField(schemeDetail.img, schemeField);
+  createHint(
+    schemeDetail.hintTop,
+    schemeHinttop,
+    '--hint-top-high',
+    '--width-pixel'
+  );
+  createHint(
+    schemeDetail.hintLeft,
+    schemeHintleft,
+    '--hint-left-width',
+    '--width-pixel'
+  );
+  createImageField(
+    schemeDetail.img,
+    schemeField,
+    '--field-width',
+    '--width-pixel'
+  );
 
   return scheme;
 }
 
-function createHint(matrix, parent) {
+function createHint(matrix, parent, variableCount, variableScale) {
   const sparseMatrix = getSparseMatrix(matrix);
 
-  sparseMatrix.forEach((row) => {
-    row.forEach((elem) => {
+  sparseMatrix.forEach((row, indexRow) => {
+    row.forEach((elem, indexElem) => {
       createElement({
         tag: 'div',
         text: elem ? elem : '',
@@ -91,10 +106,20 @@ function createHint(matrix, parent) {
       });
     });
   });
+
+  const len = sparseMatrix[0].length;
+  changeCountPixel(variableCount, len);
+
+  if (len === 10) {
+    changeCountPixel(variableScale, '30px');
+  }
+  if (len === 15) {
+    changeCountPixel(variableScale, '20px');
+  }
 }
 
 function getSparseMatrix(matrix) {
-  const len = 3; //getMaxLength(matrix);
+  const len = getMaxLength(matrix);
 
   return matrix.map((row) => {
     while (row.length < len) {
@@ -108,7 +133,11 @@ function getMaxLength(matrix) {
   return matrix.reduce((accom, row) => Math.max(accom, row.length), 0);
 }
 
-function createImageField(matrix, parentElem) {
+function changeCountPixel(variable, value) {
+  document.documentElement.style.setProperty(variable, value);
+}
+
+function createImageField(matrix, parentElem, variableCount, variableScale) {
   matrix.forEach((row, indexRow) => {
     row.forEach((elem, indexElem) => {
       const pixel = createElement({
@@ -120,6 +149,24 @@ function createImageField(matrix, parentElem) {
 
       pixel.dataset.locate = '' + indexRow + indexElem;
       pixel.append(setCross());
+
+      if ((indexRow + 1) % 5 === 0) {
+        pixel.classList.add('pixel-line-bottom');
+      }
+
+      if ((indexElem + 1) % 5 === 0) {
+        pixel.classList.add('pixel-line-right');
+      }
+
+      const len = matrix[0].length;
+      changeCountPixel(variableCount, len);
+
+      if (len === 10) {
+        changeCountPixel(variableScale, '30px');
+      }
+      if (len === 15) {
+        changeCountPixel(variableScale, '20px');
+      }
     });
   });
 }
@@ -301,5 +348,46 @@ export function createTable(parentTable, dataList) {
       });
     }
     return box;
+  });
+}
+
+export function createMenu(list, currentLevel, parenNav) {
+  const menu = createElement({
+    tag: 'details',
+    text: '',
+    parent: parenNav,
+    classes: ['nav__box'],
+  });
+  menu.setAttribute('open', true);
+
+  const summary = createElement({
+    tag: 'summary',
+    text: `Level ${currentLevel}`,
+    parent: menu,
+    classes: ['nav__summary'],
+  });
+
+  const easySchemeList = createElement({
+    tag: 'ul',
+    text: '',
+    parent: menu,
+    classes: ['nav__list'],
+  });
+
+  list.forEach((item) => {
+    const easyItem = createElement({
+      tag: 'li',
+      text: '',
+      parent: easySchemeList,
+      classes: ['nav__item'],
+    });
+
+    const easyItemLink = createElement({
+      tag: 'a',
+      text: item.name,
+      parent: easyItem,
+      classes: ['nav__link'],
+    });
+    easyItemLink.setAttribute('href', '#');
   });
 }

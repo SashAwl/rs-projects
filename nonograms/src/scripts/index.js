@@ -10,7 +10,6 @@ import {
 import {
   container,
   main,
-  menu,
   messageBox,
   nav,
   burger,
@@ -40,11 +39,12 @@ import {
 
 localStorage.setItem('resultTable', '[]');
 
-let currentSchemeData = nonograms[0];
+let currentSchemeData = nonograms[5];
 console.log('Для проверяющего: ', currentSchemeData.scheme.img);
 
-let userAnswer = Array.from({ length: 5 }).map((item) =>
-  Array.from({ length: 5 }).fill(0)
+const lengthRow = currentSchemeData.scheme.img[0].length;
+let userAnswer = Array.from({ length: lengthRow }).map((item) =>
+  Array.from({ length: lengthRow }).fill(0)
 );
 
 const initialGameData = {
@@ -65,6 +65,7 @@ const initialGameData = {
 
 initialGame(currentSchemeData, userAnswer, initialGameData, false);
 
+const menu = document.querySelector('.nav');
 menu.addEventListener('click', (event) => {
   const target = event.target;
 
@@ -74,7 +75,8 @@ menu.addEventListener('click', (event) => {
     currentSchemeData = nonograms.filter((item) => item.name === link)[0];
     console.log('Для проверяющего: ', currentSchemeData.scheme.img);
 
-    userAnswer = [...clear()];
+    const lengthRow = currentSchemeData.scheme.img[0].length;
+    userAnswer = [...clear(lengthRow)];
     initialGame(currentSchemeData, userAnswer, initialGameData, false);
   }
 });
@@ -110,7 +112,8 @@ controllsCheck.addEventListener('click', () => {
 });
 
 controllsReset.addEventListener('click', () => {
-  userAnswer = [...clear()];
+  const lengthRow = currentSchemeData.scheme.img[0].length;
+  userAnswer = [...clear(lengthRow)];
   clearField.play();
   initialGame(currentSchemeData, userAnswer, initialGameData, false);
 });
@@ -145,7 +148,8 @@ controllsRestoreGame.addEventListener('click', () => {
 
 controllsShowSolution.addEventListener('click', () => {
   const solution = { matrix: currentSchemeData.scheme.img, time: null };
-  clear();
+  const lengthRow = currentSchemeData.scheme.img[0].length;
+  clear(lengthRow);
   showSolution(solution);
   stopTimer();
   resetTimer(timerLine);

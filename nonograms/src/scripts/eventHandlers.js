@@ -24,7 +24,6 @@ export function initialGame(dataScheme, userAns, initialData, isForsedCheck) {
   blockButtons.forEach((item) => item.classList.remove('click-block'));
 
   schemeField.addEventListener('click', (event) => {
-    console.log(userAns);
     pixelClickHandler(event, userAns, soundBlack, soundWhite);
     startTimer(timer);
 
@@ -104,16 +103,17 @@ function getCoordinates(target) {
   return strCoordinates.split('').map((item) => +item);
 }
 
-export function clear() {
+export function clear(len) {
   const imgPixels = document.querySelectorAll('.pixel-img');
   imgPixels.forEach((pixel) => pixel.classList.remove('pixel--black'));
 
   const cross = document.querySelectorAll('.cross');
   cross.forEach((item) => item.classList.add('cross--hidden'));
 
-  return Array.from({ length: 5 }).map((item) =>
-    Array.from({ length: 5 }).fill(0)
+  const arr = Array.from({ length: len }).map((item) =>
+    Array.from({ length: len }).fill(0)
   );
+  return arr;
 }
 
 export function playSound(audio) {

@@ -2,6 +2,7 @@ import {
   createElement,
   createControlls,
   createBurger,
+  createMenu,
 } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
 
@@ -51,44 +52,14 @@ export const nav = createElement({
   classes: ['nav'],
 });
 
-export const menu = createElement({
-  tag: 'details',
-  text: '',
-  parent: nav,
-  classes: ['nav__box'],
-});
-menu.setAttribute('open', true);
+const easyList = nonograms.filter((item) => item.level === 'Easy');
+createMenu(easyList, 'Easy', nav);
 
-const summary = createElement({
-  tag: 'summary',
-  text: 'Level "Easy"',
-  parent: menu,
-  classes: ['nav__summary'],
-});
+const mediumList = nonograms.filter((item) => item.level === 'Medium');
+createMenu(mediumList, 'Medium', nav);
 
-const easySchemeList = createElement({
-  tag: 'ul',
-  text: '',
-  parent: menu,
-  classes: ['nav__list'],
-});
-
-nonograms.forEach((item) => {
-  const easyItem = createElement({
-    tag: 'li',
-    text: '',
-    parent: easySchemeList,
-    classes: ['nav__item'],
-  });
-
-  const easyItemLink = createElement({
-    tag: 'a',
-    text: item.name,
-    parent: easyItem,
-    classes: ['nav__link'],
-  });
-  easyItemLink.setAttribute('href', '#');
-});
+const HardList = nonograms.filter((item) => item.level === 'Hard');
+createMenu(HardList, 'Hard', nav);
 
 export const main = createElement({
   tag: 'main',
