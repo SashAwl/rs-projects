@@ -221,6 +221,12 @@ body {
   }
 }
 
+.click-block {
+  pointer-events: none;
+  cursor: default;
+  opacity: 50%;
+}
+
 .hooray {
   width: 50%;
   height: 40%;

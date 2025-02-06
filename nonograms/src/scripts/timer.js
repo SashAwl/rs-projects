@@ -8,9 +8,13 @@ export function formatTime(seconds) {
   return `time: ${String(minutes).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
 }
 
-export function startTimer(timerElement) {
+export function startTimer(timerElement, startPoint = null) {
   if (!isStartedTimer) {
     isStartedTimer = true;
+
+    if (startPoint) {
+      secondsElapsed = startPoint;
+    }
     timer = setInterval(() => {
       secondsElapsed++;
       timerElement.textContent = formatTime(secondsElapsed);

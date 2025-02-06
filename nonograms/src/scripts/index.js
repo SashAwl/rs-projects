@@ -1,13 +1,11 @@
 import '../style.scss';
 import {
-  pixelClickHandler,
-  contextClickHandler,
   clear,
-  playSound,
   showConsolution,
   setMessage,
   showSolution,
   sortData,
+  initialGame,
 } from './eventHandlers.js';
 import {
   container,
@@ -21,7 +19,7 @@ import {
   header,
   theme,
 } from './createPageElements.js';
-import { setScheme, createTable } from './createElementFunctions.js';
+import { createTable } from './createElementFunctions.js';
 import { nonograms } from './dataImg.js';
 import {
   clearPixelSound,
@@ -49,29 +47,23 @@ let userAnswer = Array.from({ length: 5 }).map((item) =>
   Array.from({ length: 5 }).fill(0)
 );
 
-setScheme(currentSchemeData, timerLine);
+const initialGameData = {
+  elements: {
+    timer: timerLine,
+    container: container,
+    main: main,
+  },
+  sounds: {
+    soundNew: setNewScheme,
+    soundBlack: setBlackPixelSound,
+    soundWhite: clearPixelSound,
+    soundCross: setCrossSound,
+    soundFail: failSound,
+    soundWon: wonSound,
+  },
+};
 
-const schemeField = document.querySelector('.scheme__field');
-schemeField.addEventListener('click', (event) => {
-  pixelClickHandler(event, userAnswer, setBlackPixelSound, clearPixelSound);
-  startTimer(timerLine);
-
-  showConsolution(
-    userAnswer,
-    currentSchemeData,
-    wonSound,
-    failSound,
-    container,
-    main,
-    controllsCheck,
-    false
-  );
-});
-
-schemeField.addEventListener('contextmenu', (event) => {
-  contextClickHandler(event, userAnswer, setCrossSound, clearPixelSound);
-  startTimer(timerLine);
-});
+initialGame(currentSchemeData, userAnswer, initialGameData, false);
 
 menu.addEventListener('click', (event) => {
   const target = event.target;
@@ -82,33 +74,8 @@ menu.addEventListener('click', (event) => {
     currentSchemeData = nonograms.filter((item) => item.name === link)[0];
     console.log('Для проверяющего: ', currentSchemeData.scheme.img);
 
-    setScheme(currentSchemeData, timerLine);
     userAnswer = [...clear()];
-    resetTimer(timerLine);
-    playSound(setNewScheme);
-
-    const schemeField = document.querySelector('.scheme__field');
-
-    schemeField.addEventListener('click', (event) => {
-      pixelClickHandler(event, userAnswer, setBlackPixelSound, clearPixelSound);
-      startTimer(timerLine);
-
-      showConsolution(
-        userAnswer,
-        currentSchemeData,
-        wonSound,
-        failSound,
-        container,
-        main,
-        controllsCheck,
-        false
-      );
-    });
-
-    schemeField.addEventListener('contextmenu', (event) => {
-      contextClickHandler(event, userAnswer, setCrossSound, clearPixelSound);
-      startTimer(timerLine);
-    });
+    initialGame(currentSchemeData, userAnswer, initialGameData, false);
   }
 });
 
@@ -127,6 +94,8 @@ const controllsReset = document.querySelector('.button__reset');
 const controllsSave = document.querySelector('.button__save');
 const controllsRestoreGame = document.querySelector('.button__restore');
 const controllsShowSolution = document.querySelector('.button__show-solution');
+const schemeField = document.querySelector('.scheme__field');
+const blockButtons = document.querySelectorAll('.button--block');
 
 controllsCheck.addEventListener('click', () => {
   showConsolution(
@@ -136,7 +105,6 @@ controllsCheck.addEventListener('click', () => {
     failSound,
     container,
     main,
-    controllsCheck,
     true
   );
 });
@@ -144,24 +112,32 @@ controllsCheck.addEventListener('click', () => {
 controllsReset.addEventListener('click', () => {
   userAnswer = [...clear()];
   clearField.play();
-  stopTimer();
-  resetTimer(timerLine);
+  initialGame(currentSchemeData, userAnswer, initialGameData, false);
 });
 
 controllsSave.addEventListener('click', () => {
-  const gameData = JSON.stringify({ matrix: userAnswer, time: secondsElapsed });
-  localStorage.setItem(currentSchemeData.name, gameData);
+  const gameData = JSON.stringify({
+    name: currentSchemeData.name,
+    matrix: userAnswer,
+    time: secondsElapsed,
+  });
+  localStorage.setItem('lastGame', gameData);
 
   setMessage(messageBox, 'Saved successfully!');
 });
 
 controllsRestoreGame.addEventListener('click', () => {
-  const savedGame = localStorage.getItem(currentSchemeData.name);
+  const savedGame = localStorage.getItem('lastGame');
 
   if (savedGame) {
     const game = JSON.parse(savedGame);
     userAnswer = [...game.matrix];
+    currentSchemeData = nonograms.filter((item) => item.name === game.name)[0];
+    console.log('Для проверяющего: ', currentSchemeData.scheme.img);
+
+    initialGame(currentSchemeData, userAnswer, initialGameData, false);
     showSolution(game);
+    startTimer(timerLine, game.time);
   } else {
     setMessage(messageBox, 'There are no saved games for this scheme');
   }
@@ -169,10 +145,19 @@ controllsRestoreGame.addEventListener('click', () => {
 
 controllsShowSolution.addEventListener('click', () => {
   const solution = { matrix: currentSchemeData.scheme.img, time: null };
+  clear();
   showSolution(solution);
-  setTimeout(() => {
-    clear();
-  }, 200);
+  stopTimer();
+  resetTimer(timerLine);
+
+  const schemeField = document.querySelector('.scheme__field');
+  const blockButtons = document.querySelectorAll('.button--block');
+  const resetButton = document.querySelector('.button__reset');
+
+  schemeField.classList.add('click-block');
+  [controllsCheck, controllsSave, controllsShowSolution].forEach((item) =>
+    item.classList.add('click-block')
+  );
 });
 
 topResults.addEventListener('click', (event) => {

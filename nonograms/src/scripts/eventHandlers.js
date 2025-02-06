@@ -1,5 +1,49 @@
-import { createElement } from './createElementFunctions';
-import { showHoorayMessage, formatTime } from './timer.js';
+import { createElement, setScheme } from './createElementFunctions';
+import {
+  startTimer,
+  stopTimer,
+  showHoorayMessage,
+  formatTime,
+  resetTimer,
+} from './timer.js';
+
+export function initialGame(dataScheme, userAns, initialData, isForsedCheck) {
+  const { elements, sounds } = initialData;
+  const { soundNew, soundBlack, soundWhite, soundCross, soundFail, soundWon } =
+    sounds;
+  const { timer, container, main } = elements;
+
+  setScheme(dataScheme, timer);
+  stopTimer();
+  resetTimer(timer);
+  playSound(soundNew);
+
+  const schemeField = document.querySelector('.scheme__field');
+  const blockButtons = document.querySelectorAll('.button--block');
+  schemeField.classList.remove('click-block');
+  blockButtons.forEach((item) => item.classList.remove('click-block'));
+
+  schemeField.addEventListener('click', (event) => {
+    console.log(userAns);
+    pixelClickHandler(event, userAns, soundBlack, soundWhite);
+    startTimer(timer);
+
+    showConsolution(
+      userAns,
+      dataScheme,
+      soundWon,
+      soundFail,
+      container,
+      main,
+      false
+    );
+  });
+
+  schemeField.addEventListener('contextmenu', (event) => {
+    contextClickHandler(event, userAns, soundCross, soundWhite);
+    startTimer(timer);
+  });
+}
 
 export function pixelClickHandler(event, matrix, blackSounds, whiteSounds) {
   const target = event.target.closest('.pixel');
@@ -85,7 +129,6 @@ export function showConsolution(
   failSound,
   parent1,
   parent2,
-  button,
   isForsedCheck
 ) {
   const { name, level, scheme: solution } = gameDetails;
@@ -96,10 +139,16 @@ export function showConsolution(
     congratulate(parent1, formatTime(gameTime));
     playSound(wonSound);
     saveWonDetails(name, level, gameTime);
+
+    const schemeField = document.querySelector('.scheme__field');
+    const blockButtons = document.querySelectorAll('.button--block');
+    schemeField.classList.add('click-block');
+    blockButtons.forEach((item) => item.classList.add('click-block'));
   } else if (isForsedCheck) {
     setMessage(parent2, 'Oops! You made a mistake. Try again!');
     playSound(failSound);
 
+    const button = document.querySelector('.button__check');
     button.disabled = true;
     setTimeout(() => (button.disabled = false), 2000);
   }
@@ -186,17 +235,15 @@ function markPixels(matrix) {
   for (let i = 0; i < matrix.length; i += 1) {
     for (let j = 0; j < matrix.length; j += 1) {
       const cell = matrix[i][j];
-
-      if (cell) {
-        const locatePixel = `.pixel-img[data-locate="${'' + i + j}"]`;
-        const pixel = document.querySelector(locatePixel);
-
-        if (cell === 1) {
-          pixel.classList.add('pixel--black');
-        } else {
-          const cross = findCross(pixel);
-          cross.classList.remove('cross--hidden');
-        }
+      const locatePixel = `.pixel-img[data-locate="${'' + i + j}"]`;
+      const pixel = document.querySelector(locatePixel);
+      if (!cell) {
+        pixel.classList.remove('pixel--black');
+      } else if (cell === 1) {
+        pixel.classList.add('pixel--black');
+      } else {
+        const cross = findCross(pixel);
+        cross.classList.remove('cross--hidden');
       }
     }
   }

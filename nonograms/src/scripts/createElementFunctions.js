@@ -161,21 +161,21 @@ export function createControlls(parentContrlls) {
     tag: 'button',
     text: 'Check',
     parent: controlls,
-    classes: ['button', 'button__check'],
+    classes: ['button', 'button--block', 'button__check'],
   });
 
   const controllsReset = createElement({
     tag: 'button',
     text: 'Reset',
     parent: controlls,
-    classes: ['button', 'button__reset'],
+    classes: ['button', 'button--block', 'button__reset'],
   });
 
   const controllsSave = createElement({
     tag: 'button',
     text: 'Save game',
     parent: controlls,
-    classes: ['button', 'button__save'],
+    classes: ['button', 'button--block', 'button__save'],
   });
 
   const controllRestore = createElement({
@@ -189,7 +189,7 @@ export function createControlls(parentContrlls) {
     tag: 'button',
     text: 'Show solution',
     parent: controlls,
-    classes: ['button', 'button__show-solution'],
+    classes: ['button', 'button--block', 'button__show-solution'],
   });
 
   return controlls;
