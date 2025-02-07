@@ -39,7 +39,7 @@ import {
 
 localStorage.setItem('resultTable', '[]');
 
-let currentSchemeData = nonograms[5];
+let currentSchemeData = nonograms[0];
 console.log('Для проверяющего: ', currentSchemeData.scheme.img);
 
 const lengthRow = currentSchemeData.scheme.img[0].length;

@@ -100,7 +100,7 @@ function findCross(target) {
 
 function getCoordinates(target) {
   const strCoordinates = target.dataset.locate;
-  return strCoordinates.split('').map((item) => +item);
+  return strCoordinates.split(':').map((item) => +item);
 }
 
 export function clear(len) {
@@ -235,7 +235,7 @@ function markPixels(matrix) {
   for (let i = 0; i < matrix.length; i += 1) {
     for (let j = 0; j < matrix.length; j += 1) {
       const cell = matrix[i][j];
-      const locatePixel = `.pixel-img[data-locate="${'' + i + j}"]`;
+      const locatePixel = `.pixel-img[data-locate="${'' + i + ':' + j}"]`;
       const pixel = document.querySelector(locatePixel);
       if (!cell) {
         pixel.classList.remove('pixel--black');

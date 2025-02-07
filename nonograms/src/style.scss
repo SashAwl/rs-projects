@@ -190,10 +190,12 @@ body {
 
     &-line-bottom {
       border-bottom: 3px solid green;
+      height: 91%;
     }
 
     &-line-right {
       border-right: 3px solid green;
+      width: 91%;
     }
   }
 
@@ -208,16 +210,16 @@ body {
 
     &__line {
       width: 3px;
-      height: 40px;
+      height: var(--width-pixel);
       background-color: pink;
     }
 
     .line1 {
-      transform: translateX(20px) rotate(45deg);
+      transform: translateX(calc(var(--width-pixel) / 2)) rotate(45deg);
     }
 
     .line2 {
-      transform: translateX(20px) rotate(-45deg);
+      transform: translateX(calc(var(--width-pixel) / 2)) rotate(-45deg);
       position: absolute;
       top: 0px;
     }

@@ -147,7 +147,7 @@ function createImageField(matrix, parentElem, variableCount, variableScale) {
         classes: ['pixel', 'pixel-img'],
       });
 
-      pixel.dataset.locate = '' + indexRow + indexElem;
+      pixel.dataset.locate = '' + indexRow + ':' + indexElem;
       pixel.append(setCross());
 
       if ((indexRow + 1) % 5 === 0) {
