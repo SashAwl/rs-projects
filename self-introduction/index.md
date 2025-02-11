@@ -1,4 +1,4 @@
-[Link to video] (https://youtu.be/sjMUmZnRKqg)
+[Link to video](https://youtu.be/sjMUmZnRKqg)
 
 "Hello! My name is Sasha. I am 35. I am from Nizhny Novgorod, Russia. I am an informatics teacher, but a few years ago, I realized that I want to be a developer. Now I am moving in this direction with confidence."
 
