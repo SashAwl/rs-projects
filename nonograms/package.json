@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
-    "deploy": "gh-pages -d dist/nonograms"
+    "deploy": "gh-pages -d dist -e nonograms"
   },
   "keywords": [],
   "author": "",

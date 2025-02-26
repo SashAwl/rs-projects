@@ -7,7 +7,8 @@ module.exports = {
   entry: './src/scripts/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist', 'nonograms'),
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/sashawl-JSFE2024Q4/nonograms/',
     clean: true,
   },
   mode: 'development',
