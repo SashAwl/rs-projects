@@ -1,5 +1,5 @@
-import { Component } from './base-component.js';
-import type { Options } from './base-component.js';
+import { Component } from './base-component';
+import type { Options } from './base-component';
 
 interface InputOptions extends Options {
   type?: string;

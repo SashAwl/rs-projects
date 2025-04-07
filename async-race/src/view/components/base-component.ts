@@ -16,7 +16,7 @@ export class Component {
     ...children: Component[]
   ) {
     const node = document.createElement(tag);
-    this.addClasses(classes);
+    this.addClasses(node, classes);
     node.id = id;
     node.textContent = text;
     this.node = node;
@@ -93,9 +93,9 @@ export class Component {
     this.node.append(child.getNode());
   }
 
-  private addClasses(classList: string[]): void {
-    classList.forEach((className: string) => {
-      this.node.classList.add(className);
+  private addClasses(node: HTMLElement, classes: string[]): void {
+    classes.forEach((className: string) => {
+      node.classList.add(className);
     });
   }
 }

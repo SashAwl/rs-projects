@@ -1,0 +1,19 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.garage {
+  margin-top: 40px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__line {
+    display: flex;
+    gap: 20px;
+  }
+}
