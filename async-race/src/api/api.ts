@@ -1,16 +1,8 @@
+import { Car, Winner } from '../types';
+
 interface Query {
   key: string;
   value: string | number;
-}
-
-interface Car {
-  name: string;
-  color: string;
-}
-
-interface Winner {
-  wins: number;
-  time: number;
 }
 
 export enum StateEngine {
@@ -46,20 +38,22 @@ enum Path {
   WINNERS = '/winners',
 }
 
-function generateQueryString(queryParams: Query[] = []) {
-  return queryParams.length
-    ? `?${queryParams.map((query) => `${query.key}=${query.value}`).join('&')}`
+function generateQueryString(queryParameters: Query[] = []) {
+  return queryParameters.length
+    ? `?${queryParameters.map((query) => `${query.key}=${query.value}`).join('&')}`
     : '';
 }
 
-export async function getCars(queryParams: Query[] = []) {
+export async function getCars(queryParameters: Query[] = []) {
   const response = await fetch(
-    `${BASE_URL}${Path.GARAGE}${generateQueryString(queryParams)}`,
+    `${BASE_URL}${Path.GARAGE}${generateQueryString(queryParameters)}`,
   );
-  const data = await response.json();
+  const carList = await response.json();
 
-  const countItem = response.headers.get('X-Total-Count');
-  return { data, countItem };
+  const carCount = response.headers.get('X-Total-Count');
+  const pageNumber = queryParameters.filter((query) => query.key == '_page')[0]
+    .value;
+  return { carCount, pageNumber, carList };
 }
 
 export async function getCar(id: number) {
@@ -95,9 +89,9 @@ export async function deleteCar(id: number) {
   return response.ok;
 }
 
-export async function startStopCarEngine(queryParams: Query[] = []) {
+export async function startStopCarEngine(queryParameters: Query[] = []) {
   const response = await fetch(
-    `${BASE_URL}${Path.ENGINE}${generateQueryString(queryParams)}`,
+    `${BASE_URL}${Path.ENGINE}${generateQueryString(queryParameters)}`,
     {
       method: HttpMethod.PATCH,
     },
@@ -106,9 +100,9 @@ export async function startStopCarEngine(queryParams: Query[] = []) {
   return await response.json();
 }
 
-export async function switchCarMode(queryParams: Query[] = []) {
+export async function switchCarMode(queryParameters: Query[] = []) {
   const response = await fetch(
-    `${BASE_URL}${Path.ENGINE}${generateQueryString(queryParams)}`,
+    `${BASE_URL}${Path.ENGINE}${generateQueryString(queryParameters)}`,
     {
       method: HttpMethod.PATCH,
     },
@@ -117,9 +111,9 @@ export async function switchCarMode(queryParams: Query[] = []) {
   return await response.json();
 }
 
-export async function getWinners(queryParams: Query[] = []) {
+export async function getWinners(queryParameters: Query[] = []) {
   const response = await fetch(
-    `${BASE_URL}${Path.WINNERS}${generateQueryString(queryParams)}`,
+    `${BASE_URL}${Path.WINNERS}${generateQueryString(queryParameters)}`,
   );
   const data = await response.json();
 

@@ -1,8 +1,7 @@
-import { Interface } from 'readline';
 import { Component } from './base-component';
 import { ComponentInput } from './base-component-input';
 
-interface FormLineParams {
+interface FormLineParameters {
   buttonText: string;
   handler?: () => void;
 }
@@ -12,7 +11,7 @@ export class FormLine extends Component {
   private colorAuto: Component;
   private confirmButton: Component;
 
-  constructor(params: FormLineParams) {
+  constructor(parameters: FormLineParameters) {
     super({
       tag: 'div',
       classes: ['form__line'],
@@ -31,8 +30,8 @@ export class FormLine extends Component {
 
     this.confirmButton = new Component({
       tag: 'button',
-      classes: ['button-confirm'],
-      text: params.buttonText,
+      classes: ['button', 'button-confirm'],
+      text: parameters.buttonText,
     });
 
     this.appendChildren([this.nameAuto, this.colorAuto, this.confirmButton]);

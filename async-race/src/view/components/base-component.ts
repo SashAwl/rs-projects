@@ -1,5 +1,3 @@
-import { strict } from 'assert';
-
 export interface Options {
   tag?: string;
   classes: string[];
