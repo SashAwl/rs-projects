@@ -13,7 +13,7 @@
     "prepare": "cd .. && husky ./fun-chat/.husky",
     "start": "webpack serve",
     "build": "webpack",
-    "deploy": "gh-pages -d dist -e decision-making-tool"
+    "deploy": "gh-pages -d dist -e fun-chat"
   },
   "type": "module",
   "lint-staged": {
@@ -65,5 +65,8 @@
     "webpack": "^5.99.5",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.1"
+  },
+  "dependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

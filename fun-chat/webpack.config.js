@@ -9,7 +9,7 @@ export default {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/sashawl-JSFE2024Q4/async-race/',
+    publicPath: '/sashawl-JSFE2024Q4/fun-chat/',
     clean: true,
   },
   resolve: {
