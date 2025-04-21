@@ -2,14 +2,15 @@ import js from '@eslint/js';
 import ts from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import unicorn from 'eslint-plugin-unicorn';
+import globals from 'globals';
 
 export default [
   {
     ignores: ['node_modules', 'dist'],
   },
-  js.configs.recommended,
+  // js.configs.recommended,
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js'],
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -17,12 +18,7 @@ export default [
         sourceType: 'module',
       },
       globals: {
-        document: 'readonly',
-        window: 'readonly',
-        HTMLElement: 'readonly',
-        HTMLInputElement: 'readonly',
-        Event: 'readonly',
-        Blob: 'readonly',
+        ...globals.browser,
       },
     },
     plugins: {
@@ -38,7 +34,7 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
-        { accessibility: 'explicit', overrides: { constructors: 'off' } },
+        { accessibility: 'explicit' },
       ],
       '@typescript-eslint/member-ordering': 'error',
       'class-methods-use-this': 'error',
@@ -61,6 +57,22 @@ export default [
           },
         },
       ],
+    },
+  },
+  {
+    files: ['**/*.js'],
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      unicorn,
+    },
+    rules: {
+      'no-unused-vars': 'warn',
+      // 'no-explicit-any': 'error',
     },
   },
 ];

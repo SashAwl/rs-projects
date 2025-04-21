@@ -1,15 +1,31 @@
-// const socket = new WebSocket('ws://localhost:4000');
+const socket = new WebSocket('ws://localhost:4000');
+import type { ServerResponse } from './type-server-response';
+import type { ServerRequest } from './type-server-request';
 
-// socket.addEventListener('open', () => {
-//   const data = {
-//     id: '1',
-//     type: 'USER_INACTIVE',
-//     payload: null,
-//   };
-//   socket.send(JSON.stringify(data));
-// });
+type Listener = (data: ServerResponse) => void;
+const listeners: Listener[] = [];
 
-// socket.addEventListener('message', (event) => {
-//   const response = JSON.parse(event.data);
-//   console.log('Message from server ', response);
-// });
+socket.addEventListener('message', (event) => {
+  const data: ServerResponse = JSON.parse(event.data);
+  listeners.forEach((listener) => listener(data));
+});
+
+export function sendMessage(message: ServerRequest): void {
+  if (socket.readyState === WebSocket.OPEN) {
+    socket.send(JSON.stringify(message));
+  } else {
+    socket.addEventListener(
+      'open',
+      () => {
+        socket.send(JSON.stringify(message));
+      },
+      { once: true },
+    );
+  }
+}
+
+export function subscribeToMessages(listener: Listener): void {
+  listeners.push(listener);
+}
+
+export default socket;

@@ -6,7 +6,7 @@ interface OptionInput {
   classes?: string[];
 }
 
-export function createInputElement(options: OptionInput): HTMLElement {
+export function createInputElement(options: OptionInput): HTMLInputElement {
   const { type = '', placeholder = '', parent, classes = [] } = options;
 
   const element = document.createElement('input');

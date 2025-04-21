@@ -1,7 +1,7 @@
 interface Option {
   tag: string;
   text?: string;
-  parent: HTMLElement;
+  parent?: HTMLElement;
   classes?: string[];
   for?: string;
 }
