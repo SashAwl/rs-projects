@@ -3,6 +3,7 @@ interface Option {
   text?: string;
   parent: HTMLElement;
   classes?: string[];
+  for?: string;
 }
 
 export function createElement(options: Option): HTMLElement {

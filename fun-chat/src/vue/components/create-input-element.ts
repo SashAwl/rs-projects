@@ -1,6 +1,7 @@
 interface OptionInput {
   type: string;
   placeholder?: string;
+  name?: string;
   parent: HTMLElement;
   classes?: string[];
 }
