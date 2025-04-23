@@ -3,7 +3,15 @@ import { createInputElement } from '../components/create-input-element';
 import { createAnchorElement } from '../components/create-anchor-element';
 import { createTextareaElement } from '../components/create-textarea-element';
 
-export function createMainPage(login: string): HTMLElement {
+export interface User {
+  login: string;
+  password: string;
+}
+
+export function createMainPage(
+  login: string = '',
+  loginOut: () => void,
+): HTMLElement {
   const container = createElement({
     tag: 'div',
     classes: ['container'],
@@ -36,18 +44,26 @@ export function createMainPage(login: string): HTMLElement {
     parent: header,
   });
 
-  createElement({
+  const buttonInfo = createElement({
     tag: 'button',
     text: 'Info',
     classes: ['button', 'button-info'],
     parent: exitBlock,
   });
 
-  createElement({
+  buttonInfo.addEventListener('click', () => {
+    // функция запуска страницы about и ссылка на возврат обратно
+  });
+
+  const closeButton = createElement({
     tag: 'button',
     text: 'Close',
     classes: ['button', 'button-close'],
     parent: exitBlock,
+  });
+
+  closeButton.addEventListener('click', () => {
+    loginOut();
   });
 
   const main = createElement({
@@ -115,11 +131,24 @@ export function createMainPage(login: string): HTMLElement {
     parent: container,
   });
 
-  createAnchorElement({
-    text: 'RS',
-    href: 'https://rs.school/',
+  const rsBlock = createElement({
+    tag: 'div',
     classes: ['footer__link'],
     parent: footer,
+  });
+
+  createAnchorElement({
+    src: '../images/rss-logo.svg',
+    href: 'https://rs.school/',
+    classes: ['rs-image', 'footer__rs-link'],
+    parent: rsBlock,
+  });
+
+  createAnchorElement({
+    text: 'RS School',
+    href: 'https://rs.school/',
+    classes: ['footer__rs-link'],
+    parent: rsBlock,
   });
 
   createElement({
@@ -130,7 +159,7 @@ export function createMainPage(login: string): HTMLElement {
   });
 
   createAnchorElement({
-    text: 'GitHub',
+    text: 'SashAwl',
     href: 'https://github.com/SashAwl',
     classes: ['footer__link'],
     parent: footer,

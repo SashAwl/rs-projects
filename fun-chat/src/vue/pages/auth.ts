@@ -61,19 +61,30 @@ export function createAuthForm(
     parent: authForm,
   });
 
-  authForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const login = authLogin.value;
-    const password = authPassword.value;
-    onSubmit({ login, password });
-  });
-
-  document.body.addEventListener('keydown', (event) => {
-    if (event.code === 'Enter') {
+  if (authForm) {
+    authForm.addEventListener('submit', (event) => {
+      event.preventDefault();
       const login = authLogin.value;
       const password = authPassword.value;
       onSubmit({ login, password });
+    });
+  } else {
+    console.error('authForm is null');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    if (!body) {
+      console.error('document.body is null');
+      return;
     }
+    body.addEventListener('keydown', (event) => {
+      if (event.code === 'Enter') {
+        const login = authLogin?.value;
+        const password = authPassword?.value;
+        onSubmit({ login, password });
+      }
+    });
   });
 
   return auth;

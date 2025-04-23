@@ -1,6 +1,7 @@
 interface OptionAnchor {
   text?: string;
   href: string;
+  src?: string;
   target?: string;
   parent: HTMLElement;
   classes?: string[];

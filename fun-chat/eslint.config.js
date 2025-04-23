@@ -1,4 +1,4 @@
-import js from '@eslint/js';
+// import js from '@eslint/js';
 import ts from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import unicorn from 'eslint-plugin-unicorn';
@@ -7,6 +7,9 @@ import globals from 'globals';
 export default [
   {
     ignores: ['node_modules', 'dist'],
+    linterOptions: {
+      noInlineConfig: true,
+    },
   },
   // js.configs.recommended,
   {
@@ -71,7 +74,7 @@ export default [
       unicorn,
     },
     rules: {
-      'no-unused-vars': 'warn',
+      // 'no-unused-vars': 'warn',
       // 'no-explicit-any': 'error',
     },
   },
