@@ -11,6 +11,7 @@ export interface User {
 export function createMainPage(
   login: string = '',
   loginOut: () => void,
+  goAboutPage: (page: string) => void,
 ): HTMLElement {
   const container = createElement({
     tag: 'div',
@@ -52,7 +53,7 @@ export function createMainPage(
   });
 
   buttonInfo.addEventListener('click', () => {
-    // функция запуска страницы about и ссылка на возврат обратно
+    goAboutPage('main');
   });
 
   const closeButton = createElement({
@@ -138,18 +139,18 @@ export function createMainPage(
   });
 
   createAnchorElement({
-    src: '../images/rss-logo.svg',
+    text: 'RS School',
     href: 'https://rs.school/',
-    classes: ['rs-image', 'footer__rs-link'],
+    classes: ['footer__link'],
     parent: rsBlock,
   });
 
-  createAnchorElement({
-    text: 'RS School',
-    href: 'https://rs.school/',
-    classes: ['footer__rs-link'],
-    parent: rsBlock,
-  });
+  // const rsImage = createElement({
+  //     tag: 'img',
+  //     classes: ['rs-image', 'footer__rs-link'],
+  //     parent: rsLink,
+  //   });
+  // rsImage.src = '../images/rss-logo.svg'
 
   createElement({
     text: '2025',

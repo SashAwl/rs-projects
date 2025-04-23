@@ -3,6 +3,7 @@ import { createElement } from '../components/create-element';
 
 export function createAuthForm(
   onSubmit: (data: { login: string; password: string }) => void,
+  goAboutPage: (page: string) => void,
 ): HTMLElement {
   const auth = createElement({
     tag: 'div',
@@ -59,6 +60,17 @@ export function createAuthForm(
     text: 'Submit',
     classes: ['button', 'button-submit'],
     parent: authForm,
+  });
+
+  const aboutBtton = createElement({
+    tag: 'button',
+    text: 'About',
+    classes: ['button', 'button-about'],
+    parent: authForm,
+  });
+
+  aboutBtton.addEventListener('click', () => {
+    goAboutPage('auth-form');
   });
 
   if (authForm) {

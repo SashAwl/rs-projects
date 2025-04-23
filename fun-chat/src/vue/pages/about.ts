@@ -1,14 +1,11 @@
 import { createElement } from '../components/create-element';
 import { createAnchorElement } from '../components/create-anchor-element';
 
-export function showAbout(
-  currentParent: HTMLElement,
-  goToBack: () => void,
-): HTMLElement {
+export function showAbout(goToBack: () => void): HTMLElement {
   const about = createElement({
     tag: 'div',
     classes: ['about'],
-    parent: currentParent,
+    parent: document.body,
   });
 
   createElement({
@@ -36,6 +33,7 @@ export function showAbout(
     tag: 'button',
     text: 'Back',
     classes: ['button', 'button-back'],
+    parent: about,
   });
 
   backButton.addEventListener('click', () => {
