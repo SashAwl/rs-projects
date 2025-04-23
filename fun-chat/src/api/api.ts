@@ -9,6 +9,11 @@ socket.addEventListener('message', (event) => {
   const data: ServerResponse = JSON.parse(event.data);
   listeners.forEach((listener) => listener(data));
 });
+export default socket;
+
+export function subscribeToMessages(listener: Listener): void {
+  listeners.push(listener);
+}
 
 export function sendMessage(message: ServerRequest): void {
   if (socket.readyState === WebSocket.OPEN) {
@@ -23,9 +28,3 @@ export function sendMessage(message: ServerRequest): void {
     );
   }
 }
-
-export function subscribeToMessages(listener: Listener): void {
-  listeners.push(listener);
-}
-
-export default socket;

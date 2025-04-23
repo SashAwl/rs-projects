@@ -8,9 +8,15 @@ export interface User {
   password: string;
 }
 
+export interface UserResponse {
+  login: string;
+  isLogined: boolean;
+}
+
 export function createMainPage(
   login: string = '',
   loginOut: () => void,
+  users: UserResponse[],
   goAboutPage: (page: string) => void,
 ): HTMLElement {
   const container = createElement({
@@ -79,17 +85,54 @@ export function createMainPage(
     parent: main,
   });
 
-  createInputElement({
+  const search = createInputElement({
     type: 'search',
     placeholder: 'Search..',
     classes: ['contacts__search'],
     parent: contacts,
   });
 
-  createElement({
+  search.addEventListener('input', () => {
+    const searchTerm = search.value.toLowerCase();
+
+    userList.forEach((item) => {
+      const name = item.textContent?.toLowerCase() || '';
+      const isMatch = name.includes(searchTerm);
+      item.style.display = isMatch ? 'block' : 'none';
+    });
+  });
+
+  const contactsList = createElement({
     tag: 'div',
     classes: ['contacts__list'],
     parent: contacts,
+  });
+
+  const userList = users.map((user: { login: string; isLogined: boolean }) => {
+    const contactItem = createElement({
+      tag: 'div',
+      classes: ['contacts__item'],
+      parent: contactsList,
+    });
+
+    const contactsStatus = createElement({
+      tag: 'div',
+      classes: ['contacts__status'],
+      parent: contactItem,
+    });
+
+    if (user.isLogined) {
+      contactsStatus.style.background = '#32bf32';
+    }
+
+    createElement({
+      tag: 'p',
+      classes: ['contacts__name'],
+      text: user.login,
+      parent: contactItem,
+    });
+
+    return contactItem;
   });
 
   const messages = createElement({
