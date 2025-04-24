@@ -217,7 +217,9 @@ export function createMainPage(
   sendMessageButton.addEventListener('click', () => {
     const toUser = userName.textContent || '';
     const textMessage = messageForm.value || '';
-    sendMessage(toUser, textMessage);
+    if (toUser?.length !== 0 && textMessage.length !== 0) {
+      sendMessage(toUser, textMessage);
+    }
   });
 
   const footer = createElement({

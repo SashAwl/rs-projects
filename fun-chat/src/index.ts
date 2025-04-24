@@ -13,6 +13,15 @@ let users: UserResponse[] = [];
 let activeUsers: UserResponse[] = [];
 // let messageUsers:
 
+type MessageDetails = {
+  userName: string;
+  userText: string;
+  time: number;
+  deliveryStatus: boolean;
+  readStatus: boolean;
+  editStatus: boolean;
+};
+
 console.log(
   'Уважаемые проверяющие! Многое не успела, планирую дорабатывать проект. Буду очень благодарна, если возьметесь за проверку моей работу ближе к окончанию сроков по кросс-чеку.. Еще бы ночку потрудилась.. Заранее благодарю..")',
 );
@@ -23,7 +32,6 @@ createAuthForm(goLogin, (page) => {
 
 getUnautorizedUsers();
 getAllAuthentificatedUsers();
-// getMessageHistory('www');
 
 subscribeToMessages(handleAuthResponse);
 
@@ -53,16 +61,30 @@ export function handleAuthResponse(response: ServerResponse): void {
     activeUsers = response.payload.users;
   } else if (response.type === 'USER_INACTIVE') {
     users = response.payload.users;
+    // getMessageHistory('www');
+    // users.forEach((item) => {
+    //   console.log('req', item.login);
+    //   getMessageHistory(item.login);
+    // });
   } else if (response.type === 'ERROR') {
     const errorModal = document.querySelector('.modal-error');
     if (!errorModal) {
       showErrorModal(response.payload.error);
     }
-    // } else if (response.type === 'MSG_FROM_USER') {
-    //   console.log(response.payload.messages);
+  } else if (response.type === 'MSG_FROM_USER') {
+    console.log('====', response.payload.messages);
   } else if (response.type === 'MSG_SEND') {
     console.log(response.payload);
-    showSendedMessage(response.payload.message.text);
+    const detailMessage = response.payload.message;
+    const detailMessageObject: MessageDetails = {
+      userName: detailMessage.from,
+      userText: detailMessage.text,
+      time: detailMessage.datetime,
+      deliveryStatus: detailMessage.status.isDelivered,
+      readStatus: detailMessage.status.isReaded,
+      editStatus: detailMessage.status.isEdited,
+    };
+    showSendedMessage(detailMessageObject);
   }
 }
 function showAuthError(errors: string[] | undefined | string): void {
@@ -186,7 +208,14 @@ function getMessageHistory(loginUser: string): void {
   });
 }
 
-function showSendedMessage(userText: string): void {
+function showSendedMessage({
+  userName,
+  userText,
+  time,
+  deliveryStatus,
+  readStatus,
+  editStatus,
+}: MessageDetails): void {
   const messages = document.querySelector('.messages__history');
   const initialText = document.querySelector('.messages__history__text');
   const oldMessage = document.querySelector('.messages__type');
@@ -208,10 +237,64 @@ function showSendedMessage(userText: string): void {
     });
 
     createElement({
+      tag: 'h5',
+      text: userName,
+      classes: ['messages__item__name'],
+      parent: messageItem,
+    });
+
+    createElement({
       tag: 'p',
       text: userText,
       classes: ['messages__item__text'],
       parent: messageItem,
     });
+
+    createElement({
+      tag: 'p',
+      text: formatTime(time),
+      classes: ['messages__item__time'],
+      parent: messageItem,
+    });
+
+    const details = createElement({
+      tag: 'div',
+      classes: ['messages__item__details'],
+      parent: messageItem,
+    });
+
+    createElement({
+      tag: 'p',
+      text: `${deliveryStatus ? '' : 'not'} delivered`,
+      classes: ['messages__item__detail'],
+      parent: details,
+    });
+
+    createElement({
+      tag: 'p',
+      text: `${editStatus ? '' : 'not'} edited`,
+      classes: ['messages__item__detail'],
+      parent: details,
+    });
+
+    createElement({
+      tag: 'p',
+      text: `${readStatus ? '' : 'not'} readed`,
+      classes: ['messages__item__detail'],
+      parent: details,
+    });
   }
+}
+
+function formatTime(time: number): string {
+  const date = new Date(time);
+
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+
+  return `${day}.${month}.${year}, ${hours}:${minutes}`;
 }
