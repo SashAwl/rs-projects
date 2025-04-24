@@ -27,10 +27,21 @@ export function showErrorModal(error: string): HTMLElement {
     text: 'OK',
     parent: modal,
   });
+  closeButton.focus();
 
   closeButton.addEventListener('click', () => {
     modal.remove();
   });
+
+  closeButton.addEventListener(
+    'keydown',
+    (event: KeyboardEvent) => {
+      if (event.code === 'Enter') {
+        modal.remove();
+      }
+    },
+    { once: true },
+  );
 
   return modal;
 }

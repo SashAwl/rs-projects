@@ -115,6 +115,22 @@ export function createMainPage(
       parent: contactsList,
     });
 
+    contactItem.addEventListener('click', (event) => {
+      const nameUser = event.target;
+      if (
+        nameUser instanceof HTMLElement &&
+        nameUser?.closest('.contacts__name')
+      ) {
+        userName.textContent = nameUser.textContent;
+        const status = users.filter(
+          (item) => item.login === nameUser.textContent,
+        )[0].isLogined;
+        userStatus.textContent = status ? 'online' : 'offline';
+        userStatus.style.color = status ? '#32bf32' : 'rgb(175 76 76)';
+        historyText.textContent = 'Write your first message...';
+      }
+    });
+
     const contactsStatus = createElement({
       tag: 'div',
       classes: ['contacts__status'],
@@ -141,21 +157,48 @@ export function createMainPage(
     parent: main,
   });
 
-  const messagesHistory = createElement({
+  const selectedUser = createElement({
+    tag: 'div',
+    classes: ['messages__selected-user'],
+    parent: messages,
+  });
+
+  const userName = createElement({
+    tag: 'h3',
+    text: '',
+    classes: ['messages__user-name'],
+    parent: selectedUser,
+  });
+
+  const userStatus = createElement({
+    tag: 'h3',
+    text: '',
+    classes: ['messages__user-status'],
+    parent: selectedUser,
+  });
+
+  const messageHistory = createElement({
     tag: 'div',
     classes: ['messages__history'],
     parent: messages,
   });
 
+  const historyText = createElement({
+    tag: 'p',
+    classes: ['message__history__text'],
+    text: 'Select a user to send a message to...',
+    parent: messageHistory,
+  });
+
   const messagesTypeForm = createElement({
     tag: 'div',
     classes: ['messages__type-form'],
-    parent: messagesHistory,
+    parent: messages,
   });
 
   createTextareaElement({
     rows: '4',
-    cols: '35',
+    cols: '33',
     name: 'typeMessage',
     placeholder: 'Input your message...',
     classes: ['messages__type'],

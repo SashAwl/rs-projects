@@ -112,19 +112,30 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 100%;
-    background-color: rgb(77 9 9);
+    background-color: rgb(175 76 76);
+  }
+
+  &__name {
+    cursor: pointer;
+  }
+
+  @media (width <= 768px) {
+    flex: none;
+    height: 15vh;
   }
 }
 
 .messages {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   flex-grow: 3;
 
   &__type-form {
     display: flex;
     gap: 10px;
     align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid grey;
   }
 
   &__type {
@@ -133,6 +144,23 @@ body {
     border: 1px solid black;
     border-radius: 8px;
     font-size: 20px;
+  }
+
+  &__selected-user {
+    display: flex;
+    justify-content: space-around;
+    height: 60px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid grey;
+  }
+
+  &__history {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
   }
 }
 

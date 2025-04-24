@@ -62,14 +62,14 @@ export function createAuthForm(
     parent: authForm,
   });
 
-  const aboutBtton = createElement({
+  const aboutButton = createElement({
     tag: 'button',
     text: 'About',
     classes: ['button', 'button-about'],
     parent: authForm,
   });
 
-  aboutBtton.addEventListener('click', () => {
+  aboutButton.addEventListener('click', () => {
     goAboutPage('auth-form');
   });
 
@@ -84,20 +84,36 @@ export function createAuthForm(
     console.error('authForm is null');
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const body = document.body;
-    if (!body) {
-      console.error('document.body is null');
-      return;
-    }
-    body.addEventListener('keydown', (event) => {
+  authForm.addEventListener(
+    'keydown',
+    (event: KeyboardEvent) => {
       if (event.code === 'Enter') {
         const login = authLogin?.value;
         const password = authPassword?.value;
         onSubmit({ login, password });
       }
-    });
-  });
+    },
+    { once: true },
+  );
+
+  // document.addEventListener('DOMContentLoaded', () => {
+  //   const body = document.body;
+  //   if (!body) {
+  //     console.error('document.body is null');
+  //     return;
+  //   }
+  //   body.addEventListener(
+  //     'keydown',
+  //     (event) => {
+  //       if (event.code === 'Enter') {
+  //         const login = authLogin?.value;
+  //         const password = authPassword?.value;
+  //         onSubmit({ login, password });
+  //       }
+  //     },
+  //     { once: true },
+  //   );
+  // });
 
   return auth;
 }
