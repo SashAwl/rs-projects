@@ -22,7 +22,7 @@ export type UserLogout = {
   };
 };
 
-export type ErrorResponse = {
+export type Error = {
   id: string;
   type: 'ERROR';
   payload: {
@@ -30,7 +30,7 @@ export type ErrorResponse = {
   };
 };
 
-type AllAuthenticatedUsersResponse = {
+type AllAuthenticatedUsers = {
   id: string;
   type: 'USER_ACTIVE';
   payload: {
@@ -38,13 +38,13 @@ type AllAuthenticatedUsersResponse = {
   };
 };
 
-type AllUnauthorizedUsersResponse = {
+type AllUnauthorizedUsers = {
   id: string;
   type: 'USER_INACTIVE';
   payload: { users: [] };
 };
 
-type MessageHistoryResponse = {
+type MessageHistory = {
   id: string;
   type: 'MSG_FROM_USER';
   payload: {
@@ -52,10 +52,30 @@ type MessageHistoryResponse = {
   };
 };
 
+type MessageSend = {
+  id: string;
+  type: 'MSG_SEND';
+  payload: {
+    message: {
+      id: string;
+      from: string;
+      to: string;
+      text: string;
+      datetime: number;
+      status: {
+        isDelivered: boolean;
+        isReaded: boolean;
+        isEdited: boolean;
+      };
+    };
+  };
+};
+
 export type ServerResponse =
   | UserLogin
-  | ErrorResponse
+  | Error
   | UserLogout
-  | AllAuthenticatedUsersResponse
-  | AllUnauthorizedUsersResponse
-  | MessageHistoryResponse;
+  | AllAuthenticatedUsers
+  | AllUnauthorizedUsers
+  | MessageHistory
+  | MessageSend;

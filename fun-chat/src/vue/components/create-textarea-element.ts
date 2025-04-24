@@ -7,7 +7,9 @@ interface OptionTextarea {
   classes?: string[];
 }
 
-export function createTextareaElement(options: OptionTextarea): HTMLElement {
+export function createTextareaElement(
+  options: OptionTextarea,
+): HTMLTextAreaElement {
   const {
     rows = '',
     cols = '',

@@ -42,9 +42,21 @@ type MessageHistoryRequest = {
   };
 };
 
+type SendMessageRequest = {
+  id: string;
+  type: 'MSG_SEND';
+  payload: {
+    message: {
+      to: string;
+      text: string;
+    };
+  };
+};
+
 export type ServerRequest =
   | UserLoginRequest
   | UserLogoutRequest
   | AllAuthenticatedUsersRequest
   | AllUnauthorizedUsersRequest
-  | MessageHistoryRequest;
+  | MessageHistoryRequest
+  | SendMessageRequest;

@@ -23,7 +23,7 @@ createAuthForm(goLogin, (page) => {
 
 getUnautorizedUsers();
 getAllAuthentificatedUsers();
-// getMessageHistory();
+// getMessageHistory('www');
 
 subscribeToMessages(handleAuthResponse);
 
@@ -38,6 +38,7 @@ export function handleAuthResponse(response: ServerResponse): void {
         (page) => {
           openAboutPage(page);
         },
+        sendMessageToUser,
       );
     }
   } else if (response.type === 'USER_LOGOUT') {
@@ -57,11 +58,13 @@ export function handleAuthResponse(response: ServerResponse): void {
     if (!errorModal) {
       showErrorModal(response.payload.error);
     }
-  } else if (response.type === 'MSG_FROM_USER') {
-    console.log(response.payload.messages);
+    // } else if (response.type === 'MSG_FROM_USER') {
+    //   console.log(response.payload.messages);
+  } else if (response.type === 'MSG_SEND') {
+    console.log(response.payload);
+    showSendedMessage(response.payload.message.text);
   }
 }
-
 function showAuthError(errors: string[] | undefined | string): void {
   const form = document.querySelector('.button-submit');
   const erorrsText = createElement({
@@ -120,11 +123,30 @@ function openAboutPage(page: string): void {
   if (page === 'main') {
     showAbout(() => {
       document.body.innerHTML = '';
-      createMainPage(currentUser?.login, goMainPage, users, (page) => {
-        openAboutPage(page);
-      });
+      createMainPage(
+        currentUser?.login,
+        goMainPage,
+        users,
+        (page) => {
+          openAboutPage(page);
+        },
+        sendMessageToUser,
+      );
     });
   }
+}
+
+function sendMessageToUser(userName: string, textMessage: string): void {
+  sendMessage({
+    id: Date.now().toString(),
+    type: 'MSG_SEND',
+    payload: {
+      message: {
+        to: userName,
+        text: textMessage,
+      },
+    },
+  });
 }
 
 function getUserStatus(): UserResponse[] {
@@ -162,4 +184,34 @@ function getMessageHistory(loginUser: string): void {
       },
     },
   });
+}
+
+function showSendedMessage(userText: string): void {
+  const messages = document.querySelector('.messages__history');
+  const initialText = document.querySelector('.messages__history__text');
+  const oldMessage = document.querySelector('.messages__type');
+
+  if (oldMessage instanceof HTMLTextAreaElement) {
+    oldMessage.value = '';
+  }
+
+  if (messages && messages instanceof HTMLElement) {
+    if (initialText) {
+      initialText.remove();
+      messages.classList.add('messages__history__list');
+    }
+
+    const messageItem = createElement({
+      tag: 'div',
+      classes: ['messages__item'],
+      parent: messages,
+    });
+
+    createElement({
+      tag: 'p',
+      text: userText,
+      classes: ['messages__item__text'],
+      parent: messageItem,
+    });
+  }
 }

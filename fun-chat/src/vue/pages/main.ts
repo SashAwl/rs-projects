@@ -2,6 +2,7 @@ import { createElement } from '../components/create-element';
 import { createInputElement } from '../components/create-input-element';
 import { createAnchorElement } from '../components/create-anchor-element';
 import { createTextareaElement } from '../components/create-textarea-element';
+import { sendMessage } from '../../api/api';
 
 export interface User {
   login: string;
@@ -18,6 +19,7 @@ export function createMainPage(
   loginOut: () => void,
   users: UserResponse[],
   goAboutPage: (page: string) => void,
+  sendMessage: (user: string, text: string) => void,
 ): HTMLElement {
   const container = createElement({
     tag: 'div',
@@ -185,7 +187,7 @@ export function createMainPage(
 
   const historyText = createElement({
     tag: 'p',
-    classes: ['message__history__text'],
+    classes: ['messages__history__text'],
     text: 'Select a user to send a message to...',
     parent: messageHistory,
   });
@@ -196,7 +198,7 @@ export function createMainPage(
     parent: messages,
   });
 
-  createTextareaElement({
+  const messageForm = createTextareaElement({
     rows: '4',
     cols: '33',
     name: 'typeMessage',
@@ -205,11 +207,17 @@ export function createMainPage(
     parent: messagesTypeForm,
   });
 
-  createElement({
+  const sendMessageButton = createElement({
     tag: 'button',
     text: 'Submit',
     classes: ['button', 'messages__submit'],
     parent: messagesTypeForm,
+  });
+
+  sendMessageButton.addEventListener('click', () => {
+    const toUser = userName.textContent || '';
+    const textMessage = messageForm.value || '';
+    sendMessage(toUser, textMessage);
   });
 
   const footer = createElement({
