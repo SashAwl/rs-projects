@@ -36,6 +36,7 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      favicon: './src/images/icon-chat.svg',
     }),
   ],
   devtool: 'inline-source-map',
