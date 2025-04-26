@@ -43,7 +43,7 @@ export function handleAuthResponse(response: ServerResponse): void {
       const user = getCurrentUser();
       createMainPage(
         user?.login,
-        () => goLogout(user),
+        goLogout,
         getUserStatus(),
         (page) => {
           openAboutPage(page);
@@ -55,6 +55,7 @@ export function handleAuthResponse(response: ServerResponse): void {
     if (!response.payload.user.isLogined) {
       setCurrentUser(null);
       document.body.innerHTML = '';
+      const user = getCurrentUser();
       createAuthForm(goLogin, (page) => {
         openAboutPage(page);
       });
@@ -106,7 +107,7 @@ function openAboutPage(page: string): void {
       const user = getCurrentUser();
       createMainPage(
         user?.login,
-        () => goLogout(user),
+        () => goLogout(),
         getUsers(),
         (page) => {
           openAboutPage(page);

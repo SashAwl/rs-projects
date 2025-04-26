@@ -15,7 +15,7 @@ export interface UserResponse {
 
 export function createMainPage(
   login: string = '',
-  logOut: (user: User) => void,
+  logOut: () => void,
   users: UserResponse[],
   goAboutPage: (page: string) => void,
   sendMessage: (user: string, text: string) => void,
@@ -71,7 +71,7 @@ export function createMainPage(
   });
 
   closeButton.addEventListener('click', () => {
-    logOut;
+    logOut();
   });
 
   const main = createElement({

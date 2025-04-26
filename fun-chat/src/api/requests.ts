@@ -1,7 +1,7 @@
 import type { User } from '../vue/pages/main';
 import { sendMessage } from './api';
 import { createElement } from '../vue/components/create-element';
-import { setCurrentUser } from '../state/state';
+import { setCurrentUser, getCurrentUser } from '../state/state';
 
 function sendMessageToUser(userName: string, textMessage: string): void {
   sendMessage({
@@ -74,7 +74,8 @@ function showAuthError(errors: string[] | undefined | string): void {
   form?.after(erorrsText);
 }
 
-function goLogout(user: User | null): void {
+function goLogout(): void {
+  const user = getCurrentUser();
   if (!user) {
     return;
   }
