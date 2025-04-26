@@ -76,9 +76,11 @@ export function createAuthForm(
   if (authForm) {
     authForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      const login = authLogin.value;
-      const password = authPassword.value;
-      onSubmit({ login, password });
+      const dataUser = {
+        login: authLogin.value,
+        password: authPassword.value,
+      };
+      onSubmit(dataUser);
     });
   } else {
     console.error('authForm is null');
@@ -88,55 +90,15 @@ export function createAuthForm(
     'keydown',
     (event: KeyboardEvent) => {
       if (event.code === 'Enter') {
-        const login = authLogin?.value;
-        const password = authPassword?.value;
-        onSubmit({ login, password });
+        const dataUser = {
+          login: authLogin.value,
+          password: authPassword.value,
+        };
+        onSubmit(dataUser);
       }
     },
     { once: true },
   );
 
-  // document.addEventListener('DOMContentLoaded', () => {
-  //   const body = document.body;
-  //   if (!body) {
-  //     console.error('document.body is null');
-  //     return;
-  //   }
-  //   body.addEventListener(
-  //     'keydown',
-  //     (event) => {
-  //       if (event.code === 'Enter') {
-  //         const login = authLogin?.value;
-  //         const password = authPassword?.value;
-  //         onSubmit({ login, password });
-  //       }
-  //     },
-  //     { once: true },
-  //   );
-  // });
-
   return auth;
-}
-
-export function validateAuthForm(data: {
-  login: string;
-  password: string;
-}): string[] {
-  const errors: string[] = [];
-
-  if (!data.login.trim()) {
-    errors.push('Login is required');
-  } else if (data.login.trim().length < 3) {
-    errors.push('Login must contain at least 3 characters');
-  }
-
-  if (!data.password) {
-    errors.push('Password is required');
-  } else if (data.password.length < 6) {
-    errors.push('Password must contain at least 6 characters');
-  } else if (data.password.trim().length === 0) {
-    errors.push('The password cannot consist only of spaces');
-  }
-
-  return errors;
 }

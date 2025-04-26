@@ -2,7 +2,6 @@ import { createElement } from '../components/create-element';
 import { createInputElement } from '../components/create-input-element';
 import { createAnchorElement } from '../components/create-anchor-element';
 import { createTextareaElement } from '../components/create-textarea-element';
-import { sendMessage } from '../../api/api';
 
 export interface User {
   login: string;
@@ -16,7 +15,7 @@ export interface UserResponse {
 
 export function createMainPage(
   login: string = '',
-  loginOut: () => void,
+  logOut: (user: User) => void,
   users: UserResponse[],
   goAboutPage: (page: string) => void,
   sendMessage: (user: string, text: string) => void,
@@ -72,7 +71,7 @@ export function createMainPage(
   });
 
   closeButton.addEventListener('click', () => {
-    loginOut();
+    logOut;
   });
 
   const main = createElement({
