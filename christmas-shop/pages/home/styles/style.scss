@@ -1,0 +1,302 @@
+@import "../../../assets/variables.scss";
+@import "../../../common-styles/common-styles.css";
+
+.main {
+    background-color: $primary;
+    background-image: url(../../../assets/images/bg-snow.png);
+    background-size: contain;
+    border-radius: 19px;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    background-image: url(../../../assets/images/bg-ball.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 8.3% 0 7.49%;
+
+    @media screen and (max-width:1439px) {
+        padding: 15.6% 0 14%;
+    }
+
+    @media screen and (max-width:767px) {
+        padding: 31.6% 0 28.2%;
+    }
+
+    & .elegant-text {
+        margin: 0 0 13px;
+    }
+
+    & .button {
+        margin: 12px 0;
+    }
+}
+
+.about {
+    display: flex;
+    background-color: $static-white;
+    border-radius: 20px;
+    margin: 4.1% 5.7% 0 5.7%;
+
+    @media screen and (max-width:1439px) {
+        margin: 59px 8px 0;
+    }
+
+    @media screen and (max-width:767px) {
+        flex-direction: column;
+    }
+
+    &__content {
+        width: 35%;
+        padding: 12.6% 12.3% 11% 4.7%;
+
+        @media screen and (max-width:1439px) {
+            width: 38%;
+            padding: 14.1% 7.4% 11.6% 8%;
+        }
+
+        @media screen and (max-width:767px) {
+            width: 100%;
+            padding: 16.5% 2px 11.1% 5.5%;
+            box-sizing: border-box;
+        }
+    }
+
+    &__img {
+        border-radius: 20px;
+        background-image: url(../../../assets/images/hero-santa.svg);
+        background-position-x: center;
+        background-size: cover;
+        width: 53%;
+
+        @media screen and (max-width:1439px) {
+            width: 55%;
+        }
+
+        @media screen and (max-width:767px) {
+            width: 100%;
+            height: 528px;
+        }
+    }
+
+    .elegant-text {
+        margin-bottom: 19px;
+
+        @media screen and (max-width:1439px) {
+            margin-bottom: 21px;
+        }
+    }
+}
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8.34% 0 8.2%;
+    color: white;
+
+    @media screen and (max-width:1439px) {
+        margin: 15.6% 0 15.1%;
+    }
+
+    @media screen and (max-width:767px) {
+        margin: 31.5% 0 30.5%;
+    }
+
+    &__wrapper {
+        overflow: hidden;
+        align-self: flex-start;
+        max-width: 1440px;
+
+        @media screen and (max-width:1439px) {
+            width: 100vw;
+        }
+
+        @media screen and (max-width:767px) {
+            width: 100vw;
+        }
+    }
+
+    &__box {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        transition: transform 0.8s ease;
+    }
+
+    &__text {
+        margin: 0 20.4px;
+        font-family: $font-family;
+        font-weight: 600;
+        font-size: 80px;
+        text-transform: uppercase;
+        text-align: center;
+        color: $static-white;
+
+        &:first-child {
+            margin-left: 63px;
+
+            @media screen and (max-width:1439px) {
+                margin-left: 8px;
+            }
+        }
+    }
+
+    &__img {
+        border-radius: 20px;
+
+        &:last-child {
+            margin-right: 63px;
+
+            @media screen and (max-width:1439px) {
+                margin-right: 8px;
+            }
+        }
+    }
+
+    &__nav {
+        align-self: flex-end;
+        padding-right: 5.7%;
+
+        @media screen and (max-width:1439px) {
+            padding-right: 8px;
+        }
+
+        .arrow {
+            padding: 15px;
+            border: 1px solid $static-white;
+            border-radius: 20px;
+
+            path {
+                fill: $static-white;
+            }
+
+            &-left {
+                margin-right: 15px;
+            }
+
+            &-disabled {
+                border-color: $static-white-40;
+                cursor: default;
+                pointer-events: none;
+            }
+
+            @media (hover: hover) {
+                &:hover {
+                    cursor: pointer;
+                    background-color: $static-white;
+                    color: $primary;
+                    transition: 0.6s ease;
+
+                    path {
+                        stroke: $primary;
+                    }
+
+                }
+            }
+
+            @media (hover: none) {
+                &:active {
+                    cursor: default;
+                    background-color: $static-white;
+                    color: $primary;
+                    transition: 0.2s ease;
+
+                    path {
+                        stroke: $primary;
+                    }
+
+                }
+            }
+
+
+        }
+    }
+}
+
+.best-gifts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 42px;
+
+    &__box {
+        margin: 18px auto;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        @media screen and (max-width:1439px) {
+            margin: 20px auto;
+        }
+    }
+}
+
+.cta {
+    display: flex;
+    flex-direction: column;
+    background-image: url(../../../assets/images/bg-forest.png);
+    background-size: cover;
+    background-position-x: center;
+    align-items: center;
+    padding: 12.6% 0 12.7%;
+
+    @media screen and (max-width:1439px) {
+        padding: 23.3% 0 23.8%;
+    }
+
+    @media screen and (max-width:767px) {
+        padding: 47.3% 0 48%;
+    }
+
+    h2 {
+        width: 27%;
+        text-align: center;
+
+
+        @media screen and (max-width:1439px) {
+            width: 65%;
+        }
+
+        @media screen and (max-width:767px) {
+            width: 100%;
+        }
+    }
+
+    .elegant-text {
+        margin-bottom: 8px;
+    }
+
+    &__box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        padding: 8px 12px 12px 12px;
+        background-color: $static-white-40;
+    }
+
+    &__item {
+        width: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        &~&::before {
+            background-color: $static-white-40;
+            width: 1px;
+            height: 20px;
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 29%;
+        }
+    }
+}

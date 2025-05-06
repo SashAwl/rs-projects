@@ -1,0 +1,113 @@
+@import "../../../assets/variables.scss";
+@import "../../../common-styles/common-styles.scss";
+
+.gift {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $primary;
+    padding-bottom: 59px;
+    border-radius: 19px;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+    visibility: visible;
+
+
+    &-hidden {
+        visibility: hidden;
+    }
+
+    &__top {
+        width: 100%;
+        padding-top: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url(../../../assets/images/bg-garland.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    &__tags {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 20px auto;
+
+        @media screen and (max-width:767px) {
+            gap: 0;
+        }
+    }
+
+    .tag-selection {
+        padding: 12px 20px;
+        background: none;
+        border: none;
+        transition: 0.6s ease;
+
+        @media screen and (max-width:767px) {
+            padding: 12px 8px;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                border-radius: 12px;
+                background-color: $static-white-20;
+                cursor: pointer;
+            }
+
+        }
+
+        @media (hover: none) {
+            &:active {
+                border-radius: 12px;
+                background-color: $static-white-20;
+                cursor: default;
+                transition: 0.2s ease;
+            }
+        }
+    }
+
+    .selected-tag {
+        border-radius: 12px;
+        background-color: $static-white-20;
+        pointer-events: none;
+        cursor: default;
+
+        @media screen and (max-width:767px) {}
+    }
+
+    &__box {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        padding-left: 82px;
+        padding-right: 82px;
+
+        @media screen and (max-width:1439px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media screen and (max-width:1024px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (max-width:767px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+}
+
+.scroll-to-top {
+    display: none;
+    border: 1px solid $primary;
+    background-color: $static-white;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    z-index: 3;
+}
