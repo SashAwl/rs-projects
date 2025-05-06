@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/sashawl-JSFE2024Q4/nonograms/',
+    publicPath: '/rs-projects/nonograms/',
     clean: true,
   },
   mode: 'development',
